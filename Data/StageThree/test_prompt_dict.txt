@@ -14,8 +14,7 @@
 "food": 0.91,
 "women": 0.46
 },
-"Response": "test_response_1",
-"Goals": ["test_goal_1"]
+"Goals": [{"test_goal_1": "test_response_1"}]
 }
 }
 }

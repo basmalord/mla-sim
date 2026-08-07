@@ -2,7 +2,7 @@ extends Node
 
 @onready var my_controller: Control = get_parent()
 
-var active_response_id: String
+var active_response_id: String = ""
 var response_dict: Dictionary
 var general_themes: Array
 
@@ -24,11 +24,18 @@ func get_response_theme_data_array(response_id: String):
 
 func _on_generate_response_button_pressed() -> void:
 	my_controller._switch_generate_button_disabled()
-	var active_prompt_entry: Dictionary = my_controller.prompt_manager.active_prompt_entry
-	var response_id = active_prompt_entry["Response"]
-	var response_entry = response_dict[response_id]
-	var prompt_goals: Array = active_prompt_entry["Goals"]
-	my_controller._send_response_data(response_entry, prompt_goals)
+	if active_response_id == "":
+		var active_prompt_entry: Dictionary = my_controller.prompt_manager.active_prompt_entry
+		var active_goal: String = my_controller.selected_goal
+		var response_id: String = ""
+		for entry in active_prompt_entry["Goals"]:
+			if entry.keys()[0] == active_goal:
+				response_id = entry[active_goal]
+		var response_entry = response_dict[response_id]
+		var prompt_goals: Array = active_prompt_entry["Goals"]
+		my_controller._send_response_data(response_entry, prompt_goals)
+	else:
+		my_controller
 
 func _select_response():
 	pass

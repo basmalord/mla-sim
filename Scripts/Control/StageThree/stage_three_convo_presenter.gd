@@ -16,7 +16,8 @@ var my_text: String
 
 func _ready() -> void:
 	if my_controller is Control:
-		connect("type_animation_finished", Callable(my_controller, "_switch_generate_button_disabled"))
+		#connect("type_animation_finished", Callable(my_controller, "_switch_generate_button_disabled"))
+		connect("type_animation_finished", Callable(my_controller, "_switch_response_selection_menu_disabled"))
 
 func _set_rtl_text(candidate_text: String):
 	my_rtl.text = candidate_text
@@ -46,6 +47,8 @@ func _handle_response(candidate_text: String):
 	if converstaion_is_active:
 		candidate_text = "\n\n\n\n" + candidate_text
 	_append_rtl_text(candidate_text)
+	await type_animation_finished
+	my_controller._switch_generate_button_disabled()
 
 func _type_out_characters(candidate_text: String):
 	var old_count := my_rtl.get_total_character_count()

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bg1g4nvlotnsa" path="res://Scenes/Stages/StageThree/stage_three_word_manager.tscn" id="7_fqads"]
 [ext_resource type="Script" uid="uid://cgmwv5od87gq4" path="res://Scripts/Control/StageThree/stage_three_response_gen_output.gd" id="8_fqads"]
 [ext_resource type="Script" uid="uid://c2epjhfxjhsb2" path="res://Scripts/Control/StageThree/intro_section_generator.gd" id="9_3hgd8"]
+[ext_resource type="Script" uid="uid://bo2we2ww3wxpk" path="res://Scripts/Control/StageThree/response_options.gd" id="10_7ija4"]
 
 [node name="StageThreeController" type="Control" unique_id=388204407]
 layout_mode = 3
@@ -85,8 +86,23 @@ offset_bottom = 536.0
 disabled = true
 text = "SEND RESPONSE"
 
+[node name="ResponseOptions" type="OptionButton" parent="." unique_id=1069726942]
+layout_mode = 0
+offset_left = 815.0
+offset_top = 665.0
+offset_right = 1011.0
+offset_bottom = 726.0
+disabled = true
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "GENERATION OBJECTIVE"
+popup/item_0/id = 0
+popup/item_1/id = 1
+script = ExtResource("10_7ija4")
+
 [connection signal="pressed" from="GenerateResponseButton" to="StageThreeResponseManager" method="_on_generate_response_button_pressed"]
 [connection signal="pressed" from="SendResponseButton" to="." method="_on_send_response_button_pressed"]
+[connection signal="item_selected" from="ResponseOptions" to="." method="_on_response_options_item_selected"]
 
 [editable path="StageThreeResponseManager"]
 [editable path="StageThreePromptManager"]

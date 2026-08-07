@@ -23,7 +23,7 @@ func generate_goals_string(goals: Array) -> String:
 	var goal_modified: String
 	var punctuation_array: Array[String] = [".","!"]
 	for index in goals_size:
-		var goal: String = goals[index]
+		var goal: String = goals[index].keys()[0]
 		if index == 0:
 			goals_string += goal
 			if index == last_index:
