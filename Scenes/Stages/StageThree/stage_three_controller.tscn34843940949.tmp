@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://bhdd11d6gwk2g"]
+
+[ext_resource type="PackedScene" uid="uid://s1yn45v4xstt" path="res://Scenes/Stages/StageThree/stage_three_prompt_manager.tscn" id="1_0s302"]
+[ext_resource type="Script" uid="uid://0xwalhdo65bp" path="res://Scripts/Control/StageThree/stage_three_controller.gd" id="1_aou0y"]
+[ext_resource type="PackedScene" uid="uid://b8dkw8ufbxs7k" path="res://Scenes/Stages/StageThree/Stage_Three_Convo_Presenter.tscn" id="2_wj6c4"]
+[ext_resource type="PackedScene" uid="uid://cgocbovg81f21" path="res://Scenes/Stages/StageThree/stage_three_response_manager.tscn" id="2_xjcnr"]
+[ext_resource type="Script" uid="uid://hsfk8v2rymt0" path="res://Scripts/Control/StageThree/stage_three_options_manager.gd" id="5_ofhna"]
+[ext_resource type="PackedScene" uid="uid://cjxcwsg88kwd5" path="res://Scenes/Stages/StageThree/stage_three_user_manager.tscn" id="6_xk8ca"]
+[ext_resource type="PackedScene" uid="uid://bg1g4nvlotnsa" path="res://Scenes/Stages/StageThree/stage_three_word_manager.tscn" id="7_fqads"]
+[ext_resource type="Script" uid="uid://cgmwv5od87gq4" path="res://Scripts/Control/StageThree/stage_three_response_gen_output.gd" id="8_fqads"]
+[ext_resource type="Script" uid="uid://c2epjhfxjhsb2" path="res://Scripts/Control/StageThree/intro_section_generator.gd" id="9_3hgd8"]
+
+[node name="StageThreeController" type="Control" unique_id=388204407]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aou0y")
+
+[node name="StageThreeResponseManager" parent="." unique_id=153859290 instance=ExtResource("2_xjcnr")]
+
+[node name="StageThreePromptManager" parent="." unique_id=936758910 instance=ExtResource("1_0s302")]
+
+[node name="StageThreeConvoPresenter" parent="." unique_id=421263138 instance=ExtResource("2_wj6c4")]
+layout_mode = 1
+typed_letter_delay = 0.1
+
+[node name="ConvoPresenterMainContainer" parent="StageThreeConvoPresenter/ScrollContainer" parent_id_path=PackedInt32Array(421263138, 159616859) index="0" unique_id=1978005616]
+custom_minimum_size = Vector2(100, 500)
+
+[node name="OptionsManager" type="Control" parent="." unique_id=261129839]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_ofhna")
+
+[node name="GenerateResponseButton" type="Button" parent="." unique_id=1498587997]
+layout_mode = 0
+offset_left = 781.0
+offset_top = 588.0
+offset_right = 955.0
+offset_bottom = 619.0
+disabled = true
+text = "GENERATE RESPONSE
+"
+
+[node name="StageThreeUserManager" parent="." unique_id=1393592266 instance=ExtResource("6_xk8ca")]
+
+[node name="StageThreeWordManager" parent="." unique_id=1570037752 instance=ExtResource("7_fqads")]
+
+[node name="DataHandler" parent="StageThreeWordManager" index="0" unique_id=416450105]
+data_resource_path = "res://Data/StageThree/test_prompt_dict.txt"
+
+[node name="StageThreeResponseGenOutput" type="Control" parent="." unique_id=1748618756]
+anchors_preset = 0
+offset_left = 1208.0
+offset_top = 264.0
+offset_right = 1248.0
+offset_bottom = 304.0
+script = ExtResource("8_fqads")
+
+[node name="ResponseOutputContainer" type="PanelContainer" parent="StageThreeResponseGenOutput" unique_id=1829237518]
+layout_mode = 0
+offset_right = 487.0
+offset_bottom = 389.0
+
+[node name="ResponseOutputRTL" type="RichTextLabel" parent="StageThreeResponseGenOutput/ResponseOutputContainer" unique_id=942624702]
+layout_mode = 2
+
+[node name="IntroSectionGenerator" type="Node" parent="StageThreeResponseGenOutput" unique_id=1192484613]
+script = ExtResource("9_3hgd8")
+intro_string_entries = Array[Dictionary]([{
+"I got you, you want me to": "Test"
+}])
+intro_part_two_string_array = Array[String](["We got this."])
+
+[node name="SendResponseButton" type="Button" parent="." unique_id=846466944]
+layout_mode = 0
+offset_left = 798.0
+offset_top = 505.0
+offset_right = 933.0
+offset_bottom = 536.0
+text = "SEND RESPONSE"
+
+[connection signal="pressed" from="GenerateResponseButton" to="StageThreeResponseManager" method="_on_generate_response_button_pressed"]
+[connection signal="pressed" from="SendResponseButton" to="." method="_on_send_response_button_pressed"]
+
+[editable path="StageThreeResponseManager"]
+[editable path="StageThreePromptManager"]
+[editable path="StageThreeConvoPresenter"]
+[editable path="StageThreeUserManager"]
+[editable path="StageThreeWordManager"]

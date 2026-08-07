@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bg1g4nvlotnsa"]
+
+[ext_resource type="Script" uid="uid://ql0ldpeowveg" path="res://Scripts/Control/StageThree/stage_three_word_manager.gd" id="1_2g5sm"]
+[ext_resource type="Script" uid="uid://cbivdx85bp6q8" path="res://Scripts/Handlers/data_handler_stage_three.gd" id="1_rx2in"]
+[ext_resource type="Script" uid="uid://dkrnnwxwujp2k" path="res://Scripts/Control/StageThree/stage_three_word_learner.gd" id="3_uldfu"]
+
+[node name="StageThreeWordManager" type="Node" unique_id=1570037752]
+script = ExtResource("1_2g5sm")
+
+[node name="DataHandler" type="Node" parent="." unique_id=416450105]
+script = ExtResource("1_rx2in")
+metadata/_custom_type_script = "uid://cbivdx85bp6q8"
+
+[node name="WordLearner" type="Node" parent="." unique_id=1414587378]
+script = ExtResource("3_uldfu")

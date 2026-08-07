@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://belngwjlup0ax"]
+
+[ext_resource type="Script" uid="uid://cvfa7vcjsrt8x" path="res://Scripts/AdHoc/play_test_end_screen.gd" id="1_oigdy"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_w8413"]
+
+[node name="PlaytestEndScreen" type="Control" unique_id=1697931998]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oigdy")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1057892909]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1081.0
+texture = SubResource("CanvasTexture_w8413")
+
+[node name="Label" type="Label" parent="." unique_id=1890373257]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 1909.0
+offset_bottom = 907.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "You've reached the end of the prototype, thanks for playing! Press 'P' to close the window!"
+autowrap_mode = 3

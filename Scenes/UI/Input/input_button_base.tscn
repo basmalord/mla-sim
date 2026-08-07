@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bfe0b1g2yvap0"]
+
+[ext_resource type="Script" uid="uid://cxldnq4slfr2m" path="res://Scripts/UI/Input/input_button_base.gd" id="1_2hmga"]
+
+[node name="InputButton" type="Button" unique_id=1932197546]
+offset_right = 82.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 24
+script = ExtResource("1_2hmga")

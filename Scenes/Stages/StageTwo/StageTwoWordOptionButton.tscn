@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://boek1p3qfuq56"]
+
+[ext_resource type="Script" uid="uid://ctwxuefkv8v3v" path="res://Scripts/UI/Input/stage_two_word_option_button.gd" id="1_sa42l"]
+
+[node name="StageTwoWordOptionButton" type="Button" unique_id=1407202839]
+script = ExtResource("1_sa42l")

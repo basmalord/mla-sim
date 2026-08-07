@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bhn1h41qcfnqb"]
+
+[ext_resource type="Shader" uid="uid://dnbdvlvqx14ll" path="res://Res/Visual/Shaders/vhs.gdshader" id="1_py461"]
+
+[sub_resource type="Gradient" id="Gradient_nvnny"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hxw8s"]
+gradient = SubResource("Gradient_nvnny")
+width = 100
+fill_from = Vector2(1, 0.9529914)
+fill_to = Vector2(0, 1)
+
+[resource]
+shader = ExtResource("1_py461")
+shader_parameter/strength = 10.0
+shader_parameter/manual_offset = 0.0
+shader_parameter/auto_scroll = false
+shader_parameter/parallax_map = SubResource("GradientTexture2D_hxw8s")

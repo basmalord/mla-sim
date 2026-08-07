@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://s1yn45v4xstt"]
+
+[ext_resource type="Script" uid="uid://v6yl7n61lbvf" path="res://Scripts/Control/StageThree/stage_three_prompt_manager.gd" id="1_8i4rw"]
+[ext_resource type="Script" uid="uid://cbivdx85bp6q8" path="res://Scripts/Handlers/data_handler_stage_three.gd" id="2_qjnna"]
+
+[node name="StageThreePromptManager" type="Node" unique_id=677994560]
+script = ExtResource("1_8i4rw")
+
+[node name="DataHandler" type="Node" parent="." unique_id=1368487944]
+script = ExtResource("2_qjnna")
+data_resource_path = "res://Data/StageThree/test_prompt_dict.txt"

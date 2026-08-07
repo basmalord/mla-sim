@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://xwkip851jj8r"]
+
+[node name="ClusterTheme" type="Node2D" unique_id=908356311]
+
+[node name="ClusterThemePanel" type="Panel" parent="." unique_id=2106668180]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ClusterThemeRTL" type="RichTextLabel" parent="ClusterThemePanel" unique_id=973570118]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+fit_content = true

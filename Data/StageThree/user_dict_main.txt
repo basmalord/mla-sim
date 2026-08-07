@@ -1,0 +1,10 @@
+{
+"Joseph":{
+	"goals": {},
+	"user_salience": 0.90
+	},
+"Company":{
+	"goals": {},
+	"user_salience": 1.00
+}
+}

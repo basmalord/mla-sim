@@ -1,0 +1,21 @@
+{"1": {"test_prompt_1": {"PromptString": "This is test prompt 1.",
+"Themes":{
+"city": 0.78,
+"children": 0.23,
+"men": 0.03,
+"violence": 0.32,
+"water": 0.27,
+"death": 0.21,
+"evil": 0.94,
+"work": 0.88,
+"travel": 0.31,
+"wealth": 0.66,
+"poverty": 0.40,
+"food": 0.91,
+"women": 0.46
+},
+"Response": "test_response_1",
+"Goals": ["test_goal_1"]
+}
+}
+}

@@ -1,0 +1,106 @@
+{"testy":{
+	"Themes":{
+	
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	}
+	},
+"testywest":{
+	"Themes":{
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	}
+	},
+"testchess":{
+	"Themes":{
+	
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	}
+	},
+"testguess":{
+	"Themes":{
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	}
+	},
+"testpest":{
+	"Themes":{
+	
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.75,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.23,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	}
+	},
+"testrest":{
+	"Themes":{
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.81,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.10,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	}
+	}
+}

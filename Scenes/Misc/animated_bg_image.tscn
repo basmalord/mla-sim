@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bs7gqitbr2fct"]
+
+[ext_resource type="Script" uid="uid://b62qy0ouwn178" path="res://Scripts/AdHoc/prog_bar.gd" id="1_5fqky"]
+[ext_resource type="Texture2D" uid="uid://c1sssxoa4rbd7" path="res://Res/Visual/Textures/james_murray_oed_1884_1280_720.jpg" id="1_hkdgf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fqky"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3v4nj"]
+texture = ExtResource("1_hkdgf")
+modulate_color = Color(0, 0.6313726, 1, 1)
+
+[node name="AnimatedBGImage" type="Control" unique_id=89119809]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+script = ExtResource("1_5fqky")
+
+[node name="TextureProgressBar" type="ProgressBar" parent="." unique_id=1113245188]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5fqky")
+theme_override_styles/fill = SubResource("StyleBoxTexture_3v4nj")
+show_percentage = false

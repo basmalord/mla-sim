@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dyqatew83xdov"]
+
+[ext_resource type="StyleBox" uid="uid://c8xjjpx5osbm6" path="res://Res/Visual/PanelStyles/stage_three_output_panel.tres" id="1_2hkk2"]
+[ext_resource type="Script" uid="uid://g4vm8a7fnocu" path="res://Scripts/Control/StageThree/convo_container.gd" id="1_p4sqf"]
+
+[node name="ConvoContainer" type="PanelContainer" unique_id=1341398130]
+custom_minimum_size = Vector2(400, 16)
+offset_right = 500.0
+offset_bottom = 720.0
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("1_2hkk2")
+script = ExtResource("1_p4sqf")
+
+[node name="ConvoRTL" type="RichTextLabel" parent="." unique_id=1540166508]
+custom_minimum_size = Vector2(100, 16)
+layout_mode = 2
+fit_content = true
+vertical_alignment = 3

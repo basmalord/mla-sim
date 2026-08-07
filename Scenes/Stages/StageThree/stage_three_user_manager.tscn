@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cjxcwsg88kwd5"]
+
+[ext_resource type="Script" uid="uid://w2uodoe78bib" path="res://Scripts/Control/StageThree/stage_three_user_manager.gd" id="1_u2ras"]
+[ext_resource type="Script" uid="uid://cbivdx85bp6q8" path="res://Scripts/Handlers/data_handler_stage_three.gd" id="1_xs5e7"]
+
+[node name="StageThreeUserManager" type="Node" unique_id=1393592266]
+script = ExtResource("1_u2ras")
+
+[node name="DataHandler" type="Node" parent="." unique_id=935829268]
+script = ExtResource("1_xs5e7")
+data_resource_path = "res://Data/StageThree/user_dict_main.txt"
+metadata/_custom_type_script = "uid://cbivdx85bp6q8"

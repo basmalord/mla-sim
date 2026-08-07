@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dh0rcm4hriine"]
+
+[ext_resource type="Script" uid="uid://dbt286yu6k7vs" path="res://Scripts/AdHoc/playtest_welcome_screen.gd" id="1_bqrlv"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_w8413"]
+
+[node name="PlaytestWelcomeScreen" type="Control" unique_id=1697931998]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bqrlv")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1057892909]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1081.0
+texture = SubResource("CanvasTexture_w8413")
+
+[node name="Label" type="Label" parent="." unique_id=1890373257]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 1909.0
+offset_bottom = 907.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Thanks for downloading the following prototype for 'We Killed Us'. This prototype is made up of two stages, the final stage of the game is currently still going through prototype construction.
+
+In stage 1 you are trying to guess the correct word, type or click the letters to construct your guess, and click confirm to lock it in. To advance to stage 2, guess 5 words correctly, or if you want to skip stage 1 entirely, press '*' when you load into stage 1. If you want to see the answers, simply launch the game in debug mode and you can find them in the debug window (debug exe provided with the main exe).
+
+In stage 2, you are completing sentences by selecting words. Words will become associated with the excerpts as you progress, and vice versa. You'll find a representation of these associations in a network graph.
+
+The prototype will finish once you've gone through all the sentences. These two stages are intended to generate the words and correlating associations which will define the player's experience in the 3rd stage of the game.
+
+To begin, press 'P' !"
+autowrap_mode = 3

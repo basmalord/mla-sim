@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cgocbovg81f21"]
+
+[ext_resource type="Script" uid="uid://de2muqqp5pojx" path="res://Scripts/Control/StageThree/stage_three_response_manager.gd" id="1_8i4rw"]
+[ext_resource type="Script" uid="uid://bhhv2vhm0g8yp" path="res://Scripts/Holders/stage_three_response_holder.gd" id="2_8i4rw"]
+
+[node name="StageThreeResponseManager" type="Node" unique_id=153859290]
+script = ExtResource("1_8i4rw")
+
+[node name="ResponseHolder" type="Node" parent="." unique_id=352995136]
+script = ExtResource("2_8i4rw")
+data_resource_path = "res://Data/StageThree/test_response_dict.txt"

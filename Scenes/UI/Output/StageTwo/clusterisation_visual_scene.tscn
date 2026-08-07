@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cr2q2tjabykkm"]
+
+[ext_resource type="Script" uid="uid://bew5p8g26w6lm" path="res://Scripts/Visual/Clusterisation/clusterisation_visual_scene.gd" id="1_02ua4"]
+[ext_resource type="Script" uid="uid://b3q2pb6t6h5x7" path="res://Scripts/Visual/Clusterisation/edge_manager.gd" id="2_kc8lq"]
+[ext_resource type="Script" uid="uid://b1s6v53urks3b" path="res://Scripts/Visual/Clusterisation/word_node_manager.gd" id="3_lffwp"]
+
+[node name="ClusterisationVisualScene" type="Node2D" unique_id=1584132494]
+script = ExtResource("1_02ua4")
+
+[node name="EdgeManager" type="Node2D" parent="." unique_id=599140279]
+script = ExtResource("2_kc8lq")
+
+[node name="WordNodeManager" type="Node2D" parent="." unique_id=1488061675]
+script = ExtResource("3_lffwp")
+spawn_radius = 100.0
+
+[node name="ClusterisationVisualSceneCamera" type="Camera2D" parent="." unique_id=2047992552]

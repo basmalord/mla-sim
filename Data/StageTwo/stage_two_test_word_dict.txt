@@ -1,0 +1,271 @@
+{
+	"apple": {
+		"Themes": {
+			"city": 0.64,
+			"children": 0.03,
+			"men": 0.28,
+			"violence": 0.22,
+			"water": 0.74,
+			"death": 0.68,
+			"evil": 0.89,
+			"work": 0.09,
+			"travel": 0.42,
+			"wealth": 0.03,
+			"poverty": 0.22,
+			"food": 0.51,
+			"women": 0.03
+		}
+	},
+
+	"river": {
+		"Themes": {
+			"city": 0.20,
+			"children": 0.65,
+			"men": 0.54,
+			"violence": 0.22,
+			"water": 0.59,
+			"death": 0.81,
+			"evil": 0.01,
+			"work": 0.81,
+			"travel": 0.70,
+			"wealth": 0.34,
+			"poverty": 0.16,
+			"food": 0.96,
+			"women": 0.34
+		}
+	},
+
+	"clock": {
+		"Themes": {
+			"city": 0.09,
+			"children": 0.10,
+			"men": 0.85,
+			"violence": 0.60,
+			"water": 0.81,
+			"death": 0.73,
+			"evil": 0.54,
+			"work": 0.97,
+			"travel": 0.38,
+			"wealth": 0.55,
+			"poverty": 0.83,
+			"food": 0.62,
+			"women": 0.86
+		}
+	},
+
+	"hammer": {
+		"Themes": {
+			"city": 0.58,
+			"children": 0.70,
+			"men": 0.05,
+			"violence": 0.23,
+			"water": 0.29,
+			"death": 0.08,
+			"evil": 0.23,
+			"work": 0.10,
+			"travel": 0.28,
+			"wealth": 0.64,
+			"poverty": 0.36,
+			"food": 0.37,
+			"women": 0.21
+		}
+	},
+
+	"forest": {
+		"Themes": {
+			"city": 0.27,
+			"children": 0.94,
+			"men": 0.65,
+			"violence": 0.61,
+			"water": 0.17,
+			"death": 0.73,
+			"evil": 0.16,
+			"work": 0.38,
+			"travel": 0.99,
+			"wealth": 0.64,
+			"poverty": 0.56,
+			"food": 0.68,
+			"women": 0.84
+		}
+	},
+
+	"lantern": {
+		"Themes": {
+			"city": 0.78,
+			"children": 0.23,
+			"men": 0.03,
+			"violence": 0.32,
+			"water": 0.27,
+			"death": 0.21,
+			"evil": 0.94,
+			"work": 0.88,
+			"travel": 0.31,
+			"wealth": 0.66,
+			"poverty": 0.40,
+			"food": 0.91,
+			"women": 0.46
+		}
+	},
+
+	"bread": {
+		"Themes": {
+			"city": 0.26,
+			"children": 0.25,
+			"men": 0.56,
+			"violence": 0.26,
+			"water": 0.58,
+			"death": 0.90,
+			"evil": 0.40,
+			"work": 0.22,
+			"travel": 1.00,
+			"wealth": 0.51,
+			"poverty": 0.09,
+			"food": 0.05,
+			"women": 0.11
+		}
+	},
+
+	"castle": {
+		"Themes": {
+			"city": 0.63,
+			"children": 0.79,
+			"men": 0.42,
+			"violence": 0.06,
+			"water": 0.38,
+			"death": 1.00,
+			"evil": 0.53,
+			"work": 0.97,
+			"travel": 0.86,
+			"wealth": 0.01,
+			"poverty": 0.72,
+			"food": 0.68,
+			"women": 0.54
+		}
+	},
+
+	"feather": {
+		"Themes": {
+			"city": 0.27,
+			"children": 0.64,
+			"men": 0.11,
+			"violence": 0.43,
+			"water": 0.45,
+			"death": 0.95,
+			"evil": 0.88,
+			"work": 0.26,
+			"travel": 0.50,
+			"wealth": 0.18,
+			"poverty": 0.91,
+			"food": 0.87,
+			"women": 0.30
+		}
+	},
+
+	"anchor": {
+		"Themes": {
+			"city": 0.64,
+			"children": 0.61,
+			"men": 0.15,
+			"violence": 0.76,
+			"water": 0.54,
+			"death": 0.78,
+			"evil": 0.53,
+			"work": 0.00,
+			"travel": 0.32,
+			"wealth": 0.02,
+			"poverty": 0.93,
+			"food": 0.88,
+			"women": 0.83
+		}
+	},
+
+	"mountain": {
+		"Themes": {
+			"city": 0.31,
+			"children": 0.06,
+			"men": 0.88,
+			"violence": 0.95,
+			"water": 0.09,
+			"death": 0.49,
+			"evil": 0.07,
+			"work": 0.76,
+			"travel": 0.77,
+			"wealth": 0.13,
+			"poverty": 0.48,
+			"food": 0.55,
+			"women": 0.27
+		}
+	},
+
+	"rabbit": {
+		"Themes": {
+			"city": 0.87,
+			"children": 0.42,
+			"men": 0.21,
+			"violence": 0.54,
+			"water": 0.73,
+			"death": 0.20,
+			"evil": 0.31,
+			"work": 1.00,
+			"travel": 0.65,
+			"wealth": 0.44,
+			"poverty": 0.52,
+			"food": 0.12,
+			"women": 0.22
+		}
+	},
+
+	"engine": {
+		"Themes": {
+			"city": 0.34,
+			"children": 0.59,
+			"men": 0.23,
+			"violence": 0.22,
+			"water": 0.07,
+			"death": 0.63,
+			"evil": 0.23,
+			"work": 0.91,
+			"travel": 0.86,
+			"wealth": 0.07,
+			"poverty": 0.24,
+			"food": 0.67,
+			"women": 0.21
+		}
+	},
+
+	"window": {
+		"Themes": {
+			"city": 0.13,
+			"children": 0.94,
+			"men": 0.57,
+			"violence": 0.47,
+			"water": 0.78,
+			"death": 0.81,
+			"evil": 0.19,
+			"work": 0.10,
+			"travel": 0.43,
+			"wealth": 0.42,
+			"poverty": 0.47,
+			"food": 0.73,
+			"women": 0.67
+		}
+	},
+
+	"garden": {
+		"Themes": {
+			"city": 0.98,
+			"children": 0.10,
+			"men": 0.40,
+			"violence": 0.34,
+			"water": 0.86,
+			"death": 0.25,
+			"evil": 0.19,
+			"work": 0.45,
+			"travel": 0.42,
+			"wealth": 0.28,
+			"poverty": 0.25,
+			"food": 0.92,
+			"women": 0.44
+		}
+	}
+}
