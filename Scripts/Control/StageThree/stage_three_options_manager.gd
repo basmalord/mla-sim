@@ -1,3 +1,45 @@
 extends Control
 
+signal _random_words_generated(words: Array)
+
 const response_button_scene = preload("res://Scenes/UI/Input/input_button_base.tscn")
+
+@onready var my_controller: Control = get_parent()
+
+@export var number_of_options: int = 5
+
+var current_words: Array[String]
+var current_word_entries: Dictionary
+var my_grid_container: Container
+var min_size: Vector2 = Vector2(91,81)
+
+
+func _on_word_clicked(word_clicked: String):
+	var sim_value: float = current_word_entries[word_clicked]
+	my_controller._on_word_clicked(word_clicked, sim_value)
+
+func _generate_word_buttons(word_entries: Dictionary):
+	var words: Array
+	var sim_values: Array
+	for word in word_entries.keys():
+		words.append(word)
+		sim_values.append(word_entries[word])
+	if my_grid_container == null:
+		my_grid_container = get_children()[0]
+	current_words = []
+	current_word_entries = {}
+	while words.size() > my_grid_container.get_children().size():
+		_create_word_button()
+	for child in my_grid_container.get_children():
+		var random_index: int = randi_range(0, (words.size() - 1))
+		child.text = words[random_index]
+		child.sim_value = sim_values[random_index]
+		words.pop_at(random_index) #think this could actually be the return value but not sure
+	current_word_entries = word_entries
+
+
+
+func _create_word_button():
+	var new_word_button: InputButton = response_button_scene.instantiate()
+	my_grid_container.add_child(new_word_button)
+	new_word_button.type = "Word"

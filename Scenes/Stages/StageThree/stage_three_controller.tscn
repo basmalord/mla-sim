@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://cgmwv5od87gq4" path="res://Scripts/Control/StageThree/stage_three_response_gen_output.gd" id="8_fqads"]
 [ext_resource type="Script" uid="uid://c2epjhfxjhsb2" path="res://Scripts/Control/StageThree/intro_section_generator.gd" id="9_3hgd8"]
 [ext_resource type="Script" uid="uid://bo2we2ww3wxpk" path="res://Scripts/Control/StageThree/response_options.gd" id="10_7ija4"]
+[ext_resource type="Script" uid="uid://b03rrs758nk40" path="res://Scripts/Control/StageThree/stage_three_associations_manager.gd" id="11_xy3gr"]
+[ext_resource type="Script" uid="uid://cbivdx85bp6q8" path="res://Scripts/Handlers/data_handler_stage_three.gd" id="12_hp154"]
 
 [node name="StageThreeController" type="Control" unique_id=388204407]
 layout_mode = 3
@@ -33,9 +35,17 @@ custom_minimum_size = Vector2(100, 500)
 
 [node name="OptionsManager" type="Control" parent="." unique_id=261129839]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1603.0
+offset_top = 165.0
+offset_right = 1643.0
+offset_bottom = 205.0
 script = ExtResource("5_ofhna")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsManager" unique_id=399373630]
+layout_mode = 0
+offset_top = 29.0
+offset_right = 40.0
+offset_bottom = 69.0
 
 [node name="GenerateResponseButton" type="Button" parent="." unique_id=1498587997]
 layout_mode = 0
@@ -99,6 +109,14 @@ popup/item_0/text = "GENERATION OBJECTIVE"
 popup/item_0/id = 0
 popup/item_1/id = 1
 script = ExtResource("10_7ija4")
+
+[node name="AssociationsManager" type="Node" parent="." unique_id=905483359]
+script = ExtResource("11_xy3gr")
+
+[node name="DataHandler" type="Node" parent="AssociationsManager" unique_id=1613616603]
+script = ExtResource("12_hp154")
+data_resource_path = "res://Data/StageTwo/stage_two_test_word_dict.txt"
+metadata/_custom_type_script = "uid://cbivdx85bp6q8"
 
 [connection signal="pressed" from="GenerateResponseButton" to="StageThreeResponseManager" method="_on_generate_response_button_pressed"]
 [connection signal="pressed" from="SendResponseButton" to="." method="_on_send_response_button_pressed"]

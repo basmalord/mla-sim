@@ -12,7 +12,6 @@ func _ready() -> void:
 	_load_res_from_path()
 
 func _load_res_from_path():
-	print("STAGE 1 ")
 	var my_file = FileAccess.open(data_resource_path, FileAccess.READ)
 	var file_contents: String = my_file.get_as_text()
 	my_file.close()

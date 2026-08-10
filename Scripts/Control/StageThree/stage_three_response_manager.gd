@@ -5,7 +5,8 @@ extends Node
 var active_response_id: String = ""
 var response_dict: Dictionary
 var general_themes: Array
-
+var active_response_entry: Dictionary
+var prompt_goals: Array
 
 func _post_data_receipt_behaviour():
 	pass
@@ -31,11 +32,11 @@ func _on_generate_response_button_pressed() -> void:
 		for entry in active_prompt_entry["Goals"]:
 			if entry.keys()[0] == active_goal:
 				response_id = entry[active_goal]
-		var response_entry = response_dict[response_id]
-		var prompt_goals: Array = active_prompt_entry["Goals"]
-		my_controller._send_response_data(response_entry, prompt_goals)
+		active_response_entry = response_dict[response_id]
+		prompt_goals = active_prompt_entry["Goals"]
+		my_controller._send_response_data(active_response_entry, prompt_goals)
 	else:
-		my_controller
+		my_controller._send_response_data(active_response_entry, prompt_goals)
 
 func _select_response():
 	pass

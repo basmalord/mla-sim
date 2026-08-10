@@ -5,7 +5,7 @@ signal _random_words_generated(words: Array)
 @onready var my_controller: Control = get_parent()
 
 var current_words: Array[String]
-var my_grid_container: HBoxContainer
+var my_grid_container: Container
 var min_size: Vector2 = Vector2(91,81)
 
 

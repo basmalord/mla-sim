@@ -18,12 +18,12 @@
 "ResponseSections": 
 {"t_response_1_1":
 {"ResponseString": "I need a blazer for my lazer.",
-"WordsToReplace": [{"blazer": "noun"},{"lazer": "noun"}]
+"WordsToRemove": [{"blazer": "noun"},{"lazer": "noun"}]
 } ,
 
 "t_response_1_2":
 {"ResponseString": "I need a manor for my spanner.",
-"WordsToReplace": [{"manor": "noun"},{"spanner": "noun"}]
+"WordsToRemove": [{"manor": "noun"},{"spanner": "noun"}]
 }
 },
 "test_response_2": {"ResponseString": "This is test response 2. This the the changed word: boulder.",

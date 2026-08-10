@@ -4,7 +4,7 @@ class_name InputButton
 
 @export_enum("Letter", "Word", "Prompt") var type: String
 var controller: Control
-
+var sim_value: float #for use only in S3
 
 func _ready() -> void:
 	controller = get_parent().get_parent()

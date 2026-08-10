@@ -43,7 +43,6 @@ func _set_active_prompt(prompt_id: String):
 	active_prompt_entry = prompt_dict[level][active_prompt_id]
 
 func _set_data_res(data: Dictionary):
-	print("running")
 	prompt_dict = data
 	_post_data_receipt_behaviour()
 
