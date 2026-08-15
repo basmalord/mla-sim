@@ -23,6 +23,9 @@ func _play_test_s_1_complete():
 		#playtest_complete_manager.modulate.a = i / 100.0
 		#await get_tree().create_timer(0.02).timeout
 
+func _play_test_s_2_complete():
+	transition_manager._handle_transition(stage_controller)
+
 func _s1_correct_behaviour():
 	pass
 	#if !background_screen_effects.is_visible():

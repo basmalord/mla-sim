@@ -1,25 +1,29 @@
 extends Control
 
 signal response_set
-signal section_displayed
+signal section_displayed(is_last_section: bool)
 signal waiting_for_advance
+signal new_word_set
 
 @onready var my_container: Container = $ResponseOutputContainer
 @onready var my_rtl: RichTextLabel = $ResponseOutputContainer/ResponseOutputRTL
 @onready var intro_generator: Node = $IntroSectionGenerator
 @onready var my_controller: Control = get_parent()
 
-@export_range(0,4,1) var section_index: int = 0
+@export var section_index: int = 0
 
-var modified_excerpt
+var modified_excerpt: String
 var response_entry: Dictionary
 var prompt_goals: Array
 var selected_goal: String
-var inserted_words_indexes
-var inserted_words
+var inserted_words_indexes: Array = []
+var inserted_words: Array = []
 var blank_indicator: String = "______"
-var last_inserted_word
-var last_inserted_word_index
+var last_inserted_word: String
+var last_inserted_word_index: int
+var number_of_section_indexes: int
+var last_sections_length: int = 0
+
 
 func _ready() -> void:
 	if my_controller is Control:
@@ -27,24 +31,120 @@ func _ready() -> void:
 	#connect("response_set", Callable(self, "_advance_section"))
 	#connect("response_set", Callable(self, "_display_section"))
 
+func _reset_all():
+	section_index = 0
+	modified_excerpt = ""
+	response_entry = {}
+	prompt_goals = []
+	selected_goal = ""
+	inserted_words_indexes = []
+	inserted_words = []
+	last_inserted_word = ""
+	last_inserted_word_index = 0
+	number_of_section_indexes = 0
+	my_rtl.text = ""
+
+func _retract_goal():
+	var goal_tally = my_controller.goal_tally_controller
+	goal_tally._remove_goal_tally()
+
+func _send_goal():
+	var goal: String = selected_goal
+	var goal_tally = my_controller.goal_tally_controller
+	goal_tally._add_goal_tally(goal)
+
+func _handle_erase_section():
+	if section_index > 1:
+		_remove_last_section_text()
+		_reset_affected_to_last_section()
+		my_controller.confidence_manager._on_erase_section(get_words_to_remove_size())
+		_retract_goal()
+		if section_index <= 1:
+			my_controller._switch_erase_button_disabled(false)
+		my_controller._switch_send_button_disabled(false)
+		 #now just need to take away from the probability generator, make sure to do single
+		#functions so you can rework if you have time to make it so they can remove single words at a time
+
+func get_words_to_remove_size():
+	var number_of_words_to_remove: int
+	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
+	var current_section_id: String = response_sections_dict.keys()[section_index - 1]
+	var current_section_entry: Dictionary = response_sections_dict[current_section_id]
+	var current_words_to_remove_entry_array: Array = current_section_entry["WordsToRemove"]
+	number_of_words_to_remove = current_words_to_remove_entry_array.size()
+	return number_of_words_to_remove
+
+func _reset_affected_to_last_section():
+	print("this is sec index before erase: ", section_index)
+	section_index -= 1
+	print("this is sec index after erase: ", section_index)
+	var number_of_words_to_remove: int
+	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
+	var current_section_id: String = response_sections_dict.keys()[section_index - 1]
+	var current_section_entry: Dictionary = response_sections_dict[current_section_id]
+	var current_words_to_remove_entry_array: Array = current_section_entry["WordsToRemove"]
+	var current_section_string: String = current_section_entry["ResponseString"]
+	var current_section_string_length: int = current_section_string.length()
+	var total_length: int = my_rtl.text.length()
+	var differance: int = total_length - current_section_string_length
+	last_sections_length = differance
+	number_of_words_to_remove = current_words_to_remove_entry_array.size()
+	for word in number_of_words_to_remove:
+		inserted_words_indexes.pop_back()
+		inserted_words.pop_back()
+	if !inserted_words.size() == 0:
+		last_inserted_word = inserted_words.back()
+	if !inserted_words_indexes.size() == 0:
+		last_inserted_word_index = inserted_words_indexes.back()
+	if my_controller.generate_response_button.disabled:
+		my_controller._switch_generate_button_disabled()
+
+func _remove_last_section_text():
+	var current_length: int = my_rtl.text.length()
+	var length_difference: int = current_length - last_sections_length
+	var new_text: String = my_rtl.text
+	for i in length_difference:
+		new_text = erase_char(new_text, new_text.length() - 1)
+	my_rtl.text = new_text
+	#print("this is curr leng: ", current_length, "  This is length dif: ", length_difference, "this is new_text: ", new_text)
+
+func _handle_word_clicked(word:String):
+	if !my_rtl.text.contains("_"):
+		return
+	_insert_selected_word(word)
+	emit_signal("new_word_set")
+	#if section_index - 1 != number_of_section_indexes:
+		#print("firing hereeeee", section_index, "    ", number_of_section_indexes)
+		#
+		#return
+	if !my_rtl.text.contains("_"):
+		if section_index <= number_of_section_indexes:
+			my_controller._switch_generate_button_disabled()
+		if section_index > number_of_section_indexes:
+			my_controller._switch_send_button_disabled()
+
+
 func _advance_section():
+	if section_index >= 1:
+		my_controller._switch_erase_button_disabled(true)
 	_display_section()
 	emit_signal("waiting_for_advance")
-	print("WAITING FIRED")
 	await section_displayed
-	print("POST WAITING FIRED")
-	if section_index == 4:
-		section_index = 0
-		return
 	section_index += 1
-	print("BOGOOSOSOS", section_index)
 
 func _display_section():
-	my_rtl.text = get_response_string() #need a different animation compared to the prompt output
-	print("WANT WAITING FIRED TO FIRE")
+	last_sections_length = my_rtl.text.length() 
+	number_of_section_indexes = response_entry["ResponseSections"].keys().size()
+	my_rtl.text += get_response_string() #need a different animation compared to the prompt output
+	modified_excerpt = my_rtl.text
 	await waiting_for_advance
 	await get_tree().create_timer(0.06).timeout
-	emit_signal("section_displayed")
+	if section_index == number_of_section_indexes:
+		emit_signal("section_displayed", false)
+		return
+	emit_signal("section_displayed", false)
+	if section_index == 1: #equals 1 because by here it will always be 1+ what it is
+		my_controller._switch_generate_button_disabled() #this makes a slight flash, but you're going to add a loading animation over the button
 
 func get_response_string() -> String:
 	var new_text: String
@@ -54,9 +154,9 @@ func get_response_string() -> String:
 	if !response_entry.has("ResponseSections"):
 		return ""
 	var response_sections_array: Array = response_entry["ResponseSections"].keys()
-	if (response_sections_array.size() - 1) < section_index:
+	if (response_sections_array.size()) < section_index:
 		return ""
-	var target_section: Dictionary = response_entry["ResponseSections"][response_sections_array[section_index]]
+	var target_section: Dictionary = response_entry["ResponseSections"][response_sections_array[section_index - 1]]
 	new_text = target_section["ResponseString"]
 	var words_to_remove_array: Array = target_section["WordsToRemove"]
 	var words_to_remove: Array
@@ -150,7 +250,9 @@ func _insert_selected_word(selected_word: String):
 	if !modified_excerpt.contains("_"):
 		return
 	var blank_indicator_index: int = modified_excerpt.find("_")
-	if blank_indicator_index == 0:
+	if blank_indicator_index == 0: #checks the string to see if the word to replace falls at the start, and capitalises if so
+		selected_word = selected_word.capitalize()
+	elif modified_excerpt[blank_indicator_index - 1] == "." or modified_excerpt[blank_indicator_index - 1] == "!" or modified_excerpt[blank_indicator_index - 1] == "?": #checks the string for punctuation and whether to capitalise.
 		selected_word = selected_word.capitalize()
 	var newly_modified_excerpt: String
 	newly_modified_excerpt = modified_excerpt
@@ -163,7 +265,8 @@ func _insert_selected_word(selected_word: String):
 	last_inserted_word_index = blank_indicator_index
 	modified_excerpt = newly_modified_excerpt
 	my_rtl.text = modified_excerpt
-	get_parent()._on_excerpt_finished_processing(selected_word)
+
+
 
 func insert_blank_indicator(word_size: int, index_start: int, excerpt_string: String):
 	excerpt_string = excerpt_string.insert(index_start, blank_indicator)

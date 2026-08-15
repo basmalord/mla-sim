@@ -156,15 +156,16 @@ func _set_active_excerpt():
 	return true
 
 func _setup_active_excerpt():
+	if previous_excerpt_ids.size() == excerpts_dict.keys().size():
+		get_parent().confirm_button.disabled = true
+		get_parent()._end_stage()
+		return
 	var has_set_new_excerpt: bool = false #if rounds exceed excerpts, then this will cause a data leak, either put safeguard in or make sure rounds never exceed
 	while !has_set_new_excerpt:
 		has_set_new_excerpt = _set_active_excerpt()
 	_reset_variable_properties()
 	_display_active_excerpt()
-	if previous_excerpt_ids.size() == excerpts_dict.keys().size() - 1:
-		get_parent().confirm_button.disabled = true
-		await get_tree().create_timer(5).timeout
-		get_parent()._end_prototype()
+
 
 func _mutate_excerpt_themes_values(excerpt_id: String, answers: Array):
 	if excerpts_dict.keys().find(excerpt_id) == -1:

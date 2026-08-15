@@ -11,6 +11,13 @@ class_name StageThreeController
 @onready var response_selection_menu: OptionButton = $ResponseOptions
 @onready var associations_manager: Node = $AssociationsManager
 @onready var options_manager: Control = $OptionsManager
+@onready var user_goals_manager: Node = $UserGoalsManager
+@onready var user_satisfaction_manager: Control = $UserSatisfactionManager
+@onready var confidence_manager: Control = $ConfidenceManager
+@onready var goal_tally_controller: Node = $GoalsTally
+@onready var user_profile_manager: Node = $StageThreeUserManager
+@onready var erase_button: Button = $EraseSectionButton
+
 var selected_goal: String
 
 @export_range(1,10,1) var level: int = 1
@@ -27,6 +34,9 @@ func _send_prompt(prompt_entry: Dictionary):
 	convo_presenter._handle_prompt(prompt_text)
 
 func _send_response_data(response_entry: Dictionary, goals_array: Array):
+	var selected_index: int = response_selection_menu.selected
+	var selected_generation_goal: String = response_selection_menu.get_item_text(selected_index)
+	goal_tally_controller._add_goal_tally(selected_generation_goal)
 	response_gen_output._set_response_entry(response_entry, goals_array)
 	options_manager._generate_word_buttons(associations_manager.get_word_to_prompt_similarity_entry_array(number_of_options))
 
@@ -34,12 +44,19 @@ func _send_response_data(response_entry: Dictionary, goals_array: Array):
 	#response_gen_output
 
 func _on_send_response_button_pressed() -> void:
+	goal_tally_controller._reset_goals_tally()
 	_switch_send_button_disabled()
+	_switch_erase_button_disabled()
 	var candidate_text: String = response_gen_output.my_rtl.text
 	convo_presenter._handle_response(candidate_text)
+	response_gen_output._reset_all()
+	options_manager._on_send_clicked()
+	
 
 func _on_word_clicked(word: String, sim_value: float):
-	print(word, sim_value)
+	response_gen_output._handle_word_clicked(word)
+	await response_gen_output.new_word_set
+	confidence_manager._on_word_clicked(sim_value)
 
 func _switch_response_selection_menu_disabled():
 	if response_selection_menu.disabled:
@@ -47,11 +64,19 @@ func _switch_response_selection_menu_disabled():
 	else:
 		response_selection_menu.disabled = true
 
-func _switch_send_button_disabled():
+func _switch_send_button_disabled(is_last_section: bool = true):
+	if !is_last_section:
+		send_response_button.disabled = true
+		return
 	if send_response_button.disabled:
 		send_response_button.disabled = false
 	else:
 		send_response_button.disabled = true
+
+func _flash_switch_generate_button_disabled():
+	_switch_generate_button_disabled()
+	await get_tree().create_timer(1).timeout
+	_switch_generate_button_disabled()
 
 func _switch_generate_button_disabled():
 	if generate_response_button.disabled:
@@ -59,6 +84,26 @@ func _switch_generate_button_disabled():
 	else:
 		generate_response_button.disabled = true
 
+func _switch_erase_button_disabled(enable: bool = false):
+	if !enable:
+		erase_button.disabled = true
+	else:
+		erase_button.disabled = false
+
+func _receive_goals(goals: Array, number_of_sections: int, from_prompt: bool = false):
+	var new_goals_dict: Dictionary
+	new_goals_dict["Sections"] = number_of_sections
+	if from_prompt:
+		for entry in goals:
+			var goal = entry.keys()[0]
+			new_goals_dict[goal] = 1
+	else:
+		for entry in goals:
+			var goal = entry.keys()[0]
+			new_goals_dict[goal] = goal_tally_controller.goals_tally[goal]
+	user_goals_manager._handle_goals(new_goals_dict)
+	await user_goals_manager.goals_handled
+	user_satisfaction_manager._display_new_user_satisfaction(new_goals_dict)
 
 func _on_response_options_item_selected(index: int) -> void:
 	if index == 0:
@@ -68,3 +113,7 @@ func _on_response_options_item_selected(index: int) -> void:
 			response_gen_output.selected_goal = response_selection_menu.get_item_text(index)
 			selected_goal = response_selection_menu.get_item_text(index)
 			_switch_generate_button_disabled()
+
+
+func _on_erase_section_button_pressed() -> void:
+	response_gen_output._handle_erase_section()

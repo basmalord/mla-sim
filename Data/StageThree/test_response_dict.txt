@@ -19,8 +19,7 @@
 {"t_response_1_1":
 {"ResponseString": "I need a blazer for my lazer.",
 "WordsToRemove": [{"blazer": "noun"},{"lazer": "noun"}]
-} ,
-
+},
 "t_response_1_2":
 {"ResponseString": "I need a manor for my spanner.",
 "WordsToRemove": [{"manor": "noun"},{"spanner": "noun"}]

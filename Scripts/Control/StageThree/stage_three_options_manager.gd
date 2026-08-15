@@ -13,8 +13,16 @@ var current_word_entries: Dictionary
 var my_grid_container: Container
 var min_size: Vector2 = Vector2(91,81)
 
+func _on_send_clicked():
+	_destroy_all_buttons()
 
-func _on_word_clicked(word_clicked: String):
+func _destroy_all_buttons():
+	if my_grid_container is not Container:
+		return
+	for child in my_grid_container.get_children():
+		child.queue_free()
+
+func _on_word_clicked(word_clicked: String, _sent_sim_value: float):
 	var sim_value: float = current_word_entries[word_clicked]
 	my_controller._on_word_clicked(word_clicked, sim_value)
 
@@ -42,4 +50,4 @@ func _generate_word_buttons(word_entries: Dictionary):
 func _create_word_button():
 	var new_word_button: InputButton = response_button_scene.instantiate()
 	my_grid_container.add_child(new_word_button)
-	new_word_button.type = "Word"
+	new_word_button.type = "Prompt"

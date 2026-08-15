@@ -22,6 +22,9 @@ func get_response_theme_data_array(response_id: String):
 		theme_data_values_array.append(theme_data_dict.get("Theme"))
 	return theme_data_values_array
 
+func get_next_prompt():
+	var next_prompt_id: String = active_response_entry["NextPrompt"]
+	return next_prompt_id
 
 func _on_generate_response_button_pressed() -> void:
 	my_controller._switch_generate_button_disabled()
@@ -35,8 +38,15 @@ func _on_generate_response_button_pressed() -> void:
 		active_response_entry = response_dict[response_id]
 		prompt_goals = active_prompt_entry["Goals"]
 		my_controller._send_response_data(active_response_entry, prompt_goals)
+		var goals_array: Array[String]
+		for entry in prompt_goals:
+			goals_array.append(entry.keys()[0])
+		my_controller._receive_goals(prompt_goals, 1, true)
 	else:
 		my_controller._send_response_data(active_response_entry, prompt_goals)
+		var sections: int = active_response_entry["ResponseSections"].size()
+		my_controller._receive_goals(prompt_goals, sections)
+
 
 func _select_response():
 	pass

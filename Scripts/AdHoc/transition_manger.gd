@@ -6,6 +6,7 @@ class_name TransitionManager
 
 const STAGE_ONE_PATH: String = "res://Scenes/Stages/StageOne/stage_one_controller.tscn"
 const STAGE_TWO_PATH: String = "res://Scenes/Stages/StageTwo/StageTwoController.tscn"
+const STAGE_THREE_PATH: String = "res://Scenes/Stages/StageThree/stage_three_controller.tscn"
 
 func _handle_transition(current_scene: Node):
 	var current_stage_name = current_scene.name
@@ -14,6 +15,9 @@ func _handle_transition(current_scene: Node):
 	match current_stage_name:
 		"StageOneController":
 			new_stage = load_scene_from_path(STAGE_TWO_PATH)
+		"StageTwoController":
+			print("stage 2 finished from match func")
+			new_stage = load_scene_from_path(STAGE_THREE_PATH)
 		_:
 			return
 	my_manager.stage_controller = new_stage
@@ -30,5 +34,6 @@ func load_scene_from_path(scene_path: String):
 		push_error("Failed to load scene: " + scene_path)
 		return null
 	var instance = scene.instantiate()
-	get_tree().root.add_child(instance)
+	my_manager.add_child(instance)
+	my_manager.stage_controller = instance
 	return instance

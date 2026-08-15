@@ -12,6 +12,11 @@ const end_screen:= preload("res://Scenes/AdHoc/play_test_end_screen.tscn")
 @onready var net_graph_viewport: SubViewportContainer = $ClusterSubViewContainer
 @onready var output_label: RichTextLabel = $StageTwoOutputLabel
 
+func _end_stage():
+	var my_root: Node = get_parent()
+	print(my_root)
+	my_root._play_test_s_2_complete()
+
 func _end_prototype():
 	get_tree().change_scene_to_packed(end_screen)
 
@@ -34,6 +39,7 @@ func _on_confirm_clicked(): #sloppy should probably refactor but aw well
 	associations_handler._activate_themes(excerpt_themes)
 	net_graph_viewport._call_graph(answers_array, answers_theme_values_array) #doesnt add new words generated from most recent confirmation, need to send word data from confirm click
 	excerpt_controller._setup_active_excerpt()
+	_end_stage()
 
 func _on_neural_net_clicked():
 	pass

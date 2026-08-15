@@ -12,6 +12,11 @@
 [ext_resource type="Script" uid="uid://bo2we2ww3wxpk" path="res://Scripts/Control/StageThree/response_options.gd" id="10_7ija4"]
 [ext_resource type="Script" uid="uid://b03rrs758nk40" path="res://Scripts/Control/StageThree/stage_three_associations_manager.gd" id="11_xy3gr"]
 [ext_resource type="Script" uid="uid://cbivdx85bp6q8" path="res://Scripts/Handlers/data_handler_stage_three.gd" id="12_hp154"]
+[ext_resource type="Script" uid="uid://ba3epp48m7b2v" path="res://Scripts/Control/StageThree/stage_three_confidence_manager.gd" id="13_oxpd3"]
+[ext_resource type="Script" uid="uid://eg6jyw43muf6" path="res://Scripts/Control/StageThree/stage_three_user_satisfaction_manager.gd" id="14_1mlbr"]
+[ext_resource type="Script" uid="uid://brxx1nypy0poo" path="res://Scripts/Control/StageThree/stage_three_user_goals_manager.gd" id="15_u77sw"]
+[ext_resource type="Script" uid="uid://chdfb5nttq0hi" path="res://Scripts/Control/StageThree/stage_three_goals_tally.gd" id="16_774yd"]
+[ext_resource type="Script" uid="uid://cdbp5chkp4lb4" path="res://Scripts/Control/StageThree/erase_section_button.gd" id="17_mipw4"]
 
 [node name="StageThreeController" type="Control" unique_id=388204407]
 layout_mode = 3
@@ -28,7 +33,7 @@ script = ExtResource("1_aou0y")
 
 [node name="StageThreeConvoPresenter" parent="." unique_id=421263138 instance=ExtResource("2_wj6c4")]
 layout_mode = 1
-typed_letter_delay = 0.1
+typed_letter_delay = 0.05
 
 [node name="ConvoPresenterMainContainer" parent="StageThreeConvoPresenter/ScrollContainer" parent_id_path=PackedInt32Array(421263138, 159616859) index="0" unique_id=1978005616]
 custom_minimum_size = Vector2(100, 500)
@@ -118,9 +123,52 @@ script = ExtResource("12_hp154")
 data_resource_path = "res://Data/StageTwo/stage_two_test_word_dict.txt"
 metadata/_custom_type_script = "uid://cbivdx85bp6q8"
 
+[node name="ConfidenceManager" type="Control" parent="." unique_id=339787341]
+anchors_preset = 0
+offset_left = 1148.0
+offset_top = 217.0
+offset_right = 1188.0
+offset_bottom = 257.0
+script = ExtResource("13_oxpd3")
+
+[node name="ConfidenceRTL" type="RichTextLabel" parent="ConfidenceManager" unique_id=2048788389]
+layout_mode = 0
+offset_right = 263.0
+offset_bottom = 40.0
+
+[node name="UserSatisfactionManager" type="Control" parent="." unique_id=1573630690]
+anchors_preset = 0
+offset_left = 1481.0
+offset_top = 165.0
+offset_right = 1521.0
+offset_bottom = 205.0
+script = ExtResource("14_1mlbr")
+
+[node name="USRTL" type="RichTextLabel" parent="UserSatisfactionManager" unique_id=1123903384]
+layout_mode = 0
+offset_right = 228.0
+offset_bottom = 40.0
+
+[node name="UserGoalsManager" type="Node" parent="." unique_id=1210715089]
+script = ExtResource("15_u77sw")
+
+[node name="GoalsTally" type="Node" parent="." unique_id=1068732386]
+script = ExtResource("16_774yd")
+
+[node name="EraseSectionButton" type="Button" parent="." unique_id=1072093608]
+layout_mode = 0
+offset_left = 1187.0
+offset_top = 794.0
+offset_right = 1195.0
+offset_bottom = 802.0
+disabled = true
+text = "ERASE SECTION"
+script = ExtResource("17_mipw4")
+
 [connection signal="pressed" from="GenerateResponseButton" to="StageThreeResponseManager" method="_on_generate_response_button_pressed"]
 [connection signal="pressed" from="SendResponseButton" to="." method="_on_send_response_button_pressed"]
 [connection signal="item_selected" from="ResponseOptions" to="." method="_on_response_options_item_selected"]
+[connection signal="pressed" from="EraseSectionButton" to="." method="_on_erase_section_button_pressed"]
 
 [editable path="StageThreeResponseManager"]
 [editable path="StageThreePromptManager"]

@@ -58,4 +58,4 @@ func _word_behaviour():
 # PROMPT FUNCTIONALITY
 
 func _prompt_behaviour():
-	print("prompt")
+	controller._on_word_clicked(text, sim_value)

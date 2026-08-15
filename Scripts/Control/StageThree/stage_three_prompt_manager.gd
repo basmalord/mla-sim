@@ -26,6 +26,9 @@ func _post_data_receipt_behaviour():
 	_set_active_prompt("test_prompt_1")
 	my_controller._send_prompt(active_prompt_entry)
 
+func _launch_new_prompt(prompt_id: String):
+	_set_active_prompt(prompt_id)
+	my_controller._send_prompt(active_prompt_entry)
 
 func get_prompt_string(prompt_id: String):
 	var prompt_string: String = prompt_dict[prompt_id]["PromptString"]

@@ -48,6 +48,7 @@ func _handle_response(candidate_text: String):
 		candidate_text = "\n\n\n\n" + candidate_text
 	_append_rtl_text(candidate_text)
 	await type_animation_finished
+	my_controller.prompt_manager._launch_new_prompt(my_controller.response_manager.get_next_prompt())
 	my_controller._switch_generate_button_disabled()
 
 func _type_out_characters(candidate_text: String):
