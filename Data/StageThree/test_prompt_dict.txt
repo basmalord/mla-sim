@@ -14,7 +14,7 @@
 "food": 0.91,
 "women": 0.46
 },
-"Goals": [{"test_goal_1": "test_response_1"}, {"testgoal2": "test_response_1"}, {"testgoal3": "test_response_1"}, {"testgoal4": "test_response_1"}]
+"Goals": [{"testgoal1": "test_response_1"}, {"testgoal2": "test_response_1"}, {"testgoal3": "test_response_1"}, {"testgoal4": "test_response_1"}]
 },
 "test_prompt_2": {"PromptString": "This is test prompt 2.",
 "Themes":{
@@ -32,7 +32,7 @@
 "food": 0.91,
 "women": 0.46
 },
-"Goals": [{"test_goal_2": "test_response_2"}]
+"Goals": [{"testgoal1": "test_response_1"}, {"testgoal2": "test_response_1"}, {"testgoal3": "test_response_1"}, {"testgoal4": "test_response_1"}]
 }
 }
 }

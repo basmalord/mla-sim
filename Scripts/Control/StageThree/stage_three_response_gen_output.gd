@@ -4,6 +4,8 @@ signal response_set
 signal section_displayed(is_last_section: bool)
 signal waiting_for_advance
 signal new_word_set
+signal erasing(words_to_remove: int, goal_removed: String)
+signal got_words_to_remove
 
 @onready var my_container: Container = $ResponseOutputContainer
 @onready var my_rtl: RichTextLabel = $ResponseOutputContainer/ResponseOutputRTL
@@ -55,23 +57,27 @@ func _send_goal():
 
 func _handle_erase_section():
 	if section_index > 1:
+		emit_signal("erasing", get_words_to_remove_size(), my_controller.goal_tally_controller.last_goals.back())
+		await got_words_to_remove
 		_remove_last_section_text()
 		_reset_affected_to_last_section()
-		my_controller.confidence_manager._on_erase_section(get_words_to_remove_size())
 		_retract_goal()
 		if section_index <= 1:
 			my_controller._switch_erase_button_disabled(false)
 		my_controller._switch_send_button_disabled(false)
+		if my_controller.generate_response_button.disabled:
+			my_controller._switch_generate_button_disabled()
 		 #now just need to take away from the probability generator, make sure to do single
 		#functions so you can rework if you have time to make it so they can remove single words at a time
 
 func get_words_to_remove_size():
 	var number_of_words_to_remove: int
 	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
-	var current_section_id: String = response_sections_dict.keys()[section_index - 1]
+	var current_section_id: String = response_sections_dict.keys()[section_index - 2]
 	var current_section_entry: Dictionary = response_sections_dict[current_section_id]
 	var current_words_to_remove_entry_array: Array = current_section_entry["WordsToRemove"]
 	number_of_words_to_remove = current_words_to_remove_entry_array.size()
+	emit_signal("got_words_to_remove")
 	return number_of_words_to_remove
 
 func _reset_affected_to_last_section():
@@ -96,8 +102,7 @@ func _reset_affected_to_last_section():
 		last_inserted_word = inserted_words.back()
 	if !inserted_words_indexes.size() == 0:
 		last_inserted_word_index = inserted_words_indexes.back()
-	if my_controller.generate_response_button.disabled:
-		my_controller._switch_generate_button_disabled()
+
 
 func _remove_last_section_text():
 	var current_length: int = my_rtl.text.length()

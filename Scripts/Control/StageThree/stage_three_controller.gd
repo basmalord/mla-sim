@@ -18,6 +18,7 @@ class_name StageThreeController
 @onready var user_profile_manager: Node = $StageThreeUserManager
 @onready var erase_button: Button = $EraseSectionButton
 
+
 var selected_goal: String
 
 @export_range(1,10,1) var level: int = 1
@@ -46,12 +47,13 @@ func _send_response_data(response_entry: Dictionary, goals_array: Array):
 func _on_send_response_button_pressed() -> void:
 	goal_tally_controller._reset_goals_tally()
 	_switch_send_button_disabled()
-	_switch_erase_button_disabled()
+	if !erase_button.disabled:
+		_switch_erase_button_disabled()
 	var candidate_text: String = response_gen_output.my_rtl.text
 	convo_presenter._handle_response(candidate_text)
 	response_gen_output._reset_all()
 	options_manager._on_send_clicked()
-	
+	response_selection_menu._clear_items()
 
 func _on_word_clicked(word: String, sim_value: float):
 	response_gen_output._handle_word_clicked(word)
@@ -91,29 +93,35 @@ func _switch_erase_button_disabled(enable: bool = false):
 		erase_button.disabled = false
 
 func _receive_goals(goals: Array, number_of_sections: int, from_prompt: bool = false):
-	var new_goals_dict: Dictionary
-	new_goals_dict["Sections"] = number_of_sections
 	if from_prompt:
-		for entry in goals:
-			var goal = entry.keys()[0]
-			new_goals_dict[goal] = 1
+		print("introduce goals firing from controller")
+		user_goals_manager._introduce_goals(goals)
 	else:
+		var new_goals_dict: Dictionary
+		new_goals_dict["Sections"] = number_of_sections
+		var goal_tally = goal_tally_controller.goals_tally
 		for entry in goals:
 			var goal = entry.keys()[0]
-			new_goals_dict[goal] = goal_tally_controller.goals_tally[goal]
-	user_goals_manager._handle_goals(new_goals_dict)
-	await user_goals_manager.goals_handled
-	user_satisfaction_manager._display_new_user_satisfaction(new_goals_dict)
+			if goal_tally.has(goal):
+				new_goals_dict[goal] = goal_tally_controller.goals_tally[goal]
+			else:
+				new_goals_dict[goal] = 0
+		user_goals_manager._handle_goals(new_goals_dict)
+		await user_goals_manager.goals_handled
+		user_satisfaction_manager._display_new_user_satisfaction(new_goals_dict)
+		return
 
 func _on_response_options_item_selected(index: int) -> void:
-	if index == 0:
-		return
-	else:
-		if generate_response_button.disabled == true:
-			response_gen_output.selected_goal = response_selection_menu.get_item_text(index)
-			selected_goal = response_selection_menu.get_item_text(index)
-			_switch_generate_button_disabled()
+	response_gen_output.selected_goal = response_selection_menu.get_item_text(index)
+	selected_goal = response_selection_menu.get_item_text(index)
+	if generate_response_button.disabled == true:
+		_switch_generate_button_disabled()
 
 
 func _on_erase_section_button_pressed() -> void:
 	response_gen_output._handle_erase_section()
+	var remove_words_goal_array: Array[Variant] = await response_gen_output.erasing
+	var number_of_words_to_remove: int = remove_words_goal_array[0]
+	var goal_removed: String = remove_words_goal_array[1]
+	confidence_manager._on_erase_section(number_of_words_to_remove)
+	print("ERASE WORKED")

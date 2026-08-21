@@ -4,11 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dnq1246sogwib" path="res://Scenes/Stages/StageOne/stage_one_controller.tscn" id="2_jtt75"]
 [ext_resource type="PackedScene" uid="uid://4aph8aff5k73" path="res://Scenes/UI/menus/pause_menu.tscn" id="3_eaejv"]
 [ext_resource type="Script" uid="uid://ck2econ6uibue" path="res://Scripts/Misc/Input/input_manager.gd" id="3_udmxp"]
-[ext_resource type="Shader" uid="uid://cqwsx7l63rjur" path="res://Res/Visual/Shaders/sine.gdshader" id="5_lrovu"]
-[ext_resource type="Script" uid="uid://0vtjgwfyjc6h" path="res://Scripts/Visual/Owners/background_effects_s_1.gd" id="5_xd3t6"]
-[ext_resource type="Texture2D" uid="uid://cr6e0hd0r05q3" path="res://Res/Visual/Textures/LLM Training Background.png" id="6_2i3e7"]
-[ext_resource type="Script" uid="uid://b5t526vglxqru" path="res://Scripts/Visual/Owners/whole_screen_effects.gd" id="6_hxw8s"]
-[ext_resource type="Material" uid="uid://bhn1h41qcfnqb" path="res://Res/Visual/Shaders/vhs_shader_material.tres" id="7_hxw8s"]
 [ext_resource type="Script" uid="uid://blw8dnw041vh7" path="res://Scripts/AdHoc/transition_manger.gd" id="10_k8tjy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2i3e7"]
@@ -47,19 +42,6 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_eaejv"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvnny"]
-shader = ExtResource("5_lrovu")
-shader_parameter/texture_alpha = 1.0
-shader_parameter/image_texture = ExtResource("6_2i3e7")
-shader_parameter/lineas = 1
-shader_parameter/velocidad = 1.0
-shader_parameter/ondulacion = 1.0
-shader_parameter/frecuencia = 1.0
-shader_parameter/color_a = Color(0.4117647, 0, 0, 1)
-shader_parameter/color_b = Color(0.13185066, 0.20972714, 0.22270873, 0)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_2i3e7"]
 
 [node name="Main" type="Node" unique_id=1192408439]
 script = ExtResource("1_pg2wg")
@@ -391,34 +373,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Thanks for playing this short playtest version of the first stage of my game! Please fill out the form provided with the playtest with your thoughts and critique! Press 'P' to close the game!"
 autowrap_mode = 3
-
-[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1081015626]
-layer = -10
-visible = false
-follow_viewport_enabled = true
-script = ExtResource("5_xd3t6")
-
-[node name="BackgroundSprite" type="Sprite2D" parent="BackgroundLayer" unique_id=1152862813]
-modulate = Color(0.4117647, 0, 0, 1)
-material = SubResource("ShaderMaterial_nvnny")
-position = Vector2(639.906, 357)
-scale = Vector2(1279.812, 778)
-texture = SubResource("CanvasTexture_2i3e7")
-
-[node name="WholeScreenEffects" type="CanvasLayer" parent="." unique_id=1813828213]
-visible = false
-script = ExtResource("6_hxw8s")
-shader_dict = Dictionary[String, ShaderMaterial]({
-"VHS": ExtResource("7_hxw8s")
-})
-
-[node name="WholeScreenColorRect" type="ColorRect" parent="WholeScreenEffects" unique_id=1629996565]
-material = ExtResource("7_hxw8s")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="TransitionManger" type="Node" parent="." unique_id=1123092383]
 script = ExtResource("10_k8tjy")

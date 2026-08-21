@@ -57,8 +57,6 @@ func _confirm_pressed():
 			get_parent()._play_test_s_1_complete()
 			get_parent().input_manager.play_test_complete = true
 			return
-	else:
-		get_parent().whole_screen_effects._play_effect("VHS")
 	if input_present_container.active_row == "Row5" and correctness_array != ["correct", "correct", "correct", "correct", "correct"]:
 		answer_label.text = "ERR: guess_word() == false" #here for incorrect behaviour
 		answer_label.position.x -= 250

@@ -47,6 +47,7 @@ func _generate_word_buttons(word_entries: Dictionary):
 
 
 
+
 func _create_word_button():
 	var new_word_button: InputButton = response_button_scene.instantiate()
 	my_grid_container.add_child(new_word_button)

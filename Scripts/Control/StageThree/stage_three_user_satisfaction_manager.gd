@@ -10,7 +10,6 @@ func _display_last_value():
 	my_rtl.text = str(previous_values.back())
 
 func _display_new_user_satisfaction(goals_tally: Dictionary):
-	print("doing thiiiiis")
 	var estimated_value: float = generate_estimated_satisfaction()
 	previous_values.append(estimated_value)
 	my_rtl.text = str(estimated_value)
@@ -47,15 +46,17 @@ func _display_new_user_satisfaction(goals_tally: Dictionary):
 
 func generate_estimated_satisfaction():
 	var goals_tally: Dictionary = my_controller.goal_tally_controller.goals_tally.duplicate()
+	print("this is goal tally: ", goals_tally)
 	var my_user_estimated_data: Dictionary = my_controller.user_goals_manager.user_goals_dict
+	print("this is my user estimated data: ", my_user_estimated_data)
 	var goals_array: Array[String] = []
 	var estimated_goal_values: Array[float] = []
-	for goal in goals_tally:
+	for goal in goals_tally: #populating the estimated data from the tally into useable arrays
 		if my_user_estimated_data.has(goal):
 			goals_array.append(goal)
 			estimated_goal_values.append(my_user_estimated_data[goal])
 		else:
-			print("ERROR: USER GOALS MANAGER DOES NOT CONTAIN GOAL FOR ESTIMATION GENERATION")
+			print("ERROR: USER GOALS MANAGER DOES NOT CONTAIN GOAL FOR ESTIMATION GENERATION: ", goal)
 			return
 	# Calculate total estimated importance
 	var cumulative_estimated_value: float = 0.0

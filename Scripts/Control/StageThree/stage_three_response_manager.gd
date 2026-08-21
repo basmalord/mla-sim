@@ -35,6 +35,10 @@ func _on_generate_response_button_pressed() -> void:
 		for entry in active_prompt_entry["Goals"]:
 			if entry.keys()[0] == active_goal:
 				response_id = entry[active_goal]
+		if response_id == "":
+			print("ERROR: RESPONSE MANAGER CANNOT FIND SELECTED GOAL IN RESPONSE SECTIONS DICT", active_goal)
+			return
+		print("this is resp id: ", response_id)
 		active_response_entry = response_dict[response_id]
 		prompt_goals = active_prompt_entry["Goals"]
 		my_controller._send_response_data(active_response_entry, prompt_goals)
@@ -42,10 +46,12 @@ func _on_generate_response_button_pressed() -> void:
 		for entry in prompt_goals:
 			goals_array.append(entry.keys()[0])
 		my_controller._receive_goals(prompt_goals, 1, true)
+		active_response_id = response_id
 	else:
 		my_controller._send_response_data(active_response_entry, prompt_goals)
 		var sections: int = active_response_entry["ResponseSections"].size()
 		my_controller._receive_goals(prompt_goals, sections)
+		print("this is else on gen pressed: ", prompt_goals, "   ", sections)
 
 
 func _select_response():

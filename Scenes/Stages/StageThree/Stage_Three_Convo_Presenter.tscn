@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c42b1iqkmg2bu" path="res://Scripts/Control/StageThree/stage_three_convo_presenter.gd" id="1_886b5"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_886b5"]
-
 [node name="StageThreeConvoPresenter" type="Control" unique_id=421263138]
 layout_mode = 3
 anchors_preset = 15
@@ -13,13 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_886b5")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=549172548]
-self_modulate = Color(0.09019608, 0.09019608, 0.09019608, 0.34117648)
-layout_mode = 0
-offset_right = 800.0
-offset_bottom = 1080.0
-texture = SubResource("PlaceholderTexture2D_886b5")
-
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=159616859]
 custom_minimum_size = Vector2(600, 880)
 layout_mode = 0
@@ -27,9 +18,10 @@ offset_left = 100.0
 offset_top = 100.0
 offset_right = 700.0
 offset_bottom = 980.0
+follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="ConvoPresenterMainContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1978005616]
 custom_minimum_size = Vector2(600, 880)
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 60

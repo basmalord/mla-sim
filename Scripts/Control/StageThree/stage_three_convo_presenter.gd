@@ -5,9 +5,13 @@ signal type_animation_finished
 const convo_container: PackedScene = preload("res://Scenes/Stages/StageThree/convo_container.tscn")
 
 @export_range(0.00,1.00,0.01) var typed_letter_delay: float = 1.00
+@export var my_font: FontFile
+@export_range(0,50,1) var my_font_size: int 
+@export_range(0,50,1) var my_line_height: int
 
+
+@onready var my_scroll: ScrollContainer = $ScrollContainer
 @onready var my_container: Container = $ScrollContainer/ConvoPresenterMainContainer
-@onready var my_texture_rect: TextureRect = $TextureRect
 @onready var my_controller: Control = get_parent()
 
 var my_rtl: RichTextLabel
@@ -29,6 +33,12 @@ func generate_new_rtl():
 	var new_container = convo_container.instantiate()
 	my_container.add_child(new_container)
 	my_rtl = new_container.my_rtl
+	my_rtl.add_theme_font_override("normal_font", my_font)
+	my_rtl.add_theme_font_size_override("normal_font_size", my_font_size)
+	my_rtl.add_theme_constant_override("line_separation", my_line_height)
+	print("this is my font: ", my_rtl.get_theme_font("normal_font"))
+	await get_tree().process_frame
+	my_scroll.scroll_vertical = my_scroll.get_v_scroll_bar().max_value
 
 func _handle_prompt(candidate_text: String):
 	generate_new_rtl()

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bx5awemhsekkg"]
+
+[ext_resource type="Script" uid="uid://mv30grepoq8" path="res://Scripts/Visual/VisualDataTrain/v_d_t_word_node.gd" id="1_jsgx0"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_jsgx0"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_xsict"]
+
+[node name="VDTWordNode" type="Node2D" unique_id=1261750604]
+script = ExtResource("1_jsgx0")
+
+[node name="VDTRTL" type="RichTextLabel" parent="." unique_id=292435062]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/line_separation = -2
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VDTWordNodeFrontArea" type="Area2D" parent="." unique_id=1258142310]
+
+[node name="VDTBoxFront" type="CollisionShape2D" parent="VDTWordNodeFrontArea" unique_id=445902259]
+shape = SubResource("SegmentShape2D_jsgx0")
+
+[node name="VDTWordNodeBackArea" type="Area2D" parent="." unique_id=388438306]
+
+[node name="VDTBoxBack" type="CollisionShape2D" parent="VDTWordNodeBackArea" unique_id=1400654125]
+shape = SubResource("SegmentShape2D_xsict")

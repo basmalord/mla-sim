@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c84kbeey7shq3"]
+
+[ext_resource type="Script" uid="uid://boptkc4uuvg0q" path="res://Scripts/Visual/VisualDataTrain/visual_data_train_manager.gd" id="1_lkprt"]
+
+[node name="VisualDataTrainManager" type="Node2D" unique_id=592825902]
+script = ExtResource("1_lkprt")
