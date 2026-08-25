@@ -48,7 +48,7 @@ func _ready() -> void:
 	_set_time_label_text()
 	connect("days_augmeneted", Callable(self, "_set_date_label_text"))
 	connect("end_day_started", Callable(my_animation_player, "play"))
-	#_end_day() un-comment for testing
+	#_end_day()
 
 func _end_day():
 	_let_time_pass("minute", get_minutes_from_current_to_target_next(), true, true)

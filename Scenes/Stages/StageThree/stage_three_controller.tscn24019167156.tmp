@@ -1,0 +1,958 @@
+[gd_scene format=3 uid="uid://bhdd11d6gwk2g"]
+
+[ext_resource type="PackedScene" uid="uid://s1yn45v4xstt" path="res://Scenes/Stages/StageThree/stage_three_prompt_manager.tscn" id="1_0s302"]
+[ext_resource type="Script" uid="uid://0xwalhdo65bp" path="res://Scripts/Control/StageThree/stage_three_controller.gd" id="1_aou0y"]
+[ext_resource type="PackedScene" uid="uid://bx5awemhsekkg" path="res://Scenes/Stages/StageThree/VisualDataTrain/v_d_t_word_ndoe.tscn" id="2_t7qo5"]
+[ext_resource type="PackedScene" uid="uid://b8dkw8ufbxs7k" path="res://Scenes/Stages/StageThree/Stage_Three_Convo_Presenter.tscn" id="2_wj6c4"]
+[ext_resource type="PackedScene" uid="uid://cgocbovg81f21" path="res://Scenes/Stages/StageThree/stage_three_response_manager.tscn" id="2_xjcnr"]
+[ext_resource type="PackedScene" uid="uid://b272neoxdvl45" path="res://Scenes/Stages/StageThree/VisualDataTrain/v_d_t_station.tscn" id="3_buih4"]
+[ext_resource type="FontFile" uid="uid://bsjmnfdvyu4mn" path="res://Res/Visual/Fonts/InterVariable.ttf" id="5_54ady"]
+[ext_resource type="Script" uid="uid://hsfk8v2rymt0" path="res://Scripts/Control/StageThree/stage_three_options_manager.gd" id="5_ofhna"]
+[ext_resource type="PackedScene" uid="uid://cjxcwsg88kwd5" path="res://Scenes/Stages/StageThree/stage_three_user_manager.tscn" id="6_xk8ca"]
+[ext_resource type="PackedScene" uid="uid://bg1g4nvlotnsa" path="res://Scenes/Stages/StageThree/stage_three_word_manager.tscn" id="7_fqads"]
+[ext_resource type="Script" uid="uid://cgmwv5od87gq4" path="res://Scripts/Control/StageThree/stage_three_response_gen_output.gd" id="8_fqads"]
+[ext_resource type="Script" uid="uid://c2epjhfxjhsb2" path="res://Scripts/Control/StageThree/intro_section_generator.gd" id="9_3hgd8"]
+[ext_resource type="Script" uid="uid://bo2we2ww3wxpk" path="res://Scripts/Control/StageThree/response_options.gd" id="10_7ija4"]
+[ext_resource type="Script" uid="uid://b03rrs758nk40" path="res://Scripts/Control/StageThree/stage_three_associations_manager.gd" id="11_xy3gr"]
+[ext_resource type="Script" uid="uid://cbivdx85bp6q8" path="res://Scripts/Handlers/data_handler_stage_three.gd" id="12_hp154"]
+[ext_resource type="Script" uid="uid://ba3epp48m7b2v" path="res://Scripts/Control/StageThree/stage_three_confidence_manager.gd" id="13_oxpd3"]
+[ext_resource type="Script" uid="uid://eg6jyw43muf6" path="res://Scripts/Control/StageThree/stage_three_user_satisfaction_manager.gd" id="14_1mlbr"]
+[ext_resource type="Script" uid="uid://brxx1nypy0poo" path="res://Scripts/Control/StageThree/stage_three_user_goals_manager.gd" id="15_u77sw"]
+[ext_resource type="Script" uid="uid://chdfb5nttq0hi" path="res://Scripts/Control/StageThree/stage_three_goals_tally.gd" id="16_774yd"]
+[ext_resource type="Script" uid="uid://cdbp5chkp4lb4" path="res://Scripts/Control/StageThree/erase_section_button.gd" id="17_mipw4"]
+[ext_resource type="FontFile" uid="uid://ny2ch5vomxws" path="res://Res/Visual/Fonts/IBMPlexMono-SemiBold.ttf" id="17_n3uch"]
+[ext_resource type="Script" uid="uid://dsq61yylrcp4u" path="res://Scripts/Control/StageThree/stage_three_clock.gd" id="20_n3uch"]
+[ext_resource type="FontFile" uid="uid://c0jed40sw3adj" path="res://Res/Visual/Fonts/OpenSans-VariableFont_wdth,wght.ttf" id="21_dbs5k"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_mipw4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mipw4"]
+
+[sub_resource type="Animation" id="Animation_t7qo5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Clock/DateRTL:theme_override_font_sizes/normal_font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Clock/TimeRTL:theme_override_font_sizes/normal_font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [52]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Clock/TimeRTL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1541, 17)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/Clock/DateRTL:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1773, 66)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer/BlackScreen:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dbs5k"]
+resource_name = "clock_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Clock/DateRTL:theme_override_font_sizes/normal_font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [22, 44]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Clock/TimeRTL:theme_override_font_sizes/normal_font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [52, 104]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Clock/TimeRTL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1541, 17), Vector2(785, 420)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/Clock/DateRTL:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1773, 66), Vector2(830, 560)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer/BlackScreen:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t7qo5"]
+_data = {
+&"RESET": SubResource("Animation_t7qo5"),
+&"clock_animation": SubResource("Animation_dbs5k")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dbs5k"]
+
+[node name="StageThreeController" type="Control" unique_id=388204407]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aou0y")
+
+[node name="VDTLayer" type="CanvasLayer" parent="." unique_id=1679396845]
+layer = -101
+
+[node name="VDTWordNode" parent="VDTLayer" unique_id=1261750604 instance=ExtResource("2_t7qo5")]
+position = Vector2(1316, 310)
+orientation = "south"
+speed = 2.0
+direction = Vector2(0, 1)
+starting_station_id = "blah"
+word = "blahblahblah"
+
+[node name="VDTStation" parent="VDTLayer" unique_id=637245988 instance=ExtResource("3_buih4")]
+position = Vector2(1318, 384)
+station_id = "blah"
+station_type = "Central"
+exits_editor_dict = {
+"east": false,
+"north": true,
+"south": false,
+"west": false
+}
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1782956884]
+layer = -100
+
+[node name="DarkRect3" type="TextureRect" parent="BackgroundLayer" unique_id=1466814470]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 1181.0
+offset_top = 701.0
+offset_right = 1538.0
+offset_bottom = 829.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="DarkRect" type="TextureRect" parent="BackgroundLayer" unique_id=630117954]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 38.0
+offset_right = 762.0
+offset_bottom = 1080.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect" type="TextureRect" parent="BackgroundLayer" unique_id=423164842]
+self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+offset_left = 80.0
+offset_top = 92.0
+offset_right = 720.0
+offset_bottom = 988.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="DarkRect2" type="TextureRect" parent="BackgroundLayer" unique_id=547665735]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 1516.0
+offset_right = 1920.0
+offset_bottom = 106.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect2" type="TextureRect" parent="BackgroundLayer" unique_id=423766372]
+self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+offset_left = 1526.0
+offset_top = 14.0
+offset_right = 1906.0
+offset_bottom = 94.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect3" type="TextureRect" parent="BackgroundLayer" unique_id=29257216]
+self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+offset_left = 1191.0
+offset_top = 711.0
+offset_right = 1530.0
+offset_bottom = 819.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="DarkRect4" type="TextureRect" parent="BackgroundLayer" unique_id=1323673565]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 1747.0
+offset_top = 391.0
+offset_right = 1879.0
+offset_bottom = 671.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect4" type="TextureRect" parent="BackgroundLayer" unique_id=1249388761]
+self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+offset_left = 1757.0
+offset_top = 401.0
+offset_right = 1869.0
+offset_bottom = 661.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="DarkRect5" type="TextureRect" parent="BackgroundLayer" unique_id=1364949294]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 1603.0
+offset_top = 276.0
+offset_right = 1645.0
+offset_bottom = 726.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="DarkRect6" type="TextureRect" parent="BackgroundLayer" unique_id=1503701740]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 1074.0
+offset_top = 170.0
+offset_right = 1645.0
+offset_bottom = 276.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="DarkRect7" type="TextureRect" parent="BackgroundLayer" unique_id=295222802]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 1074.0
+offset_top = 276.0
+offset_right = 1116.0
+offset_bottom = 726.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="DarkRect8" type="TextureRect" parent="BackgroundLayer" unique_id=1719817438]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 839.0
+offset_top = 391.0
+offset_right = 971.0
+offset_bottom = 671.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect5" type="TextureRect" parent="BackgroundLayer" unique_id=1897131250]
+self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+offset_left = 849.0
+offset_top = 401.0
+offset_right = 961.0
+offset_bottom = 661.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect6" type="TextureRect" parent="BackgroundLayer" unique_id=64470115]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 999.0
+offset_right = 1336.0
+offset_bottom = 170.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect7" type="TextureRect" parent="BackgroundLayer" unique_id=1658697175]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1361.0
+offset_top = 157.0
+offset_right = 1709.0
+offset_bottom = 170.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect8" type="TextureRect" parent="BackgroundLayer" unique_id=861555444]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1386.0
+offset_top = 106.0
+offset_right = 1920.0
+offset_bottom = 136.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect10" type="TextureRect" parent="BackgroundLayer" unique_id=192341555]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1645.0
+offset_top = 157.0
+offset_right = 1747.0
+offset_bottom = 751.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect11" type="TextureRect" parent="BackgroundLayer" unique_id=1837433337]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1879.0
+offset_top = 120.0
+offset_right = 1920.0
+offset_bottom = 671.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker8" type="TextureRect" parent="BackgroundLayer" unique_id=1245582473]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1788.0
+offset_top = 341.0
+offset_right = 1838.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect12" type="TextureRect" parent="BackgroundLayer" unique_id=1739834511]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1838.0
+offset_top = 120.0
+offset_right = 1879.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect13" type="TextureRect" parent="BackgroundLayer" unique_id=237820641]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1747.0
+offset_top = 157.0
+offset_right = 1788.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect14" type="TextureRect" parent="BackgroundLayer" unique_id=490613721]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1788.0
+offset_top = 157.0
+offset_right = 1800.0
+offset_bottom = 341.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect15" type="TextureRect" parent="BackgroundLayer" unique_id=1720556320]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1825.0
+offset_top = 120.0
+offset_right = 1838.0
+offset_bottom = 341.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect9" type="TextureRect" parent="BackgroundLayer" unique_id=1903377396]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1336.0
+offset_right = 1516.0
+offset_bottom = 106.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect16" type="TextureRect" parent="BackgroundLayer" unique_id=1245277598]
+self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+offset_left = 1185.0
+offset_top = 197.0
+offset_right = 1535.0
+offset_bottom = 247.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect18" type="TextureRect" parent="BackgroundLayer" unique_id=1172492261]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 800.0
+offset_top = 671.0
+offset_right = 880.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect19" type="TextureRect" parent="BackgroundLayer" unique_id=1436191590]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 930.0
+offset_top = 671.0
+offset_right = 1074.0
+offset_bottom = 945.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect20" type="TextureRect" parent="BackgroundLayer" unique_id=1013634723]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 800.0
+offset_top = 971.0
+offset_right = 1919.0
+offset_bottom = 1080.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect21" type="TextureRect" parent="BackgroundLayer" unique_id=114126262]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 917.0
+offset_top = 721.0
+offset_right = 1009.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect22" type="TextureRect" parent="BackgroundLayer" unique_id=391599398]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 880.0
+offset_top = 721.0
+offset_right = 893.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect23" type="TextureRect" parent="BackgroundLayer" unique_id=1736017593]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 762.0
+offset_top = 156.0
+offset_right = 839.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect24" type="TextureRect" parent="BackgroundLayer" unique_id=978848912]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 971.0
+offset_top = 156.0
+offset_right = 1074.0
+offset_bottom = 671.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect25" type="TextureRect" parent="BackgroundLayer" unique_id=1325521720]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 930.0
+offset_top = 156.0
+offset_right = 1010.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect26" type="TextureRect" parent="BackgroundLayer" unique_id=1898677058]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 800.0
+offset_top = 156.0
+offset_right = 880.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect27" type="TextureRect" parent="BackgroundLayer" unique_id=1619911923]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 880.0
+offset_top = 206.0
+offset_right = 893.0
+offset_bottom = 341.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect28" type="TextureRect" parent="BackgroundLayer" unique_id=1948464278]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 917.0
+offset_top = 206.0
+offset_right = 930.0
+offset_bottom = 341.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="DarkRect9" type="TextureRect" parent="BackgroundLayer" unique_id=1079153164]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 811.0
+offset_top = 86.0
+offset_right = 999.0
+offset_bottom = 156.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect17" type="TextureRect" parent="BackgroundLayer" unique_id=916634190]
+self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+offset_left = 821.0
+offset_top = 96.0
+offset_right = 989.0
+offset_bottom = 146.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect29" type="TextureRect" parent="BackgroundLayer" unique_id=641120261]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1002.0
+offset_top = 751.0
+offset_right = 1181.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="DarkRect10" type="TextureRect" parent="BackgroundLayer" unique_id=1665754717]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 1074.0
+offset_top = 726.0
+offset_right = 1181.0
+offset_bottom = 751.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="DarkRect11" type="TextureRect" parent="BackgroundLayer" unique_id=23267541]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 1538.0
+offset_top = 726.0
+offset_right = 1645.0
+offset_bottom = 751.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect30" type="TextureRect" parent="BackgroundLayer" unique_id=1563762836]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1181.0
+offset_top = 829.0
+offset_right = 1337.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect31" type="TextureRect" parent="BackgroundLayer" unique_id=2030139644]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1374.0
+offset_top = 879.0
+offset_right = 1387.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect32" type="TextureRect" parent="BackgroundLayer" unique_id=1679694784]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1337.0
+offset_top = 879.0
+offset_right = 1350.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect33" type="TextureRect" parent="BackgroundLayer" unique_id=1430365399]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1656.0
+offset_top = 721.0
+offset_right = 1747.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect34" type="TextureRect" parent="BackgroundLayer" unique_id=2086560065]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1538.0
+offset_top = 751.0
+offset_right = 1717.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect35" type="TextureRect" parent="BackgroundLayer" unique_id=827790190]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1387.0
+offset_top = 829.0
+offset_right = 1543.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect36" type="TextureRect" parent="BackgroundLayer" unique_id=878484258]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1747.0
+offset_top = 671.0
+offset_right = 1788.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect37" type="TextureRect" parent="BackgroundLayer" unique_id=1865840787]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1838.0
+offset_top = 671.0
+offset_right = 1920.0
+offset_bottom = 971.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect38" type="TextureRect" parent="BackgroundLayer" unique_id=832090465]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1825.0
+offset_top = 721.0
+offset_right = 1838.0
+offset_bottom = 971.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect39" type="TextureRect" parent="BackgroundLayer" unique_id=1071253339]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1788.0
+offset_top = 721.0
+offset_right = 1802.0
+offset_bottom = 947.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect40" type="TextureRect" parent="BackgroundLayer" unique_id=1329963601]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 1336.0
+offset_top = 106.0
+offset_right = 1386.0
+offset_bottom = 120.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect41" type="TextureRect" parent="BackgroundLayer" unique_id=108174926]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 800.0
+offset_right = 999.0
+offset_bottom = 86.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect42" type="TextureRect" parent="BackgroundLayer" unique_id=1718784092]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 800.0
+offset_top = 86.0
+offset_right = 811.0
+offset_bottom = 156.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect43" type="TextureRect" parent="BackgroundLayer" unique_id=1943501574]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 762.0
+offset_right = 800.0
+offset_bottom = 156.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect44" type="TextureRect" parent="BackgroundLayer" unique_id=664886229]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_left = 762.0
+offset_top = 984.0
+offset_right = 800.0
+offset_bottom = 1080.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect45" type="TextureRect" parent="BackgroundLayer" unique_id=627134384]
+self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
+offset_right = 38.0
+offset_bottom = 1080.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker5a" type="TextureRect" parent="BackgroundLayer" unique_id=1475145038]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1788.0
+offset_top = 671.0
+offset_right = 1838.0
+offset_bottom = 721.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker6" type="TextureRect" parent="BackgroundLayer" unique_id=92911481]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1336.0
+offset_top = 120.0
+offset_right = 1386.0
+offset_bottom = 170.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker2a" type="TextureRect" parent="BackgroundLayer" unique_id=2062518524]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 880.0
+offset_top = 671.0
+offset_right = 930.0
+offset_bottom = 721.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker2b" type="TextureRect" parent="BackgroundLayer" unique_id=1247635426]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 880.0
+offset_top = 341.0
+offset_right = 930.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker3" type="TextureRect" parent="BackgroundLayer" unique_id=1934590616]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1337.0
+offset_top = 829.0
+offset_right = 1387.0
+offset_bottom = 879.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker4" type="TextureRect" parent="BackgroundLayer" unique_id=972529385]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 880.0
+offset_top = 156.0
+offset_right = 930.0
+offset_bottom = 206.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker1" type="TextureRect" parent="BackgroundLayer" unique_id=1102118838]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 762.0
+offset_top = 934.0
+offset_right = 812.0
+offset_bottom = 984.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTJunctionMarker1" type="TextureRect" parent="BackgroundLayer" unique_id=1323646947]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 880.0
+offset_top = 934.0
+offset_right = 930.0
+offset_bottom = 984.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTJunctionMarker2" type="TextureRect" parent="BackgroundLayer" unique_id=897591961]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1337.0
+offset_top = 934.0
+offset_right = 1387.0
+offset_bottom = 984.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTJunctionMarker3" type="TextureRect" parent="BackgroundLayer" unique_id=418462273]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1788.0
+offset_top = 934.0
+offset_right = 1838.0
+offset_bottom = 984.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTJunctionMarker4" type="TextureRect" parent="BackgroundLayer" unique_id=1110197564]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1785.0
+offset_top = 118.0
+offset_right = 1835.0
+offset_bottom = 168.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="StageThreeResponseManager" parent="." unique_id=153859290 instance=ExtResource("2_xjcnr")]
+
+[node name="StageThreePromptManager" parent="." unique_id=936758910 instance=ExtResource("1_0s302")]
+
+[node name="StageThreeConvoPresenter" parent="." unique_id=421263138 instance=ExtResource("2_wj6c4")]
+layout_mode = 1
+offset_left = 3.0
+offset_right = 3.0
+typed_letter_delay = 0.05
+my_font = ExtResource("5_54ady")
+my_font_size = 20
+my_line_height = 24
+
+[node name="ScrollContainer" parent="StageThreeConvoPresenter" index="0" unique_id=159616859]
+custom_minimum_size = Vector2(500, 880)
+offset_left = 180.0
+offset_right = 680.0
+
+[node name="ConvoPresenterMainContainer" parent="StageThreeConvoPresenter/ScrollContainer" index="0" unique_id=1978005616]
+custom_minimum_size = Vector2(100, 500)
+
+[node name="OptionsManager" type="Control" parent="." unique_id=261129839]
+anchors_preset = 0
+offset_left = 1766.0
+offset_top = 391.0
+offset_right = 1806.0
+offset_bottom = 431.0
+script = ExtResource("5_ofhna")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsManager" unique_id=399373630]
+layout_mode = 0
+offset_top = 29.0
+offset_right = 40.0
+offset_bottom = 69.0
+
+[node name="GenerateResponseButton" type="Button" parent="." unique_id=1498587997]
+layout_mode = 0
+offset_left = 1277.0
+offset_top = 721.0
+offset_right = 1451.0
+offset_bottom = 752.0
+disabled = true
+text = "GENERATE RESPONSE
+"
+
+[node name="StageThreeUserManager" parent="." unique_id=1393592266 instance=ExtResource("6_xk8ca")]
+
+[node name="StageThreeWordManager" parent="." unique_id=1570037752 instance=ExtResource("7_fqads")]
+
+[node name="DataHandler" parent="StageThreeWordManager" index="0" unique_id=416450105]
+data_resource_path = "res://Data/StageThree/test_prompt_dict.txt"
+
+[node name="StageThreeResponseGenOutput" type="Control" parent="." unique_id=1748618756]
+anchors_preset = 0
+offset_left = 1116.0
+offset_top = 277.0
+offset_right = 1156.0
+offset_bottom = 317.0
+script = ExtResource("8_fqads")
+
+[node name="ResponseOutputContainer" type="PanelContainer" parent="StageThreeResponseGenOutput" unique_id=1829237518]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 480.0
+offset_bottom = 379.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mipw4")
+
+[node name="ResponseOutputRTL" type="RichTextLabel" parent="StageThreeResponseGenOutput/ResponseOutputContainer" unique_id=942624702]
+layout_mode = 2
+theme_override_constants/line_separation = 4
+theme_override_fonts/normal_font = ExtResource("5_54ady")
+theme_override_font_sizes/normal_font_size = 24
+
+[node name="IntroSectionGenerator" type="Node" parent="StageThreeResponseGenOutput" unique_id=1192484613]
+script = ExtResource("9_3hgd8")
+intro_string_entries = Array[Dictionary]([{
+"I got you, you want me to": "Test"
+}])
+intro_part_two_string_array = Array[String](["We got this."])
+
+[node name="SendResponseButton" type="Button" parent="." unique_id=846466944]
+layout_mode = 0
+offset_left = 1201.0
+offset_top = 776.0
+offset_right = 1336.0
+offset_bottom = 807.0
+disabled = true
+text = "SEND RESPONSE"
+
+[node name="ResponseOptions" type="OptionButton" parent="." unique_id=1069726942]
+layout_mode = 0
+offset_left = -327.0
+offset_top = 454.0
+offset_right = -131.0
+offset_bottom = 515.0
+disabled = true
+fit_to_longest_item = false
+script = ExtResource("10_7ija4")
+number_of_options = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ResponseOptions" unique_id=1137819745]
+layout_mode = 0
+offset_left = 1175.0
+offset_top = 3.0
+offset_right = 1215.0
+offset_bottom = 43.0
+
+[node name="AssociationsManager" type="Node" parent="." unique_id=905483359]
+script = ExtResource("11_xy3gr")
+
+[node name="DataHandler" type="Node" parent="AssociationsManager" unique_id=1613616603]
+script = ExtResource("12_hp154")
+data_resource_path = "res://Data/StageTwo/stage_two_test_word_dict.txt"
+metadata/_custom_type_script = "uid://cbivdx85bp6q8"
+
+[node name="ConfidenceManager" type="Control" parent="." unique_id=339787341]
+anchors_preset = 0
+offset_left = 1200.0
+offset_top = 217.0
+offset_right = 1240.0
+offset_bottom = 257.0
+script = ExtResource("13_oxpd3")
+
+[node name="ConfidenceRTL" type="RichTextLabel" parent="ConfidenceManager" unique_id=2048788389]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -14.0
+offset_right = 257.0
+offset_bottom = 26.0
+
+[node name="UserSatisfactionManager" type="Control" parent="." unique_id=1573630690]
+anchors_preset = 0
+offset_left = 797.0
+offset_top = 25.0
+offset_right = 837.0
+offset_bottom = 65.0
+script = ExtResource("14_1mlbr")
+
+[node name="USRTL" type="RichTextLabel" parent="UserSatisfactionManager" unique_id=1123903384]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 75.0
+offset_right = 190.0
+offset_bottom = 117.0
+theme_override_fonts/normal_font = ExtResource("17_n3uch")
+theme_override_font_sizes/normal_font_size = 30
+text = "78%"
+horizontal_alignment = 1
+
+[node name="UserGoalsManager" type="Node" parent="." unique_id=1210715089]
+script = ExtResource("15_u77sw")
+
+[node name="GoalsTally" type="Node" parent="." unique_id=1068732386]
+script = ExtResource("16_774yd")
+
+[node name="EraseSectionButton" type="Button" parent="." unique_id=1072093608]
+layout_mode = 0
+offset_left = 1393.0
+offset_top = 776.0
+offset_right = 1520.0
+offset_bottom = 807.0
+disabled = true
+text = "ERASE SECTION"
+script = ExtResource("17_mipw4")
+
+[node name="ClockLayer" type="CanvasLayer" parent="." unique_id=1602221203]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ClockLayer" unique_id=540491016]
+libraries/ = SubResource("AnimationLibrary_t7qo5")
+
+[node name="BlackScreen" type="TextureRect" parent="ClockLayer/AnimationPlayer" unique_id=916707703]
+self_modulate = Color(0, 0, 0, 0)
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = SubResource("CanvasTexture_dbs5k")
+
+[node name="Clock" type="Control" parent="ClockLayer/AnimationPlayer" unique_id=111728010]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("20_n3uch")
+time_spacing = 1
+
+[node name="TimeRTL" type="RichTextLabel" parent="ClockLayer/AnimationPlayer/Clock" unique_id=613830111]
+layout_mode = 0
+offset_left = 1541.0
+offset_top = 17.0
+offset_right = 1806.0
+offset_bottom = 302.98798
+theme_override_fonts/normal_font = ExtResource("21_dbs5k")
+theme_override_font_sizes/normal_font_size = 52
+text = "10:00"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="DateRTL" type="RichTextLabel" parent="ClockLayer/AnimationPlayer/Clock" unique_id=175458610]
+layout_mode = 0
+offset_left = 1773.0
+offset_top = 66.0
+offset_right = 2007.0
+offset_bottom = 127.00037
+theme_override_fonts/normal_font = ExtResource("21_dbs5k")
+theme_override_font_sizes/normal_font_size = 22
+text = "01/01/2025"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[connection signal="pressed" from="GenerateResponseButton" to="StageThreeResponseManager" method="_on_generate_response_button_pressed"]
+[connection signal="pressed" from="SendResponseButton" to="." method="_on_send_response_button_pressed"]
+[connection signal="item_selected" from="ResponseOptions" to="." method="_on_response_options_item_selected"]
+[connection signal="pressed" from="EraseSectionButton" to="." method="_on_erase_section_button_pressed"]
+
+[editable path="StageThreeResponseManager"]
+[editable path="StageThreePromptManager"]
+[editable path="StageThreeConvoPresenter"]
+[editable path="StageThreeUserManager"]
+[editable path="StageThreeWordManager"]

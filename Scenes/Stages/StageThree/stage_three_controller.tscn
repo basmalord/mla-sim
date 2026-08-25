@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://s1yn45v4xstt" path="res://Scenes/Stages/StageThree/stage_three_prompt_manager.tscn" id="1_0s302"]
 [ext_resource type="Script" uid="uid://0xwalhdo65bp" path="res://Scripts/Control/StageThree/stage_three_controller.gd" id="1_aou0y"]
+[ext_resource type="PackedScene" uid="uid://c84kbeey7shq3" path="res://Scenes/Stages/StageThree/VisualDataTrain/visual_data_train_manager.tscn" id="2_g1aio"]
 [ext_resource type="PackedScene" uid="uid://b8dkw8ufbxs7k" path="res://Scenes/Stages/StageThree/Stage_Three_Convo_Presenter.tscn" id="2_wj6c4"]
 [ext_resource type="PackedScene" uid="uid://cgocbovg81f21" path="res://Scenes/Stages/StageThree/stage_three_response_manager.tscn" id="2_xjcnr"]
+[ext_resource type="PackedScene" uid="uid://b272neoxdvl45" path="res://Scenes/Stages/StageThree/VisualDataTrain/v_d_t_station.tscn" id="3_buih4"]
 [ext_resource type="FontFile" uid="uid://bsjmnfdvyu4mn" path="res://Res/Visual/Fonts/InterVariable.ttf" id="5_54ady"]
 [ext_resource type="Script" uid="uid://hsfk8v2rymt0" path="res://Scripts/Control/StageThree/stage_three_options_manager.gd" id="5_ofhna"]
 [ext_resource type="PackedScene" uid="uid://cjxcwsg88kwd5" path="res://Scenes/Stages/StageThree/stage_three_user_manager.tscn" id="6_xk8ca"]
@@ -170,6 +172,137 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_aou0y")
 
+[node name="VDTLayer" type="CanvasLayer" parent="." unique_id=1679396845]
+layer = -101
+
+[node name="VisualDataTrainManager" parent="VDTLayer" unique_id=592825902 instance=ExtResource("2_g1aio")]
+
+[node name="VDTStation" parent="VDTLayer/VisualDataTrainManager" unique_id=637245988 instance=ExtResource("3_buih4")]
+position = Vector2(1362, 959)
+station_id = "junct_2"
+station_type = "Central"
+exits_editor_dict = {
+"east": true,
+"north": true,
+"south": false,
+"west": true
+}
+
+[node name="VDTStation2" parent="VDTLayer/VisualDataTrainManager" unique_id=1076809765 instance=ExtResource("3_buih4")]
+position = Vector2(1362, 854)
+station_id = "generator_station"
+station_type = "Central"
+exits_editor_dict = {
+"east": false,
+"north": false,
+"south": true,
+"west": false
+}
+
+[node name="VDTStation3" parent="VDTLayer/VisualDataTrainManager" unique_id=1540082760 instance=ExtResource("3_buih4")]
+position = Vector2(905, 959)
+station_id = "junct_1"
+station_type = "Junction"
+exits_editor_dict = {
+"east": true,
+"north": true,
+"south": false,
+"west": true
+}
+
+[node name="VDTStation4" parent="VDTLayer/VisualDataTrainManager" unique_id=597539763 instance=ExtResource("3_buih4")]
+position = Vector2(1813, 959)
+station_id = "junct_3"
+station_type = "Junction"
+exits_editor_dict = {
+"east": false,
+"north": true,
+"south": false,
+"west": true
+}
+
+[node name="VDTStation5" parent="VDTLayer/VisualDataTrainManager" unique_id=2078296662 instance=ExtResource("3_buih4")]
+position = Vector2(1810, 143)
+station_id = "junct_4"
+station_type = "Junction"
+exits_editor_dict = {
+"east": false,
+"north": false,
+"south": true,
+"west": true
+}
+
+[node name="VDTStation6" parent="VDTLayer/VisualDataTrainManager" unique_id=1812480171 instance=ExtResource("3_buih4")]
+position = Vector2(905, 694)
+station_id = "goals_station_1"
+station_type = "Central"
+exits_editor_dict = {
+"east": false,
+"north": false,
+"south": true,
+"west": false
+}
+
+[node name="VDTStation7" parent="VDTLayer/VisualDataTrainManager" unique_id=322035953 instance=ExtResource("3_buih4")]
+position = Vector2(905, 366)
+station_id = "goals_station_2"
+station_type = "Junction"
+exits_editor_dict = {
+"east": false,
+"north": true,
+"south": false,
+"west": false
+}
+
+[node name="VDTStation8" parent="VDTLayer/VisualDataTrainManager" unique_id=1402024191 instance=ExtResource("3_buih4")]
+position = Vector2(905, 181)
+station_id = "user_sat_label_station"
+station_type = "Central"
+exits_editor_dict = {
+"east": false,
+"north": false,
+"south": true,
+"west": false
+}
+
+[node name="VDTStation9" parent="VDTLayer/VisualDataTrainManager" unique_id=1584600608 instance=ExtResource("3_buih4")]
+position = Vector2(1814, 696)
+station_id = "options_station_1"
+station_type = "Central"
+exits_editor_dict = {
+"east": false,
+"north": false,
+"south": true,
+"west": false
+}
+
+[node name="VDTStation10" parent="VDTLayer/VisualDataTrainManager" unique_id=1046825008 instance=ExtResource("3_buih4")]
+position = Vector2(1813, 366)
+station_id = "options_station_2"
+station_type = "Central"
+
+[node name="VDTStation11" parent="VDTLayer/VisualDataTrainManager" unique_id=976890743 instance=ExtResource("3_buih4")]
+position = Vector2(1361, 145)
+station_id = "probability_label_station"
+station_type = "Central"
+exits_editor_dict = {
+"east": true,
+"north": false,
+"south": false,
+"west": false
+}
+
+[node name="VDTStation12" parent="VDTLayer/VisualDataTrainManager" unique_id=1867536423 instance=ExtResource("3_buih4")]
+position = Vector2(787, 959)
+station_id = "prompt_station"
+station_type = "Central"
+exits_editor_dict = {
+"east": true,
+"north": false,
+"south": false,
+"west": false
+}
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1782956884]
 layer = -100
 
@@ -314,7 +447,7 @@ offset_right = 1920.0
 offset_bottom = 671.0
 texture = SubResource("CanvasTexture_mipw4")
 
-[node name="LightBoxTrain2" type="TextureRect" parent="BackgroundLayer" unique_id=1245582473]
+[node name="VDTStationMarker8" type="TextureRect" parent="BackgroundLayer" unique_id=1245582473]
 self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
 offset_left = 1788.0
 offset_top = 341.0
@@ -361,52 +494,12 @@ offset_right = 1516.0
 offset_bottom = 106.0
 texture = SubResource("CanvasTexture_mipw4")
 
-[node name="LightBoxTrain3" type="TextureRect" parent="BackgroundLayer" unique_id=1475145038]
-self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
-offset_left = 1788.0
-offset_top = 671.0
-offset_right = 1838.0
-offset_bottom = 721.0
-texture = SubResource("CanvasTexture_mipw4")
-
 [node name="LightRect16" type="TextureRect" parent="BackgroundLayer" unique_id=1245277598]
 self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
 offset_left = 1185.0
 offset_top = 197.0
 offset_right = 1535.0
 offset_bottom = 247.0
-texture = SubResource("CanvasTexture_mipw4")
-
-[node name="LightBoxTrain" type="TextureRect" parent="BackgroundLayer" unique_id=92911481]
-self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
-offset_left = 1336.0
-offset_top = 120.0
-offset_right = 1386.0
-offset_bottom = 170.0
-texture = SubResource("CanvasTexture_mipw4")
-
-[node name="LightBoxTrain4" type="TextureRect" parent="BackgroundLayer" unique_id=2062518524]
-self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
-offset_left = 880.0
-offset_top = 671.0
-offset_right = 930.0
-offset_bottom = 721.0
-texture = SubResource("CanvasTexture_mipw4")
-
-[node name="LightBoxTrain5" type="TextureRect" parent="BackgroundLayer" unique_id=1247635426]
-self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
-offset_left = 880.0
-offset_top = 341.0
-offset_right = 930.0
-offset_bottom = 391.0
-texture = SubResource("CanvasTexture_mipw4")
-
-[node name="LightBoxTrain6" type="TextureRect" parent="BackgroundLayer" unique_id=1934590616]
-self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
-offset_left = 1337.0
-offset_top = 829.0
-offset_right = 1387.0
-offset_bottom = 879.0
 texture = SubResource("CanvasTexture_mipw4")
 
 [node name="LightRect18" type="TextureRect" parent="BackgroundLayer" unique_id=1172492261]
@@ -479,14 +572,6 @@ offset_left = 800.0
 offset_top = 156.0
 offset_right = 880.0
 offset_bottom = 391.0
-texture = SubResource("CanvasTexture_mipw4")
-
-[node name="LightBoxTrain7" type="TextureRect" parent="BackgroundLayer" unique_id=972529385]
-self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
-offset_left = 880.0
-offset_top = 156.0
-offset_right = 930.0
-offset_bottom = 206.0
 texture = SubResource("CanvasTexture_mipw4")
 
 [node name="LightRect27" type="TextureRect" parent="BackgroundLayer" unique_id=1619911923]
@@ -648,14 +733,6 @@ offset_right = 811.0
 offset_bottom = 156.0
 texture = SubResource("CanvasTexture_mipw4")
 
-[node name="LightBoxTrain8" type="TextureRect" parent="BackgroundLayer" unique_id=1102118838]
-self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
-offset_left = 762.0
-offset_top = 934.0
-offset_right = 812.0
-offset_bottom = 984.0
-texture = SubResource("CanvasTexture_mipw4")
-
 [node name="LightRect43" type="TextureRect" parent="BackgroundLayer" unique_id=1943501574]
 self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
 offset_left = 762.0
@@ -675,6 +752,94 @@ texture = SubResource("CanvasTexture_mipw4")
 self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
 offset_right = 38.0
 offset_bottom = 1080.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker5a" type="TextureRect" parent="BackgroundLayer" unique_id=1475145038]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1788.0
+offset_top = 671.0
+offset_right = 1838.0
+offset_bottom = 721.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker6" type="TextureRect" parent="BackgroundLayer" unique_id=92911481]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1336.0
+offset_top = 120.0
+offset_right = 1386.0
+offset_bottom = 170.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker2a" type="TextureRect" parent="BackgroundLayer" unique_id=2062518524]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 880.0
+offset_top = 671.0
+offset_right = 930.0
+offset_bottom = 721.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker2b" type="TextureRect" parent="BackgroundLayer" unique_id=1247635426]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 880.0
+offset_top = 341.0
+offset_right = 930.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker3" type="TextureRect" parent="BackgroundLayer" unique_id=1934590616]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1337.0
+offset_top = 829.0
+offset_right = 1387.0
+offset_bottom = 879.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker4" type="TextureRect" parent="BackgroundLayer" unique_id=972529385]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 880.0
+offset_top = 156.0
+offset_right = 930.0
+offset_bottom = 206.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTStationMarker1" type="TextureRect" parent="BackgroundLayer" unique_id=1102118838]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 762.0
+offset_top = 934.0
+offset_right = 812.0
+offset_bottom = 984.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTJunctionMarker1" type="TextureRect" parent="BackgroundLayer" unique_id=1323646947]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 880.0
+offset_top = 934.0
+offset_right = 930.0
+offset_bottom = 984.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTJunctionMarker2" type="TextureRect" parent="BackgroundLayer" unique_id=897591961]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1337.0
+offset_top = 934.0
+offset_right = 1387.0
+offset_bottom = 984.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTJunctionMarker3" type="TextureRect" parent="BackgroundLayer" unique_id=418462273]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1788.0
+offset_top = 934.0
+offset_right = 1838.0
+offset_bottom = 984.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="VDTJunctionMarker4" type="TextureRect" parent="BackgroundLayer" unique_id=1110197564]
+self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
+offset_left = 1785.0
+offset_top = 118.0
+offset_right = 1835.0
+offset_bottom = 168.0
 texture = SubResource("CanvasTexture_mipw4")
 
 [node name="StageThreeResponseManager" parent="." unique_id=153859290 instance=ExtResource("2_xjcnr")]
@@ -895,6 +1060,7 @@ autowrap_mode = 0
 [connection signal="item_selected" from="ResponseOptions" to="." method="_on_response_options_item_selected"]
 [connection signal="pressed" from="EraseSectionButton" to="." method="_on_erase_section_button_pressed"]
 
+[editable path="VDTLayer/VisualDataTrainManager/VDTStation"]
 [editable path="StageThreeResponseManager"]
 [editable path="StageThreePromptManager"]
 [editable path="StageThreeConvoPresenter"]

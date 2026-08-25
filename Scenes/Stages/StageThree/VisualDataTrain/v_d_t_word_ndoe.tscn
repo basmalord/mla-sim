@@ -1,28 +1,57 @@
 [gd_scene format=3 uid="uid://bx5awemhsekkg"]
 
 [ext_resource type="Script" uid="uid://mv30grepoq8" path="res://Scripts/Visual/VisualDataTrain/v_d_t_word_node.gd" id="1_jsgx0"]
+[ext_resource type="FontFile" uid="uid://6thcbw01omex" path="res://Res/Visual/Fonts/GoogleSansCode-VariableFont_MONO,wght.ttf" id="2_fee5f"]
+[ext_resource type="Script" uid="uid://c3qdovpepa2f8" path="res://Scripts/Visual/VisualDataTrain/vdt_word_node_area.gd" id="2_xsict"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_jsgx0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fee5f"]
+size = Vector2(1, 17)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_xsict"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gv68d"]
+size = Vector2(2, 17)
 
 [node name="VDTWordNode" type="Node2D" unique_id=1261750604]
 script = ExtResource("1_jsgx0")
 
 [node name="VDTRTL" type="RichTextLabel" parent="." unique_id=292435062]
-offset_right = 40.0
-offset_bottom = 40.0
 theme_override_constants/line_separation = -2
+theme_override_fonts/normal_font = ExtResource("2_fee5f")
+theme_override_font_sizes/normal_font_size = 16
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
 [node name="VDTWordNodeFrontArea" type="Area2D" parent="." unique_id=1258142310]
+collision_layer = 255
+collision_mask = 255
+script = ExtResource("2_xsict")
+area_type = "front"
 
-[node name="VDTBoxFront" type="CollisionShape2D" parent="VDTWordNodeFrontArea" unique_id=445902259]
-shape = SubResource("SegmentShape2D_jsgx0")
+[node name="Front" type="CollisionShape2D" parent="VDTWordNodeFrontArea" unique_id=445902259]
+position = Vector2(-1.5, 0.5)
+shape = SubResource("RectangleShape2D_fee5f")
+
+[node name="Label" type="Label" parent="VDTWordNodeFrontArea/Front" unique_id=1642308455]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "front"
 
 [node name="VDTWordNodeBackArea" type="Area2D" parent="." unique_id=388438306]
+collision_layer = 255
+collision_mask = 255
+script = ExtResource("2_xsict")
+area_type = "back"
 
-[node name="VDTBoxBack" type="CollisionShape2D" parent="VDTWordNodeBackArea" unique_id=1400654125]
-shape = SubResource("SegmentShape2D_xsict")
+[node name="Back" type="CollisionShape2D" parent="VDTWordNodeBackArea" unique_id=1400654125]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_gv68d")
+
+[node name="Label" type="Label" parent="VDTWordNodeBackArea/Back" unique_id=494935529]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "back"
+
+[connection signal="area_shape_entered" from="VDTWordNodeFrontArea" to="." method="_on_area_entered_front_area"]
+[connection signal="area_shape_entered" from="VDTWordNodeBackArea" to="." method="_on_area_entered_back_area"]

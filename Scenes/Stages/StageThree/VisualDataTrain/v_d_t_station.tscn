@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://b272neoxdvl45"]
+
+[ext_resource type="Script" uid="uid://64oq20mmi1qs" path="res://Scripts/Visual/VisualDataTrain/v_d_t_station.gd" id="1_sepkd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sepkd"]
+size = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0df1r"]
+size = Vector2(14, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ye2et"]
+size = Vector2(14, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7gna"]
+size = Vector2(4, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87qv1"]
+size = Vector2(4, 14)
+
+[node name="VDTStation" type="Node2D" unique_id=637245988]
+script = ExtResource("1_sepkd")
+
+[node name="Spawners" type="Area2D" parent="." unique_id=291864504]
+collision_layer = 0
+collision_mask = 0
+
+[node name="north" type="CollisionShape2D" parent="Spawners" unique_id=129215148]
+position = Vector2(-4, 20)
+shape = SubResource("RectangleShape2D_sepkd")
+
+[node name="south" type="CollisionShape2D" parent="Spawners" unique_id=1590254917]
+position = Vector2(-4, -20)
+shape = SubResource("RectangleShape2D_sepkd")
+
+[node name="east" type="CollisionShape2D" parent="Spawners" unique_id=1258365038]
+position = Vector2(-20, -10)
+shape = SubResource("RectangleShape2D_sepkd")
+
+[node name="west" type="CollisionShape2D" parent="Spawners" unique_id=1606072310]
+position = Vector2(20, -10)
+shape = SubResource("RectangleShape2D_sepkd")
+
+[node name="Dockers" type="Area2D" parent="." unique_id=448344920]
+collision_layer = 255
+collision_mask = 255
+
+[node name="north" type="CollisionShape2D" parent="Dockers" unique_id=1565553497]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_0df1r")
+
+[node name="south" type="CollisionShape2D" parent="Dockers" unique_id=766593151]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_ye2et")
+
+[node name="east" type="CollisionShape2D" parent="Dockers" unique_id=43491573]
+position = Vector2(20, 0)
+shape = SubResource("RectangleShape2D_a7gna")
+
+[node name="west" type="CollisionShape2D" parent="Dockers" unique_id=90416384]
+position = Vector2(-20, 0)
+shape = SubResource("RectangleShape2D_87qv1")
+
+[connection signal="area_shape_entered" from="Dockers" to="." method="_on_dockers_area_shape_entered"]
