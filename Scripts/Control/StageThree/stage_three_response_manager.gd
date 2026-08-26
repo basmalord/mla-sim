@@ -52,6 +52,7 @@ func _on_generate_response_button_pressed() -> void:
 		var sections: int = active_response_entry["ResponseSections"].size()
 		my_controller._receive_goals(prompt_goals, sections)
 		print("this is else on gen pressed: ", prompt_goals, "   ", sections)
+	
 
 
 func _select_response():

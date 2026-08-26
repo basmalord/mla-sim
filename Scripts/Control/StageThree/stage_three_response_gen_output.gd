@@ -115,6 +115,7 @@ func _remove_last_section_text():
 
 func _handle_word_clicked(word:String):
 	if !my_rtl.text.contains("_"):
+		print("returning from repsonse gen output")
 		return
 	_insert_selected_word(word)
 	emit_signal("new_word_set")
@@ -128,6 +129,10 @@ func _handle_word_clicked(word:String):
 		if section_index > number_of_section_indexes:
 			my_controller._switch_send_button_disabled()
 
+func get_ready_for_word():
+	if my_rtl.text.contains("_"):
+		return true
+	return false
 
 func _advance_section():
 	if section_index >= 1:

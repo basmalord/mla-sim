@@ -18,7 +18,7 @@ var outgoing_word: VDTWordNode
 var directions_array: Array[String] = ["north", "south", "east", "west"]
 
 func _ready() -> void:
-	connect("data_reached_station", Callable(my_manager,"_on_data_reached_station"))
+	connect("data_reached_station", Callable(my_manager,"_end_of_the_line"))
 
 func _set_exits_and_entrances_spawner_dicts():
 	for direction in exits_editor_dict:
@@ -57,15 +57,19 @@ func _on_dockers_area_shape_entered(area_rid: RID, area: Area2D, area_shape_inde
 			#text, this almost certainly needs to be domne in the word node itself so that it can shift it's front area back, get the area of the word node to be linked to 
 			#a pop back function which s all conditioned on whether the area shares its name with the word's orientation and whether the station in question is the starting station
 
-func _spawn_word(word_node_properties: Array): #properties: 1. word ; 2. whole path (which you will then pop at the front and covnert the 1st into an orientation based on your manager's path dict) ;
+func _spawn_word(word_node_properties_og: Array): #properties: 1. word ; 2. whole path (which you will then pop at the front and covnert the 1st into an orientation based on your manager's path dict) ;
 	# 3. (for later) you will need to have some modulation behaviour to continue over, this mod behaviour will be something figured out originally by the manager, with only a string to represent 
 	# those calculations within the word node itself, which will define the behaviour of a modulation function
+	var word_node_properties = word_node_properties_og.duplicate(true)
 	var word_node_word: String = word_node_properties[0]
 	var word_node_path: Array = word_node_properties[1]
 	word_node_path.pop_front()
+	print("this is word node path from station: ", word_node_path)
 	if word_node_path.size() == 0: #if path is size 0, then it's just gotten to the last station
-		emit_signal("data_reached_station", station_id)
+		print("doing the thing from spawn func in station", word_node_path)
+		my_manager._end_of_the_line(station_id)
 		return
+	print("immediately after the word node path check: ", word_node_path)
 	var next_station: String = word_node_path.front()
 	var direction_to_next_station: String 
 	var my_paths: Dictionary = my_manager.get_station_paths(station_id) #will crash if there is no entry
@@ -84,9 +88,10 @@ func _spawn_word(word_node_properties: Array): #properties: 1. word ; 2. whole p
 	new_vdt_word_node.deconstructor_docker_name = deconstructor_docker_name
 	new_vdt_word_node.global_position = spawner_position
 	my_manager.call_deferred("add_child", new_vdt_word_node)
+	#my_manager.add_child(new_vdt_word_node)
 	new_vdt_word_node._set_direction_from_orientation()
 	new_vdt_word_node.speed = 2
-	print("this is the end of the spawn word func in station   ", new_vdt_word_node.orientation)
+	print("this is the end of the spawn word func in station   ", new_vdt_word_node.orientation, "   ", new_vdt_word_node.word, "   ", word_node_path, "   ", word_node_word, "   ", next_station, )
 
 func _spawn_word1(vdt_word: VDTWordNode, exit: CollisionShape2D):
 	var new_vdt_word: VDTWordNode = vdt_word.duplicate() # might have to do some form of hold up here

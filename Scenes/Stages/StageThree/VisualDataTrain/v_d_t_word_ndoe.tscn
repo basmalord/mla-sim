@@ -20,6 +20,7 @@ theme_override_font_sizes/normal_font_size = 16
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+tab_size = 1
 
 [node name="VDTWordNodeFrontArea" type="Area2D" parent="." unique_id=1258142310]
 collision_layer = 255

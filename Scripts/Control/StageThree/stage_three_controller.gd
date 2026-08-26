@@ -2,6 +2,9 @@ extends Control
 
 class_name StageThreeController
 
+signal button_state_dict_set
+signal to_vdt_manager
+
 @onready var convo_presenter: Control = $StageThreeConvoPresenter
 @onready var prompt_manager: Node = $StageThreePromptManager
 @onready var response_gen_output: Control = $StageThreeResponseGenOutput
@@ -17,12 +20,63 @@ class_name StageThreeController
 @onready var goal_tally_controller: Node = $GoalsTally
 @onready var user_profile_manager: Node = $StageThreeUserManager
 @onready var erase_button: Button = $EraseSectionButton
-
+@onready var vdt_manager: VDTManager = $VDTLayer/VisualDataTrainManager
 
 var selected_goal: String
+var button_state_dictionary: Dictionary 
 
 @export_range(1,10,1) var level: int = 1
 @export var number_of_options: int = 5
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("A"):
+		_relay_to_vdt_manager("generator to prompt", "testing")
+
+func _ready():
+	pass
+
+func _set_button_state_dict():
+	for child in get_children():
+		if child is Button:
+			var button_name: String = child.name
+			button_state_dictionary[button_name] = child.disabled
+	button_state_dictionary["OptionsManager"] = options_manager.buttons_are_disabled
+	button_state_dictionary["ResponseOptions"] = response_selection_menu.buttons_are_disabled
+	print("this is controller's button dict: ", button_state_dictionary)
+	emit_signal("button_state_dict_set")
+
+func _disable_all_buttons():
+	_set_button_state_dict()
+	await button_state_dict_set
+	generate_response_button.disabled = true
+	erase_button.disabled = true
+	send_response_button.disabled = true
+	options_manager._disable_all_buttons()
+	response_selection_menu._disable_all_word_buttons() #just enabling and disabling these may cause sequence issues, you've saved og in the dict, but dont want to use as reference because definite sequence break
+
+func _return_all_buttons_to_state():
+	for child in get_children():
+		if child is Button:
+			var button_name: String = child.name
+			child.disabled = button_state_dictionary[button_name]
+	options_manager._enable_all_buttons()
+	response_selection_menu._enable_all_word_buttons()
+
+
+func _on_prompt_displayed():
+	var all_goals: Array = response_selection_menu.button_node_array
+	for i in all_goals.size():
+		var relaying_string: String = response_selection_menu.get_next_invisible_word()
+		if relaying_string == "":
+			print("returning from on prompt displayed function: ", i)
+			return
+		_relay_to_vdt_manager("prompt to goals", relaying_string)
+		await vdt_manager.end_of_the_line_prompt_to_goals
+		print("post end of line prompt to goals received by s3 cont")
+		response_selection_menu._show_word_by_text(relaying_string)
+
+func _relay_to_vdt_manager(target_path: String, relaying_string_data: String):
+	vdt_manager._handle_relay(target_path, relaying_string_data)
 
 func _send_prompt(prompt_entry: Dictionary):
 	var prompt_text: String = prompt_entry["PromptString"]
@@ -31,15 +85,20 @@ func _send_prompt(prompt_entry: Dictionary):
 	associations_manager._generate_cosine_similarity_array(prompt_entry)
 	for entry in prompt_goals_entries:
 		prompt_goals_strings.append(entry.keys()[0])
-	response_selection_menu._import_items(prompt_goals_strings)
+	response_selection_menu._import_items(prompt_goals_strings) # can just test this out with the text for the goals sent
 	convo_presenter._handle_prompt(prompt_text)
 
 func _send_response_data(response_entry: Dictionary, goals_array: Array):
 	var selected_index: int = response_selection_menu.selected
 	var selected_generation_goal: String = response_selection_menu.get_item_text(selected_index)
-	goal_tally_controller._add_goal_tally(selected_generation_goal)
+	goal_tally_controller._add_goal_tally(selected_generation_goal) 
 	response_gen_output._set_response_entry(response_entry, goals_array)
+	var text: String = "decoding..."
+	call_deferred("_relay_to_vdt_manager", "generator to options1", text)
+	await vdt_manager.end_of_the_line_generator_to_options1
 	options_manager._generate_word_buttons(associations_manager.get_word_to_prompt_similarity_entry_array(number_of_options))
+	options_manager._enable_all_buttons()
+	erase_button.disabled = false
 
 #func _continue_response():
 	#response_gen_output
@@ -50,15 +109,25 @@ func _on_send_response_button_pressed() -> void:
 	if !erase_button.disabled:
 		_switch_erase_button_disabled()
 	var candidate_text: String = response_gen_output.my_rtl.text
+	call_deferred("_relay_to_vdt_manager", "generator to prompt", "to_user")
+	await vdt_manager.end_of_the_line_generator_to_prompt
 	convo_presenter._handle_response(candidate_text)
 	response_gen_output._reset_all()
 	options_manager._on_send_clicked()
 	response_selection_menu._clear_items()
+	erase_button.disabled = true
 
 func _on_word_clicked(word: String, sim_value: float):
-	response_gen_output._handle_word_clicked(word)
+	call_deferred("_relay_to_vdt_manager", "options2 to probability label", word)
+	await vdt_manager.end_of_the_line_options2_to_probability_label
+	response_gen_output.call_deferred("_handle_word_clicked", word)  #_handle_word_clicked(word)
 	await response_gen_output.new_word_set
+	print("this is s3 controller end of word clicked func")
 	confidence_manager._on_word_clicked(sim_value)
+	print("this is get ready for word: ", response_gen_output.get_ready_for_word())
+	erase_button.disabled = false
+	if response_gen_output.get_ready_for_word():
+		options_manager._enable_all_buttons()
 
 func _switch_response_selection_menu_disabled():
 	if response_selection_menu.disabled:
@@ -112,15 +181,21 @@ func _receive_goals(goals: Array, number_of_sections: int, from_prompt: bool = f
 		return
 
 func _on_response_options_item_selected(index: int) -> void:
-	response_gen_output.selected_goal = response_selection_menu.get_item_text(index)
+	var item_text: String = response_selection_menu.get_item_text(index)
+	call_deferred("_relay_to_vdt_manager","goals1 to generator", item_text)
+	call_deferred("_relay_to_vdt_manager", "goals2 to US label", item_text)
+	await vdt_manager.end_of_the_line_goals1_to_generator
+	response_gen_output.selected_goal = item_text
 	selected_goal = response_selection_menu.get_item_text(index)
+	response_selection_menu._enable_all_word_buttons()
 	if generate_response_button.disabled == true:
 		_switch_generate_button_disabled()
 
 
 func _on_erase_section_button_pressed() -> void:
-	response_gen_output._handle_erase_section()
+	response_gen_output.call_deferred("_handle_erase_section")
 	var remove_words_goal_array: Array[Variant] = await response_gen_output.erasing
+	print(remove_words_goal_array)
 	var number_of_words_to_remove: int = remove_words_goal_array[0]
 	var goal_removed: String = remove_words_goal_array[1]
 	confidence_manager._on_erase_section(number_of_words_to_remove)

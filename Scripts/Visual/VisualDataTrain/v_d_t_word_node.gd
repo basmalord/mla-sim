@@ -20,6 +20,7 @@ signal letter_deconstructed
 @export var speed: float = 0
 @export var direction: Vector2 = Vector2(0,0)
 
+var current_station: VDTStation
 var target_station_id: String
 @export var starting_station_id: String = "" #use this to ignore station dockers of the station you've just spawned in
 @export var word: String
@@ -28,7 +29,7 @@ var times_word_set: int = 1
 var test: bool = true
 @export var deconstructor_docker_name: String = ""
 var deconstructing: bool = false
-
+var constructing: bool = false
 
 func _ready() -> void:
 	pass
@@ -61,49 +62,57 @@ func _setup_new_text(): #this needs to have some way of building string for orie
 	if reverse_vertical_text(my_rtl.text).length() == word.length(): #need to reverse it because the bbc code counts towards length
 		return
 	_set_text_from_orientation(generate_string_from_word())
-	print("just waiting for text set")
 	emit_signal("finished_waiting_for_text_to_set")
 	await get_tree().create_timer(0.05).timeout #for some unknown reason, an await function here with text set cannot respond to the signal being emitted
-	print("just before as of snt, this is my rtl size: ", my_rtl.size)
 	_set_area_shapes_from_orientation()
-	print("this is pa of snt")
 	_set_direction_from_orientation()
-	print("this is pd of snt")
 	if my_rtl.text.length() == 1:
 		_setup_new_text()
 	times_word_set += 1
 
 func _deconstruct_text(from_construction: bool = false): #this needs to have some way of building string for orientation, if u just add to the string the same way, then it will only look correct s->n and w->e
-	if reverse_vertical_text(my_rtl.text).length() == 0:
-		queue_free()
-		return
-	_set_text_from_orientation(generate_string_from_word(), from_construction)
-	print("this is text after deconstruct set text:  ", my_rtl.text)
+	#if reverse_vertical_text(my_rtl.text).length() == 0:
+		#if path.size() == 0:
+			#var manager: VDTManager = get_parent()
+			#manager._end_of_the_line(path[0])
+		#queue_free()
+		#return
+	_set_text_from_orientation(generate_string_from_word(from_construction), from_construction)
 	emit_signal("finished_waiting_for_text_to_set")
 	await get_tree().create_timer(0.05).timeout #for some unknown reason, an await function here with text set cannot respond to the signal being emitted
-	print("just before as of snt, this is my rtl size: ", my_rtl.size)
 	_set_area_shapes_from_orientation(from_construction)
-	print("this is pa of snt")
 	_set_direction_from_orientation()
-	print("this is pd of snt")
 	#if reverse_vertical_text(my_rtl.text).length() == word.length() - 1:
 		#_setup_new_text()
 	times_word_set -= 1
 	emit_signal("letter_deconstructed")
 	if reverse_vertical_text(my_rtl.text).length() == 0:
+		var some_array: Array = [word, path]
+		current_station._spawn_word(some_array.duplicate())
+		if path.size() == 0:
+			var manager: VDTManager = get_parent()
+			manager._end_of_the_line(target_station_id)
 		queue_free()
 		return
 
-func generate_string_from_word():
+func generate_string_from_word(from_construction: bool = true):
 	var new_string: String = ""
-	if orientation == "north" or orientation == "west":
-		for i in times_word_set:
-			new_string += word[i]
-	elif orientation == "south" or orientation == "east":
-		var word_reversed: String = word.reverse()
-		print("this is word reversed: ", word_reversed)
-		for i in times_word_set:
-			new_string = word_reversed[i] + new_string
+	if from_construction:
+		if orientation == "north" or orientation == "west":
+			for i in times_word_set:
+				new_string += word[i]
+		elif orientation == "south" or orientation == "east":
+			var word_reversed: String = word.reverse()
+			for i in times_word_set:
+				new_string = word_reversed[i] + new_string
+	else:
+		if orientation == "south" or orientation == "west" or orientation == "east":
+			for i in times_word_set:
+				new_string += word[i]
+		elif orientation == "north":
+			var word_reversed: String = word.reverse()
+			for i in times_word_set:
+				new_string = word_reversed[i] + new_string
 	return new_string
 
 func _remove_last_rtl_text():
@@ -133,7 +142,12 @@ func _remove_first_rtl_text():
 
 func _set_vertical_rtl_text(candidate_text: String, from_construction: bool = true):
 	var characters: Array[String] = []
+	if orientation == "north":
+		print("this is candidate text from north word node, ", candidate_text, "  ", from_construction)
 	for character in candidate_text:
+		#if orientation == "north" and !from_construction: this didn't work
+			#characters.push_front(character)
+			#continue
 		characters.append(character)
 	my_rtl.text = "\n".join(characters)
 	if my_rtl.text.length() > 1:
@@ -157,14 +171,10 @@ func reverse_vertical_text(candidate_text: String) -> String:
 	return candidate_text.replace("\n","")
 
 func _set_horizontal_rtl_text(candidate_text: String, from_construction: bool = true):
-	print("firing horizontal rtl")
 	var this_size = my_rtl.size
-	print("this is size before: ", this_size)
 	my_rtl.text = candidate_text
-	print("this is size after: ", my_rtl.size)
 	var difference_y = abs(my_rtl.size.y - this_size.y)
 	var difference_x = abs(my_rtl.size.x - this_size.x)
-	print("this is diff y and x :   ", difference_y, "   ", difference_x)
 	if my_rtl.text.length() > 1:
 		if !from_construction:
 			if orientation ==  "east":
@@ -175,7 +185,7 @@ func _set_horizontal_rtl_text(candidate_text: String, from_construction: bool = 
 		if orientation ==  "east":
 			my_rtl.global_position.x -= 10
 		elif orientation == "west":
-			my_rtl.global_position.x += 7
+			my_rtl.global_position.x += 4
 
 func _set_orientation(candidate_orientation: String):
 	match candidate_orientation:
@@ -190,7 +200,6 @@ func _set_orientation(candidate_orientation: String):
 		_:
 			return
 	emit_signal("orientation_set")
-	print("just emitted orientation set")
 
 func _set_direction_from_orientation():
 	match orientation:
@@ -227,7 +236,6 @@ func _set_area_shapes_from_orientation(from_constructor: bool = true): # this al
 	var back_position: Vector2
 	var new_rotation: float = 0.0
 	var my_rtl_size = my_rtl.size
-	print("this is my rtl size from area shapes: ", my_rtl_size)
 	var my_rtl_position = my_rtl.position
 	match orientation:
 		"north":
@@ -240,7 +248,7 @@ func _set_area_shapes_from_orientation(from_constructor: bool = true): # this al
 			back_position.y = my_rtl_position.y 
 			front_position.y = my_rtl_position.y + my_rtl_size.y 
 			if !from_constructor:
-				front_position.y += get_deconstructor_offset()
+				front_position.y -= get_deconstructor_offset()
 			new_rotation = -90.0
 		"east":
 			back_position.x = my_rtl_position.x - 16
@@ -254,7 +262,6 @@ func _set_area_shapes_from_orientation(from_constructor: bool = true): # this al
 			back_position.x = my_rtl_position.x + my_rtl_size.x + 4
 		_:
 			return
-	print("this is my front and back pos: ", front_position, back_position)
 	my_front.position = front_position
 	my_front.rotation_degrees = new_rotation
 	my_back.position = back_position
@@ -278,21 +285,39 @@ func _physics_process(delta: float) -> void:
 	#await get_tree().process_frame
 	position += speed * direction
 
+func _construct_behaviour():
+	constructing = true
+	var word_length: int = word.length()
+	var time: float
+	if orientation == "west":
+		time = 0.1
+	elif orientation == "east":
+		time = 0.05
+	elif orientation == "north":
+		time = 0.2
+	elif orientation == "south":
+		time = 0.1
+	for i in word_length:
+		_setup_new_text()
+		await get_tree().create_timer(time, true, true).timeout
+
 func _deconstruction_behaviour():
 	deconstructing = true
 	var word_length: int = my_rtl.text.length() + 1
 	var time: float
-	if orientation == "west" or orientation == "east":
-		time = 0.1
-	elif orientation == "north" or orientation == "south":
-		time = 0.1
-	for i in word_length * 5:
+	if orientation == "west":
+		time = 0.08
+	elif orientation == "east":
+		time = 0.11
+	elif orientation == "north":
+		time = 0.2
+	elif orientation == "south":
+		time = 0.25
+	for i in word_length:
 		_deconstruct_text()
-		if i == word_length:
-			var vdt_manager: Node = get_tree().get_first_node_in_group("vdt")
-			vdt_manager._end_of_the_line(target_station_id)
-			queue_free()
 		await get_tree().create_timer(time, true, true).timeout
+
+
 
 func _on_area_entered_front_area(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if deconstructing:
@@ -304,45 +329,37 @@ func _on_area_entered_front_area(area_rid: RID, area: Area2D, area_shape_index: 
 		return
 	var station_node = area.get_parent()
 	if area.get_children()[area_shape_index].name != deconstructor_docker_name:
-		print("firing deconstructor name front", area.get_parent().name, "  ",area.get_children()[area_shape_index].name )
 		return
 	if station_node is not VDTStation:
-		print("firing vdtstation check front")
 		return
 	var station_id: String
 	station_id = station_node.station_id
 	if station_id == starting_station_id: #this is only here so that it doesn't interact with the non-same orientation dockers, this should probably be altered to be a positive condition, so 'if != and orientation'
-		print("firing station id vs starting check front")
-		return
-	if (times_word_set - 1) == reverse_vertical_text(my_rtl.text).length() and path.size() > 1:
-		var some_array: Array = [word, path]
-		station_node._spawn_word(some_array.duplicate()) #needs to contain the word, needs to contain the node's path, needs to contain some data around modulation that you don't have yet
+		return  #needs to contain the word, needs to contain the node's path, needs to contain some data around modulation that you don't have yet
+	print("this is my times word set and reverse length prior to deconstruction: ", times_word_set, reverse_vertical_text(my_rtl.text).length() )
 	times_word_set -= 2
+	current_station = station_node
 	_deconstruction_behaviour()
-	print("reached end of front area word func")
 
 
 func _on_area_entered_back_area(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if constructing:
+		return
 	if my_rtl.text.length() == word.length() :
-		print("dis iiiis:    ", word.length(), my_rtl.text, my_rtl.text.length())
 		return
 	if area.name != "Dockers":
-		print("firing dockers")
 		return
 	if area.get_children()[area_shape_index].name != orientation:
 		return
-	print("back after name vs ori, back area")
 	var station_node = area.get_parent()
 	if station_node is not VDTStation:
-		print("firing not vdt, back area")
 		return
 	var station_id: String
 	station_id = station_node.station_id
 	if station_id != starting_station_id:
-		print("not starting station, back area")
 		return
-	_setup_new_text()
-	print("reached end of back area word func", my_back.position, "   ", my_front.position)
+	_construct_behaviour()
+
 
 func _adjust_back_pos():
 	match orientation:
@@ -350,7 +367,6 @@ func _adjust_back_pos():
 			pass
 		"south":
 			my_back.position.y -= 100.00
-			print("doign the right thing")
 
 
 #left to do here: deconstruction behaviour, add some indicator for value of data, as well as a function modulating colour to indicate value of data

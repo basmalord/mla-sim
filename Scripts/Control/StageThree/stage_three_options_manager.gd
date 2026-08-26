@@ -12,9 +12,36 @@ var current_words: Array[String]
 var current_word_entries: Dictionary
 var my_grid_container: Container
 var min_size: Vector2 = Vector2(91,81)
-
+var buttons_are_disabled: bool = false
 func _on_send_clicked():
 	_destroy_all_buttons()
+
+func _show_all_buttons():
+	if my_grid_container is not Container:
+		return
+	for child in my_grid_container.get_children():
+		child.show()
+
+func _hide_all_buttons():
+	if my_grid_container is not Container:
+		return
+	for child in my_grid_container.get_children():
+		child.hide()
+
+func _disable_all_buttons():
+	if my_grid_container is not Container:
+		return
+	for child in my_grid_container.get_children():
+		child.disabled = true
+	buttons_are_disabled = true
+
+func _enable_all_buttons():
+	print("enabling buttons from options man")
+	if my_grid_container is not Container:
+		return
+	for child in my_grid_container.get_children():
+		child.disabled = false
+	buttons_are_disabled = false
 
 func _destroy_all_buttons():
 	if my_grid_container is not Container:

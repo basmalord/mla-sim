@@ -1,6 +1,7 @@
 extends Control
 
 signal type_animation_finished
+signal prompt_displayed
 
 const convo_container: PackedScene = preload("res://Scenes/Stages/StageThree/convo_container.tscn")
 
@@ -22,6 +23,7 @@ func _ready() -> void:
 	if my_controller is Control:
 		#connect("type_animation_finished", Callable(my_controller, "_switch_generate_button_disabled"))
 		connect("type_animation_finished", Callable(my_controller, "_switch_response_selection_menu_disabled"))
+		connect("prompt_displayed", Callable(my_controller, "_on_prompt_displayed"))
 
 func _set_rtl_text(candidate_text: String):
 	my_rtl.text = candidate_text
@@ -47,6 +49,9 @@ func _handle_prompt(candidate_text: String):
 	else:
 		converstaion_is_active = true
 	_append_rtl_text(candidate_text)
+	await type_animation_finished
+	emit_signal("prompt_displayed")
+	#my_controller._relay_to_vdt_manager()
 
 func _handle_response(candidate_text: String):
 	generate_new_rtl()

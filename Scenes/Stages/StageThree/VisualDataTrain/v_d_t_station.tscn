@@ -25,7 +25,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="north" type="CollisionShape2D" parent="Spawners" unique_id=129215148]
-position = Vector2(-4, 20)
+position = Vector2(-6, 20)
 shape = SubResource("RectangleShape2D_sepkd")
 
 [node name="south" type="CollisionShape2D" parent="Spawners" unique_id=1590254917]
@@ -37,7 +37,7 @@ position = Vector2(-20, -10)
 shape = SubResource("RectangleShape2D_sepkd")
 
 [node name="west" type="CollisionShape2D" parent="Spawners" unique_id=1606072310]
-position = Vector2(20, -10)
+position = Vector2(20, -8)
 shape = SubResource("RectangleShape2D_sepkd")
 
 [node name="Dockers" type="Area2D" parent="." unique_id=448344920]
