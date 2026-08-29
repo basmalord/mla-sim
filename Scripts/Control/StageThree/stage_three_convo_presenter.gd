@@ -2,14 +2,18 @@ extends Control
 
 signal type_animation_finished
 signal prompt_displayed
+signal passive_prompt_displayed
 
 const convo_container: PackedScene = preload("res://Scenes/Stages/StageThree/convo_container.tscn")
+const user_typing_button: PackedScene = preload("res://Scenes/Stages/StageThree/user_typing_button.tscn")
+
 
 @export_range(0.00,1.00,0.01) var typed_letter_delay: float = 1.00
 @export var my_font: FontFile
 @export_range(0,50,1) var my_font_size: int 
 @export_range(0,50,1) var my_line_height: int
-
+@export_range(0,1,0.1) var user_disconnected_timing: float = 1.00
+@export_range(0,1,0.1) var user_typing_timing: float = 1.00
 
 @onready var my_scroll: ScrollContainer = $ScrollContainer
 @onready var my_container: Container = $ScrollContainer/ConvoPresenterMainContainer
@@ -18,12 +22,20 @@ const convo_container: PackedScene = preload("res://Scenes/Stages/StageThree/con
 var my_rtl: RichTextLabel
 var converstaion_is_active: bool = false
 var my_text: String
+var passive_prompt_text: String = ""
+
 
 func _ready() -> void:
 	if my_controller is Control:
 		#connect("type_animation_finished", Callable(my_controller, "_switch_generate_button_disabled"))
 		connect("type_animation_finished", Callable(my_controller, "_switch_response_selection_menu_disabled"))
 		connect("prompt_displayed", Callable(my_controller, "_on_prompt_displayed"))
+
+
+func _clear_prompts():
+	for child in my_container.get_children():
+		child.queue_free()
+	my_scroll.scroll_vertical = my_scroll.get_v_scroll_bar().max_value
 
 func _set_rtl_text(candidate_text: String):
 	my_rtl.text = candidate_text
@@ -42,7 +54,12 @@ func generate_new_rtl():
 	await get_tree().process_frame
 	my_scroll.scroll_vertical = my_scroll.get_v_scroll_bar().max_value
 
-func _handle_prompt(candidate_text: String):
+func _handle_prompt(candidate_text: String, passive_prompt: bool = false):
+	if !passive_prompt:
+		var new_user_typing_button = await generate_user_typing_button("User typing", true, true, false)
+		my_scroll.scroll_vertical = my_scroll.get_v_scroll_bar().max_value
+		await new_user_typing_button.pressed
+	await get_tree().create_timer(0.08).timeout
 	generate_new_rtl()
 	if my_rtl.text == "":
 		converstaion_is_active = false
@@ -50,10 +67,44 @@ func _handle_prompt(candidate_text: String):
 		converstaion_is_active = true
 	_append_rtl_text(candidate_text)
 	await type_animation_finished
+	if passive_prompt:
+		print("passive prompt baby")
+		_handle_passive_prompt()
+		return
 	emit_signal("prompt_displayed")
+	#_handle_passive_prompt()
 	#my_controller._relay_to_vdt_manager()
 
+func _handle_passive_prompt():
+	var is_end_day: bool = my_controller.prompt_manager.get_end_day_bool()
+	var new_user_typing_button 
+	if is_end_day:
+		new_user_typing_button = await generate_user_typing_button("User disconnected")
+	elif !is_end_day:
+		new_user_typing_button = await generate_user_typing_button()
+
+
+func _call_prompt_manager_for_next_prompt(): #need to go to prompt manager to redefine the launch new prompt function so that it goes from the prompt itself, eliminating friction now that we have the passive prompt from the response sections.
+	my_controller._on_prompt_response_prompt_end()
+
+func generate_user_typing_button(text_to_add: String = "", animate: bool = true, flash: bool = true, prompt_launchable: bool = true):
+	var new_typing_button = user_typing_button.instantiate()
+	my_container.add_child(new_typing_button)
+	if text_to_add != "":
+		new_typing_button.text = text_to_add
+	await get_tree().process_frame
+	my_scroll.scroll_vertical = my_scroll.get_v_scroll_bar().max_value
+	if animate:
+		new_typing_button.animate_elipses()
+	if flash:
+		new_typing_button._flash_button()
+	if prompt_launchable:
+		new_typing_button.connect("pressed", Callable(self, "_call_prompt_manager_for_next_prompt"))
+	return new_typing_button
+
 func _handle_response(candidate_text: String):
+	if my_controller.generate_response_button.disabled == false:
+		my_controller._switch_generate_button_disabled()
 	generate_new_rtl()
 	if my_rtl.text == "":
 		converstaion_is_active = false
@@ -63,8 +114,10 @@ func _handle_response(candidate_text: String):
 		candidate_text = "\n\n\n\n" + candidate_text
 	_append_rtl_text(candidate_text)
 	await type_animation_finished
-	my_controller.prompt_manager._launch_new_prompt(my_controller.response_manager.get_next_prompt())
-	my_controller._switch_generate_button_disabled()
+	if passive_prompt_text != "":
+		_handle_prompt(passive_prompt_text, true)
+	else:
+		generate_user_typing_button("User disconnected") # strange catch here, not really sure what to do if there isnt the passive prompt
 
 func _type_out_characters(candidate_text: String):
 	var old_count := my_rtl.get_total_character_count()

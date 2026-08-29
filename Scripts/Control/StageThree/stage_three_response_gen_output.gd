@@ -6,6 +6,7 @@ signal waiting_for_advance
 signal new_word_set
 signal erasing(words_to_remove: int, goal_removed: String)
 signal got_words_to_remove
+signal passive_prompt_data_sent
 
 @onready var my_container: Container = $ResponseOutputContainer
 @onready var my_rtl: RichTextLabel = $ResponseOutputContainer/ResponseOutputRTL
@@ -20,6 +21,7 @@ var prompt_goals: Array
 var selected_goal: String
 var inserted_words_indexes: Array = []
 var inserted_words: Array = []
+var inserted_words_match_type_array: Array[bool] = []
 var blank_indicator: String = "______"
 var last_inserted_word: String
 var last_inserted_word_index: int
@@ -41,6 +43,7 @@ func _reset_all():
 	selected_goal = ""
 	inserted_words_indexes = []
 	inserted_words = []
+	inserted_words_match_type_array = []
 	last_inserted_word = ""
 	last_inserted_word_index = 0
 	number_of_section_indexes = 0
@@ -57,8 +60,10 @@ func _send_goal():
 
 func _handle_erase_section():
 	if section_index > 1:
+		print("erase is firing from repsonse gen")
 		emit_signal("erasing", get_words_to_remove_size(), my_controller.goal_tally_controller.last_goals.back())
-		await got_words_to_remove
+		#await got_words_to_remove
+		print("erase is firing from repsonse gen")
 		_remove_last_section_text()
 		_reset_affected_to_last_section()
 		_retract_goal()
@@ -70,6 +75,53 @@ func _handle_erase_section():
 		 #now just need to take away from the probability generator, make sure to do single
 		#functions so you can rework if you have time to make it so they can remove single words at a time
 
+func get_acceptability_and_acceptability_array():
+	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
+	var current_section_id: String = response_sections_dict.keys()[section_index - 2]
+	var current_section_entry: Dictionary = response_sections_dict[current_section_id]
+	var hidden_goal_conditions_entry: Dictionary = current_section_entry["HiddenGoalConditions"]
+	var number_of_entry_indexes: int = hidden_goal_conditions_entry.keys().size() - 1
+	var chosen_words_acceptability_array = get_acceptability_array(hidden_goal_conditions_entry, number_of_entry_indexes)
+	var acceptability: String = get_acceptability(chosen_words_acceptability_array)
+	var data_array: Array 
+	data_array.append(acceptability)
+	data_array.append(chosen_words_acceptability_array)
+	return data_array
+
+
+func get_acceptability_array(hidden_goals_conditions_entry: Dictionary, number_of_entry_indexes: int):
+	var chosen_words_acceptability_array: Array[Dictionary]
+	for i in number_of_entry_indexes:
+		var new_entry: Dictionary
+		var inserted_word: String = inserted_words[i]
+		var word_entry: Dictionary = hidden_goals_conditions_entry[hidden_goals_conditions_entry.keys()[i]]
+		var unacceptable_word_array: Array = word_entry["unacceptable"]
+		for word in unacceptable_word_array:
+			if word == inserted_word:
+				new_entry = {inserted_word: "unacceptable"}
+				chosen_words_acceptability_array.append(new_entry)
+		var acceptable_word_array: Array = word_entry["acceptable"]
+		for word in acceptable_word_array:
+			if word == inserted_word:
+				new_entry = {inserted_word: "acceptable"}
+				chosen_words_acceptability_array.append(new_entry)
+		if new_entry.is_empty():
+			new_entry = {inserted_word: "unintelligible"}
+			chosen_words_acceptability_array.append(new_entry)
+	return chosen_words_acceptability_array
+
+func get_acceptability(chosen_word_acceptability_array: Array[Dictionary]):
+	var values: Array
+	for entry in chosen_word_acceptability_array:
+		for value in entry:
+			if value == "unacceptable":
+				return "unacceptable"
+			values.append(value)
+	if !values.has("acceptable"):
+		return "unintelligible"
+	if !values.has("unintelligible"):
+		return "acceptable"
+
 func get_words_to_remove_size():
 	var number_of_words_to_remove: int
 	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
@@ -79,6 +131,16 @@ func get_words_to_remove_size():
 	number_of_words_to_remove = current_words_to_remove_entry_array.size()
 	emit_signal("got_words_to_remove")
 	return number_of_words_to_remove
+
+func get_word_to_remove_type(index: int):
+	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
+	var current_section_id: String = response_sections_dict.keys()[section_index - 2]
+	var current_section_entry: Dictionary = response_sections_dict[current_section_id]
+	var current_words_to_remove_entry_array: Array = current_section_entry["WordsToRemove"]
+	print("this is current_words_to_remove_entry_array: ", current_words_to_remove_entry_array)
+	var entry: Dictionary = current_words_to_remove_entry_array[index]
+	var value: String = entry[entry.keys()[0]]
+	return value
 
 func _reset_affected_to_last_section():
 	print("this is sec index before erase: ", section_index)
@@ -98,10 +160,11 @@ func _reset_affected_to_last_section():
 	for word in number_of_words_to_remove:
 		inserted_words_indexes.pop_back()
 		inserted_words.pop_back()
-	if !inserted_words.size() == 0:
-		last_inserted_word = inserted_words.back()
-	if !inserted_words_indexes.size() == 0:
-		last_inserted_word_index = inserted_words_indexes.back()
+		inserted_words_match_type_array.pop_back()
+	#if !inserted_words.size() == 0:
+		#last_inserted_word = inserted_words.back()
+	#if !inserted_words_indexes.size() == 0:
+		#last_inserted_word_index = inserted_words_indexes.back()
 
 
 func _remove_last_section_text():
@@ -111,7 +174,7 @@ func _remove_last_section_text():
 	for i in length_difference:
 		new_text = erase_char(new_text, new_text.length() - 1)
 	my_rtl.text = new_text
-	#print("this is curr leng: ", current_length, "  This is length dif: ", length_difference, "this is new_text: ", new_text)
+	print("this is curr leng: ", current_length, "  This is length dif: ", length_difference, "this is new_text: ", new_text)
 
 func _handle_word_clicked(word:String):
 	if !my_rtl.text.contains("_"):
@@ -172,7 +235,7 @@ func get_response_string() -> String:
 	var words_to_remove: Array
 	for entry in words_to_remove_array:
 		words_to_remove.append(entry.keys()[0])
-	for index in words_to_remove.size():
+	for index in words_to_remove.size() - 1:
 		var word = words_to_remove[index]
 		var word_string_index: int = new_text.findn(word)
 		new_text = erase_word_from_string(word, new_text, word_string_index)
@@ -199,9 +262,9 @@ func delete_word_input(word_to_delete: String): #this works for delete last word
 
 func erase_word_from_string(target_word: String = get_last_inserted_word(), target_excerpt: String = modified_excerpt, target_index: int = get_last_inserted_word_index()):
 	if target_word == "":
-		return
+		return target_excerpt
 	if target_index == -1:
-		return
+		return target_excerpt
 	var word_length: int = target_word.length()
 	for character in word_length:
 		target_excerpt = erase_char(target_excerpt, target_index)
@@ -222,13 +285,13 @@ func get_last_inserted_word():
 	var result = inserted_words.back()
 	if result == null:
 		return ""
-	return inserted_words.back() #returns null if empty
+	return result #returns null if empty
 
 func get_last_inserted_word_index():
 	var result = inserted_words_indexes.back()
 	if result == null:
 		return -1
-	return inserted_words_indexes.back() #returns null if empty
+	return result #returns null if empty
 
 func get_next_blank_indicator_index(target_excerpt: String):
 	var index: int = target_excerpt.find("_")
@@ -256,6 +319,32 @@ func generate_index_offest():
 		offset += get_string_length_difference(blank_indicator, word)
 	return offset
 
+func send_data_for_passive_prompt_generation():
+	var chosen_words_array: Array[Dictionary] = generate_chosen_words_array()
+	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
+	var current_section_id: String = response_sections_dict.keys()[section_index - 2]
+	var acceptability_data: Array = get_acceptability_and_acceptability_array()
+	var data_array: Array = []
+	data_array.append(acceptability_data[0])
+	data_array.append(chosen_words_array)
+	data_array.append(current_section_id)
+	data_array.append(acceptability_data[1])
+	emit_signal("passive_prompt_data_sent") #use this to generate the passive prompt
+	return data_array
+
+func generate_chosen_words_array(chosen_words: Array = inserted_words, match_type_array: Array[bool] = inserted_words_match_type_array):
+	var chosen_words_array: Array[Dictionary]
+	var mutatable_chosen_words: Array = chosen_words.duplicate()
+	mutatable_chosen_words.reverse()
+	var mutatable_matches_values = match_type_array.duplicate()
+	mutatable_matches_values.reverse()
+	for index in mutatable_chosen_words.size():
+		var word: String = mutatable_chosen_words[index]
+		var matches_value: bool = mutatable_matches_values[index]
+		var new_entry: Dictionary = {word: matches_value}
+		chosen_words_array.append(new_entry)
+	return chosen_words_array
+
 func _insert_selected_word(selected_word: String):
 	if !modified_excerpt.contains("_"):
 		return
@@ -268,6 +357,13 @@ func _insert_selected_word(selected_word: String):
 	newly_modified_excerpt = modified_excerpt
 	newly_modified_excerpt = replace_blank_indicator(selected_word, newly_modified_excerpt, blank_indicator_index)
 	inserted_words.append(selected_word)
+	print("I've just appended an inserted word", inserted_words)
+	var inserted_word_type: String = my_controller.associations_manager.get_word_type(selected_word)
+	var removed_word_type: String = get_word_to_remove_type(inserted_words.size() - 1)
+	var matches: bool = false
+	if inserted_word_type == removed_word_type:
+		matches = false #need to get words to replace and find index, check type of index and compare to the word's type by reference to the associations dict
+		inserted_words_match_type_array.append(matches)
 	#if inserted_words.size() > 1:
 		#blank_indicator_index += generate_index_offest()
 	inserted_words_indexes.append(blank_indicator_index)

@@ -1,0 +1,27 @@
+{
+	"test_response_1":
+		{"t_response_1_2":
+		{
+			"acceptable":
+				{
+					"PromptString": "blah ac",
+					"WordsToReplace": []
+				},
+			"unacceptable":
+				{
+					"PromptString": "blah un",
+					"WordsToReplace": []
+				},
+			"unintelligible":
+				{
+					"PromptString": "blah unin",
+					"WordsToReplace": []
+				},
+			"partially_unintelligible":
+				{
+					"PromptString": "blah partiuni",
+					"WordsToReplace": []
+				}
+		}
+		}
+}

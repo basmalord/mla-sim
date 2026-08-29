@@ -21,6 +21,8 @@ signal to_vdt_manager
 @onready var user_profile_manager: Node = $StageThreeUserManager
 @onready var erase_button: Button = $EraseSectionButton
 @onready var vdt_manager: VDTManager = $VDTLayer/VisualDataTrainManager
+@onready var real_user_satisfaction_manager = $RealUserSatisfactionManager
+@onready var in_game_clock = $ClockLayer/AnimationPlayer/Clock
 
 var selected_goal: String
 var button_state_dictionary: Dictionary 
@@ -34,6 +36,52 @@ func _process(delta: float) -> void:
 
 func _ready():
 	pass
+
+func get_real_user_satisfaction():
+	return real_user_satisfaction_manager.user_satisfaction
+
+func get_user_satisfaction_threshold():
+	var active_prompt: Dictionary = prompt_manager.active_prompt_entry
+	print(active_prompt)
+	var user_sat_dict = active_prompt["UserSatisfaction"]
+	var user_sat: float = user_sat_dict["Threshold"]
+	if active_prompt.has("UserSatisfaction") == false: #this condition doesnt work, change to set the prompt to a variable
+		print(active_prompt)
+		return null
+	return user_sat #will cause crashes if called where there is none
+
+func get_passed_user_satisfaction():
+	var real_user_satisfaction: int = get_real_user_satisfaction()
+	if real_user_satisfaction == null:
+		return true # if there is no user satisfaction entry, most likely is a non-end day prompt using this, will just continue on
+	print("this is active prompt: ", prompt_manager.active_prompt_entry)
+	var user_satisfaction_threshold: float = get_user_satisfaction_threshold()
+	user_satisfaction_threshold = user_satisfaction_threshold * 100
+	print("this is r user sat vs user sat xp: ", real_user_satisfaction, "< ", user_satisfaction_threshold)
+	if real_user_satisfaction < user_satisfaction_threshold:
+		return false
+	else:
+		return true
+
+func _on_prompt_response_prompt_end():
+	var is_end_day: bool = prompt_manager.get_end_day_bool()
+	var time_to_add_minutes: int = prompt_manager.get_time_to_add()
+	if is_end_day:
+		if get_passed_user_satisfaction() == true:
+			real_user_satisfaction_manager._reset_user_satisfaction()
+			in_game_clock._end_day()
+			await in_game_clock.time_passed
+			convo_presenter._clear_prompts()
+			await in_game_clock.day_ended
+		else:
+			in_game_clock._let_time_pass("minute", 120) #just some random amount of time to the review
+			await in_game_clock.time_passed
+			prompt_manager._launch_new_prompt(true) 
+			return
+	elif !is_end_day:
+		in_game_clock._let_time_pass("minute", time_to_add_minutes)
+		await in_game_clock.time_passed
+	prompt_manager._launch_new_prompt()
 
 func _set_button_state_dict():
 	for child in get_children():
@@ -78,15 +126,20 @@ func _on_prompt_displayed():
 func _relay_to_vdt_manager(target_path: String, relaying_string_data: String):
 	vdt_manager._handle_relay(target_path, relaying_string_data)
 
-func _send_prompt(prompt_entry: Dictionary):
+func _send_prompt(prompt_entry: Dictionary, from_failure: bool = false):
 	var prompt_text: String = prompt_entry["PromptString"]
-	var prompt_goals_entries: Array = prompt_entry["Goals"]
-	var prompt_goals_strings: Array[String]
-	associations_manager._generate_cosine_similarity_array(prompt_entry)
-	for entry in prompt_goals_entries:
-		prompt_goals_strings.append(entry.keys()[0])
-	response_selection_menu._import_items(prompt_goals_strings) # can just test this out with the text for the goals sent
+	if !from_failure:
+		var prompt_goals_entries: Array = prompt_entry["Goals"]
+		var prompt_goals_strings: Array[String]
+		associations_manager._generate_cosine_similarity_array(prompt_entry)
+		for entry in prompt_goals_entries:
+			prompt_goals_strings.append(entry.keys()[0])
+		response_selection_menu._import_items(prompt_goals_strings) # can just test this out with the text for the goals sent
 	convo_presenter._handle_prompt(prompt_text)
+
+func _handle_engineering_prompt(prompt_entry: Dictionary):
+	var word_association_changes: Dictionary = prompt_entry["WordAssociationChanges"]
+	associations_manager._handle_engineering_changes(word_association_changes)
 
 func _send_response_data(response_entry: Dictionary, goals_array: Array):
 	var selected_index: int = response_selection_menu.selected
@@ -104,18 +157,28 @@ func _send_response_data(response_entry: Dictionary, goals_array: Array):
 	#response_gen_output
 
 func _on_send_response_button_pressed() -> void:
+	var threshold: int = confidence_manager.confidence_requirement * 100
+	var current_confidence: int = int(confidence_manager.my_rtl.text)
+	if current_confidence < threshold:
+		confidence_manager._does_not_meet_confidence_threshold_behaviour()
+		return
 	goal_tally_controller._reset_goals_tally()
 	_switch_send_button_disabled()
 	if !erase_button.disabled:
 		_switch_erase_button_disabled()
 	var candidate_text: String = response_gen_output.my_rtl.text
-	call_deferred("_relay_to_vdt_manager", "generator to prompt", "to_user")
+	var data_for_passive_prompt: Array = response_gen_output.send_data_for_passive_prompt_generation()
+	prompt_manager._generate_passive_prompt(data_for_passive_prompt[0],data_for_passive_prompt[1],response_manager.active_response_id, data_for_passive_prompt[2],data_for_passive_prompt[3])
+	call_deferred("_relay_to_vdt_manager", "generator to prompt", "to_user") #above doesnt need to be deferred because it takes time for vdt word node to get to station
 	await vdt_manager.end_of_the_line_generator_to_prompt
 	convo_presenter._handle_response(candidate_text)
 	response_gen_output._reset_all()
 	options_manager._on_send_clicked()
 	response_selection_menu._clear_items()
 	erase_button.disabled = true
+
+func _send_passive_prompt(passive_prompt: String):
+	convo_presenter.passive_prompt_text = passive_prompt
 
 func _on_word_clicked(word: String, sim_value: float):
 	call_deferred("_relay_to_vdt_manager", "options2 to probability label", word)
@@ -160,6 +223,21 @@ func _switch_erase_button_disabled(enable: bool = false):
 		erase_button.disabled = true
 	else:
 		erase_button.disabled = false
+
+func _receive_hidden_goal_values(acceptability: String, chosen_words_array: Array[Dictionary], response_id: String, response_section_id: String): 
+	match acceptability: #covers for any flaw in the acceptability logic to progress game forward
+		"acceptable":
+			acceptability = acceptability
+		"unacceptable":
+			acceptability = acceptability
+		"unintelligible":
+			acceptability = acceptability
+		"partially_unintelligible":
+			acceptability = acceptability
+		_:
+			acceptability = "acceptable"
+	real_user_satisfaction_manager._amend_user_satisfaction(acceptability, chosen_words_array)
+	prompt_manager._generate_passive_prompt(acceptability, chosen_words_array, response_id, response_section_id)
 
 func _receive_goals(goals: Array, number_of_sections: int, from_prompt: bool = false):
 	if from_prompt:

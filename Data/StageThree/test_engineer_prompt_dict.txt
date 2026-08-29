@@ -1,0 +1,11 @@
+{"test_engineer_prompt_1": {"PromptString": "This is test engineer prompt 1.",
+"Engineer": true,
+"Time": 
+	{
+		"MinutesToPass": 10,
+		"HoursToPass": 0
+	},
+"EndDay": true,
+"NextPromptID": "test_prompt_2",
+}
+}

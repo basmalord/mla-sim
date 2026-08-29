@@ -28,6 +28,38 @@ func get_word_to_prompt_similarity_entry_array(number_of_words_to_get: int = -1)
 					word_to_prompt_similarity_entry_array[target_word] = target_similarity_value
 	return word_to_prompt_similarity_entry_array
 
+func _handle_engineering_changes(word_association_changes: Dictionary):
+	word_association_changes = word_association_changes.duplicate_deep()
+	var words_array: Array = word_association_changes.keys()
+	for word in words_array:
+		var word_entry: Dictionary = word_association_changes[word]
+		var theme_changes_dict: Dictionary = word_association_changes[word]["Themes"]
+		var word_type: String = word_entry["WordType"]
+		if word_entry.has("NewWord") and word_dict.has(word) == false:
+			for index in theme_changes_dict.size() - 1:
+				var key = theme_changes_dict.keys()[index]
+				var value = theme_changes_dict[key]
+				if value < 0:
+					theme_changes_dict[key] = 0
+				elif value > 1:
+					theme_changes_dict[key] = 1
+			var new_entry: Dictionary ={"Themes": theme_changes_dict, "WordType": word_type}
+			word_dict[word] = new_entry
+		else:
+			for index in theme_changes_dict.size() - 1:
+				var key = theme_changes_dict.keys()[index]
+				var addition = theme_changes_dict[key]
+				var old_value = word_dict[word]["Themes"][key]
+				var new_value = old_value + addition
+				if new_value < 0:
+					new_value = 0
+				elif new_value > 1:
+					new_value = 1
+				word_dict[word]["Themes"][key] = new_value
+
+func get_word_type(word: String):
+	return word_dict[word]["WordType"]
+
 func _set_data_res(data: Dictionary):
 	word_dict = data
 	_generate_word_array()

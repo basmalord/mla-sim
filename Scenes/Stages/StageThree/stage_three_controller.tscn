@@ -8,9 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://b272neoxdvl45" path="res://Scenes/Stages/StageThree/VisualDataTrain/v_d_t_station.tscn" id="3_buih4"]
 [ext_resource type="FontFile" uid="uid://bsjmnfdvyu4mn" path="res://Res/Visual/Fonts/InterVariable.ttf" id="5_54ady"]
 [ext_resource type="Script" uid="uid://hsfk8v2rymt0" path="res://Scripts/Control/StageThree/stage_three_options_manager.gd" id="5_ofhna"]
+[ext_resource type="Script" uid="uid://da6dm8cj7lrna" path="res://Scripts/Control/StageThree/stage_three_passive_prompt_handler.gd" id="6_hcw62"]
 [ext_resource type="PackedScene" uid="uid://cjxcwsg88kwd5" path="res://Scenes/Stages/StageThree/stage_three_user_manager.tscn" id="6_xk8ca"]
 [ext_resource type="PackedScene" uid="uid://bg1g4nvlotnsa" path="res://Scenes/Stages/StageThree/stage_three_word_manager.tscn" id="7_fqads"]
 [ext_resource type="Script" uid="uid://cgmwv5od87gq4" path="res://Scripts/Control/StageThree/stage_three_response_gen_output.gd" id="8_fqads"]
+[ext_resource type="Script" uid="uid://8uw47cquspwd" path="res://Scripts/Control/StageThree/stage_three_engineer_prompt_handler.gd" id="8_vorbn"]
 [ext_resource type="Script" uid="uid://c2epjhfxjhsb2" path="res://Scripts/Control/StageThree/intro_section_generator.gd" id="9_3hgd8"]
 [ext_resource type="Script" uid="uid://bo2we2ww3wxpk" path="res://Scripts/Control/StageThree/response_options.gd" id="10_7ija4"]
 [ext_resource type="Script" uid="uid://b03rrs758nk40" path="res://Scripts/Control/StageThree/stage_three_associations_manager.gd" id="11_xy3gr"]
@@ -20,9 +22,10 @@
 [ext_resource type="Script" uid="uid://brxx1nypy0poo" path="res://Scripts/Control/StageThree/stage_three_user_goals_manager.gd" id="15_u77sw"]
 [ext_resource type="Script" uid="uid://chdfb5nttq0hi" path="res://Scripts/Control/StageThree/stage_three_goals_tally.gd" id="16_774yd"]
 [ext_resource type="Script" uid="uid://cdbp5chkp4lb4" path="res://Scripts/Control/StageThree/erase_section_button.gd" id="17_mipw4"]
-[ext_resource type="FontFile" uid="uid://ny2ch5vomxws" path="res://Res/Visual/Fonts/IBMPlexMono-SemiBold.ttf" id="17_n3uch"]
 [ext_resource type="Script" uid="uid://dsq61yylrcp4u" path="res://Scripts/Control/StageThree/stage_three_clock.gd" id="20_n3uch"]
 [ext_resource type="FontFile" uid="uid://c0jed40sw3adj" path="res://Res/Visual/Fonts/OpenSans-VariableFont_wdth,wght.ttf" id="21_dbs5k"]
+[ext_resource type="FontFile" uid="uid://cbybkmr4vclor" path="res://Res/Visual/Fonts/Orbitron Medium.otf" id="21_vorbn"]
+[ext_resource type="Script" uid="uid://dxkpndcw1nqkl" path="res://Scripts/Control/StageThree/real_user_satisfaction_manager.gd" id="24_g1aio"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mipw4"]
 
@@ -1090,9 +1093,77 @@ offset_right = 961.0
 offset_bottom = 663.0
 texture = SubResource("CanvasTexture_mipw4")
 
+[node name="DarkRect12" type="TextureRect" parent="BackgroundLayer" unique_id=1258385297]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 811.0
+offset_top = 29.0
+offset_right = 999.0
+offset_bottom = 82.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect46" type="TextureRect" parent="BackgroundLayer" unique_id=1964641801]
+self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+offset_left = 820.0
+offset_top = 39.0
+offset_right = 989.0
+offset_bottom = 72.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="UserSatTitle" type="Label" parent="BackgroundLayer" unique_id=1367421881]
+offset_left = 820.0
+offset_top = 39.0
+offset_right = 990.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("21_dbs5k")
+text = "User Satisfaction Est."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DarkRect13" type="TextureRect" parent="BackgroundLayer" unique_id=326044795]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 1093.0
+offset_top = 104.0
+offset_right = 1281.0
+offset_bottom = 157.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="LightRect47" type="TextureRect" parent="BackgroundLayer" unique_id=1246045222]
+self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+offset_left = 1102.0
+offset_top = 114.0
+offset_right = 1271.0
+offset_bottom = 147.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="ProbabilityTitle" type="Label" parent="BackgroundLayer" unique_id=1821382738]
+offset_left = 1102.0
+offset_top = 114.0
+offset_right = 1271.0
+offset_bottom = 147.0
+theme_override_fonts/font = ExtResource("21_dbs5k")
+text = "Token Probability"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="StageThreeResponseManager" parent="." unique_id=153859290 instance=ExtResource("2_xjcnr")]
 
 [node name="StageThreePromptManager" parent="." unique_id=936758910 instance=ExtResource("1_0s302")]
+
+[node name="PassivePromptHandler" type="Node" parent="StageThreePromptManager" unique_id=1540814675]
+script = ExtResource("6_hcw62")
+
+[node name="DataHandler" type="Node" parent="StageThreePromptManager/PassivePromptHandler" unique_id=397484614]
+script = ExtResource("12_hp154")
+data_resource_path = "res://Data/StageThree/test_passive_prompt_dict.txt"
+metadata/_custom_type_script = "uid://cbivdx85bp6q8"
+
+[node name="EngineerPromptHandler" type="Node" parent="StageThreePromptManager" unique_id=318493227]
+script = ExtResource("8_vorbn")
+
+[node name="DataHandler" type="Node" parent="StageThreePromptManager/EngineerPromptHandler" unique_id=503216392]
+script = ExtResource("12_hp154")
+data_resource_path = "res://Data/StageThree/test_engineer_prompt_dict.txt"
+metadata/_custom_type_script = "uid://cbivdx85bp6q8"
 
 [node name="StageThreeConvoPresenter" parent="." unique_id=421263138 instance=ExtResource("2_wj6c4")]
 layout_mode = 1
@@ -1217,10 +1288,42 @@ script = ExtResource("13_oxpd3")
 
 [node name="ConfidenceRTL" type="RichTextLabel" parent="ConfidenceManager" unique_id=2048788389]
 layout_mode = 0
-offset_left = -6.0
-offset_top = -14.0
-offset_right = 257.0
-offset_bottom = 26.0
+offset_left = -15.0
+offset_top = -20.0
+offset_right = 160.0
+offset_bottom = 30.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/normal_font = ExtResource("21_vorbn")
+theme_override_font_sizes/normal_font_size = 30
+text = "blah"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfidenceThreshold" type="RichTextLabel" parent="ConfidenceManager" unique_id=1744712470]
+layout_mode = 0
+offset_left = 160.0
+offset_top = -20.0
+offset_right = 335.0
+offset_bottom = 30.0
+theme_override_fonts/normal_font = ExtResource("21_vorbn")
+theme_override_font_sizes/normal_font_size = 30
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ConfidenceManager" unique_id=1855726307]
+layout_mode = 0
+offset_left = 148.0
+offset_top = -15.0
+offset_right = 267.0
+offset_bottom = 97.0
+theme_override_fonts/normal_font = ExtResource("21_vorbn")
+theme_override_font_sizes/normal_font_size = 50
+text = "/"
+scroll_active = false
 
 [node name="UserSatisfactionManager" type="Control" parent="." unique_id=1573630690]
 anchors_preset = 0
@@ -1232,14 +1335,15 @@ script = ExtResource("14_1mlbr")
 
 [node name="USRTL" type="RichTextLabel" parent="UserSatisfactionManager" unique_id=1123903384]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 75.0
-offset_right = 190.0
-offset_bottom = 117.0
-theme_override_fonts/normal_font = ExtResource("17_n3uch")
+offset_left = 25.0
+offset_top = 72.0
+offset_right = 191.0
+offset_bottom = 121.0
+theme_override_fonts/normal_font = ExtResource("21_vorbn")
 theme_override_font_sizes/normal_font_size = 30
-text = "78%"
+text = "0%"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="UserGoalsManager" type="Node" parent="." unique_id=1210715089]
 script = ExtResource("15_u77sw")
@@ -1304,6 +1408,9 @@ text = "01/01/2025"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="RealUserSatisfactionManager" type="Node" parent="." unique_id=48263289]
+script = ExtResource("24_g1aio")
 
 [connection signal="pressed" from="GenerateResponseButton" to="StageThreeResponseManager" method="_on_generate_response_button_pressed"]
 [connection signal="pressed" from="SendResponseButton" to="." method="_on_send_response_button_pressed"]

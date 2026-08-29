@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://duuivtxyml7a7"]
+
+[ext_resource type="FontFile" uid="uid://biunumd2hrs8o" path="res://Res/Visual/Fonts/Inter-VariableFont_opsz,wght.ttf" id="1_bum5r"]
+[ext_resource type="Script" uid="uid://c7svh43a04jyb" path="res://Scripts/Control/StageThree/stage_three_user_typing_button.gd" id="1_lr5hy"]
+
+[node name="UserTypingButton" type="Button" unique_id=391201313]
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_constants/line_spacing = 24
+theme_override_fonts/font = ExtResource("1_bum5r")
+theme_override_font_sizes/font_size = 20
+text = "User typing"
+alignment = 0
+script = ExtResource("1_lr5hy")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

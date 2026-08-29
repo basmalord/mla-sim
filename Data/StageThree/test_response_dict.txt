@@ -1,29 +1,95 @@
 {"test_response_1": {
-"Themes":{
-"city": 0.88,
-"children": 0.23,
-"men": 0.03,
-"violence": 0.32,
-"water": 0.88,
-"death": 0.01,
-"evil": 0.94,
-"work": 0.40,
-"travel": 0.03,
-"wealth": 0.02,
-"poverty": 0.40,
-"food": 0.91,
-"women": 0.88
-},
 "NextPrompt": "test_prompt_2",
+"ContinuationTextID": "t_continuation_text_1",
 "ResponseSections": 
 {"t_response_1_1":
-{"ResponseString": "I need a blazer for my lazer.",
-"WordsToRemove": [{"blazer": "noun"},{"lazer": "noun"}]
-},
+	{
+		"ResponseString": "I need a blazer for my lazer.",
+		"WordsToRemove": [{"blazer": "noun"},{"lazer": "noun"}, {"blah": "noun"}, {"blah": "noun"}],
+		"HiddenGoalConditions":
+			{
+			 "word1":
+				 {
+					"acceptable": [],
+					"unacceptable": []
+				},
+			"word2":
+				{
+					"acceptable": [],
+					"unacceptable": []
+				},
+			"word3":
+				{
+					"acceptable": [],
+					"unacceptable": []
+				},
+			"word4":
+				{
+					"acceptable": [],
+					"unacceptable": []
+				}
+			},
+		"Themes":
+			{
+				"city": 0.88,
+				"children": 0.23,
+				"men": 0.03,
+				"violence": 0.32,
+				"water": 0.88,
+				"death": 0.01,
+				"evil": 0.94,
+				"work": 0.40,
+				"travel": 0.03,
+				"wealth": 0.02,
+				"poverty": 0.40,
+				"food": 0.91,
+				"women": 0.88
+			}
+	},
 "t_response_1_2":
-{"ResponseString": "I need a manor for my spanner.",
-"WordsToRemove": [{"manor": "noun"},{"spanner": "noun"}]
-}
+	{
+		"ResponseString": "I need a manor for my spanner.",
+		"WordsToRemove": [{"manor": "noun"},{"spanner": "noun"}, {"blah": "noun"}, {"blah": "noun"}],
+		"HiddenGoalConditions":
+			{
+			 "word1":
+				 {
+					"acceptable": [],
+					"unacceptable": []
+				},
+			"word2":
+				{
+					"acceptable": [],
+					"unacceptable": []
+				},
+			"word3":
+				{
+					"acceptable": [],
+					"unacceptable": []
+				},
+			"word4":
+				{
+					"acceptable": [],
+					"unacceptable": []
+				}
+			},
+		"Themes":
+			{
+				"city": 0.88,
+				"children": 0.23,
+				"men": 0.03,
+				"violence": 0.32,
+				"water": 0.88,
+				"death": 0.01,
+				"evil": 0.94,
+				"work": 0.40,
+				"travel": 0.03,
+				"wealth": 0.02,
+				"poverty": 0.40,
+				"food": 0.91,
+				"women": 0.88
+			}
+	}
 },
 "test_response_2": {"ResponseString": "This is test response 2. This the the changed word: boulder.",
 "Themes":{

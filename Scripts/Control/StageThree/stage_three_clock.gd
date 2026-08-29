@@ -6,6 +6,7 @@ signal months_augmented
 signal time_passed
 signal day_ended
 signal end_day_started
+signal half_end_day_sequence
 
 const animation_time_ms: int = 5000
 const time_per_visual_change_ms: int = 38
@@ -17,7 +18,7 @@ var my_animation_player: AnimationPlayer
 @export_range(1.00,10.00,0.10) var animation_time: float
 @export var time_spacing: int = 0
 @export var date_spacing: int = 0
-@export var end_day_wait_time: int = 4
+@export var end_day_wait_time: int = 3
 
 
 var default_hours: String = "00"
@@ -51,13 +52,15 @@ func _ready() -> void:
 	#_end_day()
 
 func _end_day():
-	_let_time_pass("minute", get_minutes_from_current_to_target_next(), true, true)
-	await time_passed
 	my_animation_player.current_animation = "clock_animation"
 	emit_signal("end_day_started")
 	await my_animation_player.animation_finished
+	emit_signal("half_end_day_sequence")
+	_let_time_pass("minute", get_minutes_from_current_to_target_next(), true, true)
+	await time_passed
 	await get_tree().create_timer(end_day_wait_time).timeout
 	my_animation_player.play_backwards("clock_animation")
+	await my_animation_player.animation_finished
 	emit_signal("day_ended")
 
 func get_minutes_from_current_to_target_next(target_hour: int = 10):
@@ -122,7 +125,7 @@ func _set_time_simply(candidate_hours: int, candidate_minutes: int):
 	minutes = candidate_minutes
 	_set_time_label_text()
 
-func _let_time_pass(unit_type: String, amount_of_unit: int, is_animated: bool, is_end_day: bool = false):
+func _let_time_pass(unit_type: String, amount_of_unit: int, is_animated: bool = true, is_end_day: bool = false):
 	var minutes_per_unit: int = time_conversion_dict[unit_type]
 	var total_minutes: int = amount_of_unit * minutes_per_unit
 	if !is_end_day:
