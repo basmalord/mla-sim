@@ -59,7 +59,7 @@ func _send_goal():
 	goal_tally._add_goal_tally(goal)
 
 func _handle_erase_section():
-	if section_index > 1:
+	if section_index > 0: #move from 1
 		print("erase is firing from repsonse gen")
 		emit_signal("erasing", get_words_to_remove_size(), my_controller.goal_tally_controller.last_goals.back())
 		#await got_words_to_remove
@@ -67,7 +67,7 @@ func _handle_erase_section():
 		_remove_last_section_text()
 		_reset_affected_to_last_section()
 		_retract_goal()
-		if section_index <= 1:
+		if section_index == 0: #move from less than equal 1
 			my_controller._switch_erase_button_disabled(false)
 		my_controller._switch_send_button_disabled(false)
 		if my_controller.generate_response_button.disabled:
@@ -77,7 +77,7 @@ func _handle_erase_section():
 
 func get_acceptability_and_acceptability_array():
 	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
-	var current_section_id: String = response_sections_dict.keys()[section_index - 2]
+	var current_section_id: String = response_sections_dict.keys()[section_index - 1] #moved down from 2
 	var current_section_entry: Dictionary = response_sections_dict[current_section_id]
 	var hidden_goal_conditions_entry: Dictionary = current_section_entry["HiddenGoalConditions"]
 	var number_of_entry_indexes: int = hidden_goal_conditions_entry.keys().size() - 1
@@ -125,7 +125,7 @@ func get_acceptability(chosen_word_acceptability_array: Array[Dictionary]):
 func get_words_to_remove_size():
 	var number_of_words_to_remove: int
 	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
-	var current_section_id: String = response_sections_dict.keys()[section_index - 2]
+	var current_section_id: String = response_sections_dict.keys()[section_index - 1] #moved down from 2
 	var current_section_entry: Dictionary = response_sections_dict[current_section_id]
 	var current_words_to_remove_entry_array: Array = current_section_entry["WordsToRemove"]
 	number_of_words_to_remove = current_words_to_remove_entry_array.size()
@@ -134,7 +134,7 @@ func get_words_to_remove_size():
 
 func get_word_to_remove_type(index: int):
 	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
-	var current_section_id: String = response_sections_dict.keys()[section_index - 2]
+	var current_section_id: String = response_sections_dict.keys()[section_index - 1] #moved down from 2
 	var current_section_entry: Dictionary = response_sections_dict[current_section_id]
 	var current_words_to_remove_entry_array: Array = current_section_entry["WordsToRemove"]
 	print("this is current_words_to_remove_entry_array: ", current_words_to_remove_entry_array)
@@ -187,9 +187,13 @@ func _handle_word_clicked(word:String):
 		#
 		#return
 	if !my_rtl.text.contains("_"):
-		if section_index <= number_of_section_indexes:
-			my_controller._switch_generate_button_disabled()
-		if section_index > number_of_section_indexes:
+		if section_index < number_of_section_indexes: #need to recall how the latter is calculated, changed from less than or equal to 
+			if my_controller.generate_response_button.disabled == true:
+				my_controller.generate_response_button.disabled = false
+			if my_controller.send_response_button.disabled == false:
+				my_controller.send_response_button.disabled = true
+		if section_index == number_of_section_indexes:
+			print("switched send from _handle word clicked")
 			my_controller._switch_send_button_disabled()
 
 func get_ready_for_word():
@@ -198,7 +202,7 @@ func get_ready_for_word():
 	return false
 
 func _advance_section():
-	if section_index >= 1:
+	if section_index >= 0: #moved from 1
 		my_controller._switch_erase_button_disabled(true)
 	_display_section()
 	emit_signal("waiting_for_advance")
@@ -221,15 +225,15 @@ func _display_section():
 
 func get_response_string() -> String:
 	var new_text: String
-	if section_index == 0:
-		new_text = intro_generator.generate_intro_string(prompt_goals)
-		return new_text
+	#if section_index == 0:
+		#new_text = intro_generator.generate_intro_string(prompt_goals)
+		#return new_text
 	if !response_entry.has("ResponseSections"):
 		return ""
 	var response_sections_array: Array = response_entry["ResponseSections"].keys()
 	if (response_sections_array.size()) < section_index:
 		return ""
-	var target_section: Dictionary = response_entry["ResponseSections"][response_sections_array[section_index - 1]]
+	var target_section: Dictionary = response_entry["ResponseSections"][response_sections_array[section_index]]
 	new_text = target_section["ResponseString"]
 	var words_to_remove_array: Array = target_section["WordsToRemove"]
 	var words_to_remove: Array
@@ -322,7 +326,7 @@ func generate_index_offest():
 func send_data_for_passive_prompt_generation():
 	var chosen_words_array: Array[Dictionary] = generate_chosen_words_array()
 	var response_sections_dict: Dictionary = response_entry["ResponseSections"]
-	var current_section_id: String = response_sections_dict.keys()[section_index - 2]
+	var current_section_id: String = response_sections_dict.keys()[section_index - 1] #moved down from 2, could be remove altogether
 	var acceptability_data: Array = get_acceptability_and_acceptability_array()
 	var data_array: Array = []
 	data_array.append(acceptability_data[0])
