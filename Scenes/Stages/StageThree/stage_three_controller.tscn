@@ -485,7 +485,7 @@ texture = SubResource("CanvasTexture_mipw4")
 
 [node name="LightRect15" type="TextureRect" parent="BackgroundLayer" unique_id=1720556320]
 self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
-offset_left = 1825.0
+offset_left = 1824.0
 offset_top = 120.0
 offset_right = 1838.0
 offset_bottom = 341.0
@@ -700,7 +700,7 @@ texture = SubResource("CanvasTexture_mipw4")
 
 [node name="LightRect38" type="TextureRect" parent="BackgroundLayer" unique_id=832090465]
 self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
-offset_left = 1825.0
+offset_left = 1827.0
 offset_top = 721.0
 offset_right = 1838.0
 offset_bottom = 971.0
@@ -710,7 +710,7 @@ texture = SubResource("CanvasTexture_mipw4")
 self_modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
 offset_left = 1788.0
 offset_top = 721.0
-offset_right = 1802.0
+offset_right = 1799.0
 offset_bottom = 947.0
 texture = SubResource("CanvasTexture_mipw4")
 
@@ -841,9 +841,9 @@ texture = SubResource("CanvasTexture_mipw4")
 [node name="VDTJunctionMarker4" type="TextureRect" parent="BackgroundLayer" unique_id=1110197564]
 self_modulate = Color(0.3019608, 0.3019608, 0.77254903, 1)
 offset_left = 1785.0
-offset_top = 118.0
+offset_top = 121.0
 offset_right = 1835.0
-offset_bottom = 168.0
+offset_bottom = 171.0
 texture = SubResource("CanvasTexture_mipw4")
 
 [node name="BlackLine" type="TextureRect" parent="BackgroundLayer" unique_id=705624244]
@@ -1058,40 +1058,16 @@ texture = SubResource("CanvasTexture_mipw4")
 self_modulate = Color(0, 0, 0, 1)
 offset_left = 971.0
 offset_top = 391.0
-offset_right = 972.0
+offset_right = 973.0
 offset_bottom = 673.0
 texture = SubResource("CanvasTexture_mipw4")
 
 [node name="BlackLine29" type="TextureRect" parent="BackgroundLayer" unique_id=304427672]
 self_modulate = Color(0, 0, 0, 1)
-offset_left = 838.0
+offset_left = 837.0
 offset_top = 391.0
 offset_right = 839.0
 offset_bottom = 673.0
-texture = SubResource("CanvasTexture_mipw4")
-
-[node name="BlackLine30" type="TextureRect" parent="BackgroundLayer" unique_id=1898101510]
-self_modulate = Color(0, 0, 0, 1)
-offset_left = 849.0
-offset_top = 401.0
-offset_right = 850.0
-offset_bottom = 661.0
-texture = SubResource("CanvasTexture_mipw4")
-
-[node name="BlackLine31" type="TextureRect" parent="BackgroundLayer" unique_id=1195785396]
-self_modulate = Color(0, 0, 0, 1)
-offset_left = 960.0
-offset_top = 401.0
-offset_right = 961.0
-offset_bottom = 661.0
-texture = SubResource("CanvasTexture_mipw4")
-
-[node name="BlackLine32" type="TextureRect" parent="BackgroundLayer" unique_id=539495396]
-self_modulate = Color(0, 0, 0, 1)
-offset_left = 849.0
-offset_top = 661.0
-offset_right = 961.0
-offset_bottom = 663.0
 texture = SubResource("CanvasTexture_mipw4")
 
 [node name="DarkRect12" type="TextureRect" parent="BackgroundLayer" unique_id=1258385297]
@@ -1145,6 +1121,934 @@ theme_override_fonts/font = ExtResource("21_dbs5k")
 text = "Token Probability"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BlackLine33" type="TextureRect" parent="BackgroundLayer" unique_id=1869515384]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 930.0
+offset_top = 156.0
+offset_right = 932.0
+offset_bottom = 206.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine34" type="TextureRect" parent="BackgroundLayer" unique_id=516008432]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 878.0
+offset_top = 156.0
+offset_right = 880.0
+offset_bottom = 206.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine35" type="TextureRect" parent="BackgroundLayer" unique_id=447118988]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 917.0
+offset_top = 206.0
+offset_right = 919.0
+offset_bottom = 341.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine36" type="TextureRect" parent="BackgroundLayer" unique_id=684764208]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 891.0
+offset_top = 206.0
+offset_right = 893.0
+offset_bottom = 341.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine37" type="TextureRect" parent="BackgroundLayer" unique_id=1001025173]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 930.0
+offset_top = 341.0
+offset_right = 932.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine38" type="TextureRect" parent="BackgroundLayer" unique_id=2044418031]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 878.0
+offset_top = 341.0
+offset_right = 880.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine39" type="TextureRect" parent="BackgroundLayer" unique_id=2134975359]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 919.0
+offset_top = 339.0
+offset_right = 932.0
+offset_bottom = 341.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine40" type="TextureRect" parent="BackgroundLayer" unique_id=1387355074]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 878.0
+offset_top = 339.0
+offset_right = 891.0
+offset_bottom = 341.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine41" type="TextureRect" parent="BackgroundLayer" unique_id=2006638951]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 878.0
+offset_top = 206.0
+offset_right = 891.0
+offset_bottom = 208.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine42" type="TextureRect" parent="BackgroundLayer" unique_id=750598398]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 919.0
+offset_top = 206.0
+offset_right = 932.0
+offset_bottom = 208.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine43" type="TextureRect" parent="BackgroundLayer" unique_id=1096768702]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1387.0
+offset_top = 829.0
+offset_right = 1389.0
+offset_bottom = 879.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine44" type="TextureRect" parent="BackgroundLayer" unique_id=565786024]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1335.0
+offset_top = 829.0
+offset_right = 1337.0
+offset_bottom = 879.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine45" type="TextureRect" parent="BackgroundLayer" unique_id=1285012313]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1335.0
+offset_top = 879.0
+offset_right = 1350.0
+offset_bottom = 881.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine46" type="TextureRect" parent="BackgroundLayer" unique_id=1347399881]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1374.0
+offset_top = 879.0
+offset_right = 1389.0
+offset_bottom = 881.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine47" type="TextureRect" parent="BackgroundLayer" unique_id=202409984]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1838.0
+offset_top = 671.0
+offset_right = 1840.0
+offset_bottom = 721.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine48" type="TextureRect" parent="BackgroundLayer" unique_id=721358804]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1786.0
+offset_top = 671.0
+offset_right = 1788.0
+offset_bottom = 721.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine49" type="TextureRect" parent="BackgroundLayer" unique_id=1894130909]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1786.0
+offset_top = 721.0
+offset_right = 1799.0
+offset_bottom = 723.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine50" type="TextureRect" parent="BackgroundLayer" unique_id=2040588817]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1827.0
+offset_top = 721.0
+offset_right = 1840.0
+offset_bottom = 723.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine51" type="TextureRect" parent="BackgroundLayer" unique_id=985251713]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1838.0
+offset_top = 341.0
+offset_right = 1840.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine52" type="TextureRect" parent="BackgroundLayer" unique_id=1558660866]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1786.0
+offset_top = 341.0
+offset_right = 1788.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine53" type="TextureRect" parent="BackgroundLayer" unique_id=1927923662]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1824.0
+offset_top = 339.0
+offset_right = 1840.0
+offset_bottom = 341.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine54" type="TextureRect" parent="BackgroundLayer" unique_id=705862446]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1786.0
+offset_top = 339.0
+offset_right = 1802.0
+offset_bottom = 341.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine55" type="TextureRect" parent="BackgroundLayer" unique_id=399560448]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1800.0
+offset_top = 171.0
+offset_right = 1802.0
+offset_bottom = 339.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine56" type="TextureRect" parent="BackgroundLayer" unique_id=897557973]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1824.0
+offset_top = 171.0
+offset_right = 1826.0
+offset_bottom = 339.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine57" type="TextureRect" parent="BackgroundLayer" unique_id=1991612268]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1835.0
+offset_top = 121.0
+offset_right = 1837.0
+offset_bottom = 171.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine58" type="TextureRect" parent="BackgroundLayer" unique_id=660588259]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1785.0
+offset_top = 119.0
+offset_right = 1837.0
+offset_bottom = 121.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine59" type="TextureRect" parent="BackgroundLayer" unique_id=1521179424]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1783.0
+offset_top = 119.0
+offset_right = 1785.0
+offset_bottom = 136.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine60" type="TextureRect" parent="BackgroundLayer" unique_id=122102298]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1783.0
+offset_top = 157.0
+offset_right = 1785.0
+offset_bottom = 171.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine61" type="TextureRect" parent="BackgroundLayer" unique_id=1660506512]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1783.0
+offset_top = 171.0
+offset_right = 1800.0
+offset_bottom = 173.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine62" type="TextureRect" parent="BackgroundLayer" unique_id=995296196]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1826.0
+offset_top = 171.0
+offset_right = 1837.0
+offset_bottom = 173.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine63" type="TextureRect" parent="BackgroundLayer" unique_id=658477121]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1386.0
+offset_top = 157.0
+offset_right = 1783.0
+offset_bottom = 159.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine64" type="TextureRect" parent="BackgroundLayer" unique_id=1215608470]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1386.0
+offset_top = 134.0
+offset_right = 1783.0
+offset_bottom = 136.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine65" type="TextureRect" parent="BackgroundLayer" unique_id=282549294]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1334.0
+offset_top = 120.0
+offset_right = 1336.0
+offset_bottom = 170.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine66" type="TextureRect" parent="BackgroundLayer" unique_id=532323159]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1334.0
+offset_top = 118.0
+offset_right = 1386.0
+offset_bottom = 120.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine67" type="TextureRect" parent="BackgroundLayer" unique_id=114418909]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1386.0
+offset_top = 118.0
+offset_right = 1388.0
+offset_bottom = 134.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine68" type="TextureRect" parent="BackgroundLayer" unique_id=334867906]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1386.0
+offset_top = 159.0
+offset_right = 1388.0
+offset_bottom = 170.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine69" type="TextureRect" parent="BackgroundLayer" unique_id=1690584177]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1386.0
+offset_top = 168.0
+offset_right = 1645.0
+offset_bottom = 170.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine70" type="TextureRect" parent="BackgroundLayer" unique_id=1649268228]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1072.0
+offset_top = 168.0
+offset_right = 1334.0
+offset_bottom = 170.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine71" type="TextureRect" parent="BackgroundLayer" unique_id=948709675]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1072.0
+offset_top = 168.0
+offset_right = 1074.0
+offset_bottom = 753.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine72" type="TextureRect" parent="BackgroundLayer" unique_id=666478035]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1074.0
+offset_top = 751.0
+offset_right = 1181.0
+offset_bottom = 753.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine73" type="TextureRect" parent="BackgroundLayer" unique_id=1092898074]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1179.0
+offset_top = 753.0
+offset_right = 1181.0
+offset_bottom = 831.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine74" type="TextureRect" parent="BackgroundLayer" unique_id=826630186]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1179.0
+offset_top = 829.0
+offset_right = 1336.0
+offset_bottom = 831.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine75" type="TextureRect" parent="BackgroundLayer" unique_id=700587160]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1388.0
+offset_top = 829.0
+offset_right = 1538.0
+offset_bottom = 831.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine76" type="TextureRect" parent="BackgroundLayer" unique_id=1473428483]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1538.0
+offset_top = 751.0
+offset_right = 1645.0
+offset_bottom = 753.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine77" type="TextureRect" parent="BackgroundLayer" unique_id=1668186803]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1747.0
+offset_top = 671.0
+offset_right = 1786.0
+offset_bottom = 673.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine78" type="TextureRect" parent="BackgroundLayer" unique_id=1428652937]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1840.0
+offset_top = 671.0
+offset_right = 1879.0
+offset_bottom = 673.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine79" type="TextureRect" parent="BackgroundLayer" unique_id=320059575]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1747.0
+offset_top = 389.0
+offset_right = 1786.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine80" type="TextureRect" parent="BackgroundLayer" unique_id=2075370397]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1840.0
+offset_top = 389.0
+offset_right = 1879.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine81" type="TextureRect" parent="BackgroundLayer" unique_id=1591040213]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1116.0
+offset_top = 724.0
+offset_right = 1181.0
+offset_bottom = 726.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine82" type="TextureRect" parent="BackgroundLayer" unique_id=1919748417]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1538.0
+offset_top = 724.0
+offset_right = 1603.0
+offset_bottom = 726.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine83" type="TextureRect" parent="BackgroundLayer" unique_id=361660875]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1181.0
+offset_top = 699.0
+offset_right = 1538.0
+offset_bottom = 701.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine84" type="TextureRect" parent="BackgroundLayer" unique_id=1198681875]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1116.0
+offset_top = 274.0
+offset_right = 1603.0
+offset_bottom = 276.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine85" type="TextureRect" parent="BackgroundLayer" unique_id=60098328]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1185.0
+offset_top = 195.0
+offset_right = 1535.0
+offset_bottom = 197.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine86" type="TextureRect" parent="BackgroundLayer" unique_id=1768695484]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1185.0
+offset_top = 247.0
+offset_right = 1535.0
+offset_bottom = 249.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine87" type="TextureRect" parent="BackgroundLayer" unique_id=1650715006]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1093.0
+offset_top = 157.0
+offset_right = 1281.0
+offset_bottom = 159.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine88" type="TextureRect" parent="BackgroundLayer" unique_id=820613342]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1093.0
+offset_top = 102.0
+offset_right = 1281.0
+offset_bottom = 104.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine89" type="TextureRect" parent="BackgroundLayer" unique_id=662103429]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1102.0
+offset_top = 112.0
+offset_right = 1271.0
+offset_bottom = 114.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine90" type="TextureRect" parent="BackgroundLayer" unique_id=1685345918]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1102.0
+offset_top = 147.0
+offset_right = 1271.0
+offset_bottom = 149.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine91" type="TextureRect" parent="BackgroundLayer" unique_id=1151605763]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 811.0
+offset_top = 84.0
+offset_right = 999.0
+offset_bottom = 86.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine92" type="TextureRect" parent="BackgroundLayer" unique_id=838320404]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 811.0
+offset_top = 156.0
+offset_right = 878.0
+offset_bottom = 158.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine93" type="TextureRect" parent="BackgroundLayer" unique_id=1099510776]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 932.0
+offset_top = 156.0
+offset_right = 999.0
+offset_bottom = 158.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine94" type="TextureRect" parent="BackgroundLayer" unique_id=1006172032]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 811.0
+offset_top = 82.0
+offset_right = 999.0
+offset_bottom = 84.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine95" type="TextureRect" parent="BackgroundLayer" unique_id=507489600]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 821.0
+offset_top = 96.0
+offset_right = 989.0
+offset_bottom = 98.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine96" type="TextureRect" parent="BackgroundLayer" unique_id=91596062]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 821.0
+offset_top = 144.0
+offset_right = 989.0
+offset_bottom = 146.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine97" type="TextureRect" parent="BackgroundLayer" unique_id=466100492]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 820.0
+offset_top = 72.0
+offset_right = 989.0
+offset_bottom = 74.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine98" type="TextureRect" parent="BackgroundLayer" unique_id=1709738980]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 820.0
+offset_top = 37.0
+offset_right = 989.0
+offset_bottom = 39.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine99" type="TextureRect" parent="BackgroundLayer" unique_id=518919256]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 811.0
+offset_top = 27.0
+offset_right = 999.0
+offset_bottom = 29.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine100" type="TextureRect" parent="BackgroundLayer" unique_id=394592030]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 838.0
+offset_top = 389.0
+offset_right = 878.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine101" type="TextureRect" parent="BackgroundLayer" unique_id=1188111913]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 932.0
+offset_top = 389.0
+offset_right = 972.0
+offset_bottom = 391.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine102" type="TextureRect" parent="BackgroundLayer" unique_id=469668367]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1516.0
+offset_top = 106.0
+offset_right = 1918.0
+offset_bottom = 108.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine103" type="TextureRect" parent="BackgroundLayer" unique_id=408282365]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1526.0
+offset_top = 14.0
+offset_right = 1906.0
+offset_bottom = 16.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine104" type="TextureRect" parent="BackgroundLayer" unique_id=896438557]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1526.0
+offset_top = 92.0
+offset_right = 1906.0
+offset_bottom = 94.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine105" type="TextureRect" parent="BackgroundLayer" unique_id=1025200644]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1374.0
+offset_top = 932.0
+offset_right = 1387.0
+offset_bottom = 934.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine106" type="TextureRect" parent="BackgroundLayer" unique_id=156729977]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1337.0
+offset_top = 932.0
+offset_right = 1350.0
+offset_bottom = 934.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine107" type="TextureRect" parent="BackgroundLayer" unique_id=159357141]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1335.0
+offset_top = 932.0
+offset_right = 1337.0
+offset_bottom = 945.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine108" type="TextureRect" parent="BackgroundLayer" unique_id=1192155638]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1387.0
+offset_top = 932.0
+offset_right = 1389.0
+offset_bottom = 945.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine109" type="TextureRect" parent="BackgroundLayer" unique_id=1317676827]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1387.0
+offset_top = 973.0
+offset_right = 1389.0
+offset_bottom = 986.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine110" type="TextureRect" parent="BackgroundLayer" unique_id=2035417394]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1335.0
+offset_top = 973.0
+offset_right = 1337.0
+offset_bottom = 986.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine111" type="TextureRect" parent="BackgroundLayer" unique_id=2068822481]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1337.0
+offset_top = 984.0
+offset_right = 1387.0
+offset_bottom = 986.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine112" type="TextureRect" parent="BackgroundLayer" unique_id=147511868]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1827.0
+offset_top = 932.0
+offset_right = 1838.0
+offset_bottom = 934.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine113" type="TextureRect" parent="BackgroundLayer" unique_id=809068739]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1788.0
+offset_top = 932.0
+offset_right = 1799.0
+offset_bottom = 934.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine114" type="TextureRect" parent="BackgroundLayer" unique_id=7003714]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1786.0
+offset_top = 932.0
+offset_right = 1788.0
+offset_bottom = 945.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine116" type="TextureRect" parent="BackgroundLayer" unique_id=1337682498]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1838.0
+offset_top = 932.0
+offset_right = 1840.0
+offset_bottom = 986.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine117" type="TextureRect" parent="BackgroundLayer" unique_id=1755370847]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1786.0
+offset_top = 973.0
+offset_right = 1788.0
+offset_bottom = 986.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine118" type="TextureRect" parent="BackgroundLayer" unique_id=1013865865]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1788.0
+offset_top = 984.0
+offset_right = 1838.0
+offset_bottom = 986.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine30" type="TextureRect" parent="BackgroundLayer" unique_id=1264928910]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 762.0
+offset_top = 932.0
+offset_right = 814.0
+offset_bottom = 934.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine31" type="TextureRect" parent="BackgroundLayer" unique_id=465070268]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 812.0
+offset_top = 934.0
+offset_right = 814.0
+offset_bottom = 945.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine115" type="TextureRect" parent="BackgroundLayer" unique_id=561661980]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 812.0
+offset_top = 973.0
+offset_right = 814.0
+offset_bottom = 984.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine119" type="TextureRect" parent="BackgroundLayer" unique_id=636155045]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 878.0
+offset_top = 973.0
+offset_right = 880.0
+offset_bottom = 986.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine120" type="TextureRect" parent="BackgroundLayer" unique_id=1005199687]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 930.0
+offset_top = 973.0
+offset_right = 932.0
+offset_bottom = 986.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine121" type="TextureRect" parent="BackgroundLayer" unique_id=179369454]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 878.0
+offset_top = 932.0
+offset_right = 880.0
+offset_bottom = 945.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine122" type="TextureRect" parent="BackgroundLayer" unique_id=929184731]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 930.0
+offset_top = 932.0
+offset_right = 932.0
+offset_bottom = 945.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine123" type="TextureRect" parent="BackgroundLayer" unique_id=1300644058]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 919.0
+offset_top = 932.0
+offset_right = 930.0
+offset_bottom = 934.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine124" type="TextureRect" parent="BackgroundLayer" unique_id=526239211]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 880.0
+offset_top = 932.0
+offset_right = 891.0
+offset_bottom = 934.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine125" type="TextureRect" parent="BackgroundLayer" unique_id=54273543]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 819.0
+offset_top = 96.0
+offset_right = 821.0
+offset_bottom = 146.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine126" type="TextureRect" parent="BackgroundLayer" unique_id=537823725]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 989.0
+offset_top = 96.0
+offset_right = 991.0
+offset_bottom = 146.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine127" type="TextureRect" parent="BackgroundLayer" unique_id=797227704]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 809.0
+offset_top = 27.0
+offset_right = 811.0
+offset_bottom = 158.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine128" type="TextureRect" parent="BackgroundLayer" unique_id=1776231716]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 999.0
+offset_top = 27.0
+offset_right = 1001.0
+offset_bottom = 158.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine129" type="TextureRect" parent="BackgroundLayer" unique_id=1234825295]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1091.0
+offset_top = 102.0
+offset_right = 1093.0
+offset_bottom = 159.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine130" type="TextureRect" parent="BackgroundLayer" unique_id=1754135820]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1100.0
+offset_top = 112.0
+offset_right = 1102.0
+offset_bottom = 149.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine131" type="TextureRect" parent="BackgroundLayer" unique_id=1498006827]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1271.0
+offset_top = 112.0
+offset_right = 1273.0
+offset_bottom = 149.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine132" type="TextureRect" parent="BackgroundLayer" unique_id=1186317796]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1183.0
+offset_top = 196.0
+offset_right = 1185.0
+offset_bottom = 249.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine133" type="TextureRect" parent="BackgroundLayer" unique_id=665465805]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1535.0
+offset_top = 195.0
+offset_right = 1537.0
+offset_bottom = 248.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine134" type="TextureRect" parent="BackgroundLayer" unique_id=621838047]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1514.0
+offset_top = -18.0
+offset_right = 1516.0
+offset_bottom = 108.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine135" type="TextureRect" parent="BackgroundLayer" unique_id=865677631]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1524.0
+offset_top = 14.0
+offset_right = 1526.0
+offset_bottom = 94.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine136" type="TextureRect" parent="BackgroundLayer" unique_id=723440722]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1745.0
+offset_top = 389.0
+offset_right = 1747.0
+offset_bottom = 673.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine137" type="TextureRect" parent="BackgroundLayer" unique_id=1487416929]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1879.0
+offset_top = 389.0
+offset_right = 1881.0
+offset_bottom = 673.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine138" type="TextureRect" parent="BackgroundLayer" unique_id=1684985888]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1797.0
+offset_top = 723.0
+offset_right = 1799.0
+offset_bottom = 932.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine139" type="TextureRect" parent="BackgroundLayer" unique_id=1844052373]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1827.0
+offset_top = 723.0
+offset_right = 1829.0
+offset_bottom = 932.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine140" type="TextureRect" parent="BackgroundLayer" unique_id=31161189]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1601.0
+offset_top = 276.0
+offset_right = 1603.0
+offset_bottom = 724.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine141" type="TextureRect" parent="BackgroundLayer" unique_id=73627540]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1116.0
+offset_top = 276.0
+offset_right = 1118.0
+offset_bottom = 724.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine142" type="TextureRect" parent="BackgroundLayer" unique_id=911951337]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1645.0
+offset_top = 168.0
+offset_right = 1647.0
+offset_bottom = 753.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine143" type="TextureRect" parent="BackgroundLayer" unique_id=1016832728]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1280.0
+offset_top = 102.0
+offset_right = 1282.0
+offset_bottom = 159.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine144" type="TextureRect" parent="BackgroundLayer" unique_id=376163632]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1374.0
+offset_top = 881.0
+offset_right = 1376.0
+offset_bottom = 932.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine145" type="TextureRect" parent="BackgroundLayer" unique_id=275968024]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1348.0
+offset_top = 881.0
+offset_right = 1350.0
+offset_bottom = 932.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine146" type="TextureRect" parent="BackgroundLayer" unique_id=380023715]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1538.0
+offset_top = 753.0
+offset_right = 1540.0
+offset_bottom = 831.0
+texture = SubResource("CanvasTexture_mipw4")
 
 [node name="StageThreeResponseManager" parent="." unique_id=153859290 instance=ExtResource("2_xjcnr")]
 
@@ -1290,16 +2194,16 @@ script = ExtResource("13_oxpd3")
 [node name="ConfidenceRTL" type="RichTextLabel" parent="ConfidenceManager" unique_id=2048788389]
 layout_mode = 0
 offset_left = -15.0
-offset_top = -20.0
+offset_top = -15.0
 offset_right = 160.0
-offset_bottom = 30.0
+offset_bottom = 35.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_constants/shadow_outline_size = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_fonts/normal_font = ExtResource("21_vorbn")
 theme_override_font_sizes/normal_font_size = 30
-text = "blah"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
