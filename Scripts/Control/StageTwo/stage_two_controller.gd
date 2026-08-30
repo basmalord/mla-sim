@@ -11,6 +11,8 @@ const end_screen:= preload("res://Scenes/AdHoc/play_test_end_screen.tscn")
 @onready var associations_handler: Node = $AssociationsHandler
 @onready var net_graph_viewport: SubViewportContainer = $ClusterSubViewContainer
 @onready var output_label: RichTextLabel = $StageTwoOutputLabel
+@onready var dynamic_label_controller: Control = $DynamicLabelController
+
 
 func _end_stage():
 	var my_root: Node = get_parent()
@@ -20,13 +22,42 @@ func _end_stage():
 func _end_prototype():
 	get_tree().change_scene_to_packed(end_screen)
 
-func _on_confirm_clicked(): #sloppy should probably refactor but aw well
+func _failure_behaviour(answers_array: Array, expected_answers: Array):
+	dynamic_label_controller._on_failure()
+	excerpt_controller._on_failure()
+	#let the player know they failed and why (i.e: 'answers do not match training data'), let them know that the process is restarting (i.e: 'reprocessing training instance'),
+	#then provide space for some animation or something to link the failure to the restarting
+
+func _completed_stage_behaviour():
+	pass
+
+func _success_behaviour():
+	dynamic_label_controller._on_success()
+
+func _make_string_array_to_lower(string_array: Array):
+	var to_lower_string_array: Array[String]
+	for string in string_array:
+		to_lower_string_array.append(string.to_lower())
+	return to_lower_string_array
+
+func _on_confirm_clicked(): #can keep all of this here, just need a condition to check if they were the correct answers
 	var active_id: String = excerpt_controller.active_excerpt_id
 	var answers_array: Array = excerpt_controller.inserted_words
 	var expected_answers: Array = excerpt_controller.excerpts_dict[active_id]["WordsToReplace"]
 	var answers_theme_values_array: Array
 	if answers_array.size() != expected_answers.size():
 		return
+	var to_lower_expected_answers: Array[String]
+	var to_lower_answers: Array[String]
+	for answer in answers_array:
+		to_lower_answers.append(answer.to_lower())
+	for answer in expected_answers:
+		to_lower_expected_answers.append(answer.to_lower())
+	for answer in to_lower_answers:
+		var index: int = to_lower_answers.find(answer)
+		if to_lower_answers[index] != to_lower_expected_answers[index]:
+			_failure_behaviour(answers_array, expected_answers)
+			return
 	for i in answers_array.size():
 		answers_array[i] = answers_array[i].to_lower()
 	var id_answers_dict: Dictionary = {active_id: answers_array}
@@ -36,10 +67,11 @@ func _on_confirm_clicked(): #sloppy should probably refactor but aw well
 		answers_theme_values_array.append(word_dict_entry)
 	excerpt_controller._mutate_excerpt_themes_values(active_id,answers_theme_values_array)
 	var excerpt_themes: Dictionary = excerpt_controller.excerpts_dict[active_id]["Themes"]
+	_success_behaviour()
 	associations_handler._activate_themes(excerpt_themes)
 	net_graph_viewport._call_graph(answers_array, answers_theme_values_array) #doesnt add new words generated from most recent confirmation, need to send word data from confirm click
 	excerpt_controller._setup_active_excerpt()
-	_end_stage()
+
 
 func _on_neural_net_clicked():
 	pass

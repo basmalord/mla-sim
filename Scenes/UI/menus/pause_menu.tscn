@@ -1,27 +1,157 @@
 [gd_scene format=3 uid="uid://4aph8aff5k73"]
 
+[ext_resource type="FontFile" uid="uid://cbybkmr4vclor" path="res://Res/Visual/Fonts/Orbitron Medium.otf" id="1_esx4i"]
+[ext_resource type="Script" uid="uid://ctxqklg86fm4m" path="res://Scenes/UI/menus/pause_menu.gd" id="1_pt503"]
+[ext_resource type="FontFile" uid="uid://cw7ulon1l3tpe" path="res://Res/Visual/Fonts/Orbitron Light.otf" id="2_sfksr"]
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_pa2uu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmqhc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nmdpf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2gmwb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s6cnt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xnvwb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k67ye"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f784c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6yidq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_esx4i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sfksr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pt503"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oh2pr"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_esx4i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m0d5j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_55rk1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e43ls"]
 
 [node name="PauseMenu" type="Control" unique_id=1190613901]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_pt503")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=822995883]
 modulate = Color(0, 0, 0, 0.4392157)
 layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 texture = SubResource("CanvasTexture_pa2uu")
 
-[node name="Label" type="Label" parent="." unique_id=715840391]
+[node name="ContinueButton" type="Button" parent="." unique_id=1631107976]
 layout_mode = 0
-offset_left = 523.0
+offset_left = 785.0
+offset_top = 180.0
+offset_right = 1135.0
+offset_bottom = 282.0
+theme_override_colors/font_hover_color = Color(0.4117647, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+theme_override_fonts/font = ExtResource("1_esx4i")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rmqhc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nmdpf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2gmwb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_s6cnt")
+text = "Continue"
+
+[node name="RestartButton" type="Button" parent="." unique_id=1782801032]
+layout_mode = 0
+offset_left = 790.0
+offset_top = 480.0
+offset_right = 1132.0
+offset_bottom = 582.0
+theme_override_colors/font_hover_color = Color(0.4117647, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_esx4i")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xnvwb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_k67ye")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_f784c")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6yidq")
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="." unique_id=818754658]
+layout_mode = 0
+offset_left = 790.0
+offset_top = 798.0
+offset_right = 1132.0
+offset_bottom = 900.0
+theme_override_colors/font_hover_color = Color(0.4117647, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_esx4i")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxEmpty_esx4i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sfksr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pt503")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_oh2pr")
+text = "Quit"
+
+[node name="SureRect" type="TextureRect" parent="." unique_id=1036434688]
+visible = false
+self_modulate = Color(0, 0, 0, 0.24313726)
+custom_minimum_size = Vector2(570, 324)
+layout_mode = 0
+offset_left = 77.0
+offset_top = 337.0
+offset_right = 647.0
+offset_bottom = 661.0
+texture = SubResource("CanvasTexture_esx4i")
+
+[node name="Label" type="Label" parent="SureRect" unique_id=32525525]
+layout_mode = 0
 offset_top = 40.0
-offset_right = 770.0
-offset_bottom = 128.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 64
-text = "PAUSED"
+offset_right = 570.0
+offset_bottom = 177.0
+theme_override_fonts/font = ExtResource("2_sfksr")
+theme_override_font_sizes/font_size = 32
+text = "Are you sure?
+
+
+All unsaved data will be lost."
+horizontal_alignment = 1
+
+[node name="FullQuit" type="Button" parent="SureRect" unique_id=851224197]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 245.0
+offset_right = 213.0
+offset_bottom = 269.0
+theme_override_colors/font_hover_color = Color(0.4117647, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sfksr")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m0d5j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_55rk1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e43ls")
+text = "Yes, I'm sure."
+
+[node name="Return" type="Button" parent="SureRect" unique_id=992598548]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 245.0
+offset_right = 525.0
+offset_bottom = 269.0
+theme_override_colors/font_hover_color = Color(0.4117647, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sfksr")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m0d5j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_55rk1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e43ls")
+text = "No, go back."
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="SureRect/FullQuit" to="." method="_on_full_quit_pressed"]
+[connection signal="pressed" from="SureRect/Return" to="." method="_on_return_pressed"]

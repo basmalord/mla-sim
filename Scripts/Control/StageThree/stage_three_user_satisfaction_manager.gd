@@ -20,8 +20,6 @@ func _alter_shadow_outline(value: int, target_rtl: RichTextLabel = my_rtl):
 
 func _flash_button(behaviour: String, node_to_flash: Node = my_rtl):
 	var original_colour: Color = node_to_flash.get_self_modulate()
-	var original_font_shadow_colour: Color = Color(0,0,0,0)
-	var timer_going: bool = true
 	match behaviour:
 		"positive":
 			node_to_flash.add_theme_color_override("font_shadow_color", positive_flash_colour)

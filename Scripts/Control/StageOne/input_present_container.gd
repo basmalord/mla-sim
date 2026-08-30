@@ -12,16 +12,28 @@ var active_column: int = 0
 @export var style_partial: StyleBoxFlat
 @export var style_nothing: StyleBoxFlat
 func _ready() -> void:
-	pass
+	_clear_row_one()
+
+func _duplicate_first_row_and_add_to_history_grid():
+	var history_grid_reference: GridContainer = my_controller.history_grid
+	var history_grid_reference_two: GridContainer = my_controller.history_grid_two
+	var active_row_buttons: Array = row_dict["Row1"]
+	for button_path in active_row_buttons:
+		var button = get_node(button_path)
+		var button_duplicate: Button = button.duplicate()
+		var button_duplicate_two: Button = button.duplicate()
+		history_grid_reference.add_child(button_duplicate)
+		history_grid_reference_two.add_child(button_duplicate_two)
+	_clear_row_one()
 
 func _set_row_themes(correctness_array: Array[String], reset_all: bool = false):
+	print("firing general set row themes function")
 	if !reset_all:
 		var row_dict_active_array: Array = row_dict[active_row]
 		for i in 5:
 			var button_node = get_node(row_dict_active_array[i])
 			var button_theme: String = correctness_array[i]
 			_set_button_theme(button_node, button_theme)
-			print(correctness_array, button_node.text, button_theme)
 	else:
 		for child in get_children():
 			child.add_theme_stylebox_override("normal", style_nothing)
@@ -54,8 +66,23 @@ func _set_button_theme(button_node: Button, theme_string: String):
 			button_node.add_theme_stylebox_override("hover_pressed", style_partial)
 			button_node.add_theme_stylebox_override("hover_pressed_mirrored", style_partial)
 			button_node.add_theme_stylebox_override("pressed", style_partial)
+		"nothing":
+			button_node.add_theme_stylebox_override("normal", style_nothing)
+			button_node.add_theme_stylebox_override("hover", style_nothing)
+			button_node.add_theme_stylebox_override("hover_mirrored", style_nothing)
+			button_node.add_theme_stylebox_override("hover_pressed", style_nothing)
+			button_node.add_theme_stylebox_override("hover_pressed_mirrored", style_nothing)
+			button_node.add_theme_stylebox_override("pressed", style_nothing)
 		_:
 			pass
+
+func _clear_row_one():
+	var active_row_buttons: Array = row_dict["Row1"]
+	for button_path in active_row_buttons:
+		var button: Button = get_node(button_path)
+		var theme_string: String = "nothing"
+		_set_button_theme(button, theme_string)
+		button.text = "_"
 
 func _set_active_row_string(letter: String):
 	if active_row == "Row6" or active_row == "Row7" or active_row == "Row8":
@@ -115,8 +142,7 @@ func get_active_row_string() -> String:
 
 func _reset():
 	active_row = "Row1"
-	for child in get_children():
-		child.text = "_"
+	_clear_row_one()
 
 func _set_active_row():
 	var row_int = int(active_row[3])

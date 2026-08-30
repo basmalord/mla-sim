@@ -1,12 +1,16 @@
 extends RichTextLabel
 
+@onready var my_controller: Control = get_parent()
+
 var is_active: bool = false
 
 func _ready() -> void:
 	text = ""
 
 func _on_word_selection(excerpt_entry: Dictionary, word_entry: Dictionary, entry_id: String, word_id: String):
-	if word_entry[word_entry.keys()[0]] is int: #checks to see if new word
+	var expected_answers_array: Array = my_controller.excerpt_controller.excerpts_dict[my_controller.excerpt_controller.active_excerpt_id]["WordsToReplace"]
+	var to_lower_array: Array = my_controller._make_string_array_to_lower(expected_answers_array)
+	if to_lower_array.find(word_id.to_lower()) != -1:
 		text += generate_string_output("99%", entry_id, word_id)
 		return
 	var excerpt_theme_values_array = get_theme_values_array(excerpt_entry)
@@ -40,7 +44,7 @@ func generate_string_output(p_value: String, entry_id: String, word_id: String):
 	if text != "":
 		new_line = "\n"
 	var string_output: String = new_line + "Generating probability from word(" + word_id +") and training data instance(" + entry_id + ")...\nGeneration complete...\nProbability = " + p_value
-	return string_output
+	return string_output #here we have to make sure that the words given do not give 99% other than the chosen words
 
 func generate_p_value(similarity_value: float) -> String:
 	var p_value: String

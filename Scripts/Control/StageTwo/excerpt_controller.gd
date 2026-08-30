@@ -18,7 +18,7 @@ var inserted_words: Array[String]
 func _ready() -> void:
 	new_excerpt_presented.connect(get_parent()._on_new_excerpt_presented)
 
-func delete_word_input(word_to_delete: String): #this works for delete last word functionality, if you pass a word that isn't the last word, it may fuck up because the erase function works on word length (i.e: will fuck up if word length and last word is not equal)
+func delete_word_input(word_to_delete: String = "moose"): #this works for delete last word functionality, if you pass a word that isn't the last word, it may fuck up because the erase function works on word length (i.e: will fuck up if word length and last word is not equal)
 	if get_last_inserted_word() == "":
 		return
 	if get_last_inserted_word_index() == -1:
@@ -29,6 +29,10 @@ func delete_word_input(word_to_delete: String): #this works for delete last word
 	inserted_words.pop_back()
 	$ExcerptLabel.text = modified_excerpt
 
+func _on_failure():
+	var iterations: int = inserted_words.size()
+	for i in iterations:
+		delete_word_input()
 
 func _display_active_excerpt():
 	var excerpt_string: String = excerpts_dict[active_excerpt_id]["SentenceString"]

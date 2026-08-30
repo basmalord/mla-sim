@@ -3,6 +3,8 @@ extends Control
 signal type_animation_finished
 signal prompt_displayed
 signal passive_prompt_displayed
+signal passive_prompt_about_to_be_handled
+
 
 const convo_container: PackedScene = preload("res://Scenes/Stages/StageThree/convo_container.tscn")
 const user_typing_button: PackedScene = preload("res://Scenes/Stages/StageThree/user_typing_button.tscn")
@@ -69,8 +71,11 @@ func _handle_prompt(candidate_text: String, passive_prompt: bool = false):
 	await type_animation_finished
 	if passive_prompt:
 		print("passive prompt baby")
+		emit_signal("passive_prompt_about_to_be_handled")
+		my_controller._relay_between_convo_pres_and_special_actions()
 		_handle_passive_prompt()
 		return
+	my_controller._relay_between_convo_pres_and_special_actions()
 	emit_signal("prompt_displayed")
 	#_handle_passive_prompt()
 	#my_controller._relay_to_vdt_manager()

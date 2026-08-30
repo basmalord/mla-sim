@@ -1,0 +1,38 @@
+{
+	"justice": {
+		"Themes": {
+			"justice": 1.0,
+			"order": 0.0,
+			"peace": 0.0,
+			"equality": 0.0
+		},
+		"WordType": "noun"
+	},
+	"order": {
+		"Themes": {
+			"justice": 0.0,
+			"order": 1.0,
+			"peace": 0.0,
+			"equality": 0.0
+		},
+		"WordType": "noun"
+	},
+	"peace": {
+		"Themes": {
+			"justice": 0.0,
+			"order": 0.0,
+			"peace": 1.0,
+			"equality": 0.0
+		},
+		"WordType": "noun"
+	},
+	"equality": {
+		"Themes": {
+			"justice": 0.0,
+			"order": 0.0,
+			"peace": 0.0,
+			"equality": 1.0
+		},
+		"WordType": "adjective"
+	}
+}

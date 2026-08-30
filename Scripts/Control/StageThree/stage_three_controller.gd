@@ -23,6 +23,8 @@ signal to_vdt_manager
 @onready var vdt_manager: VDTManager = $VDTLayer/VisualDataTrainManager
 @onready var real_user_satisfaction_manager = $RealUserSatisfactionManager
 @onready var in_game_clock = $ClockLayer/AnimationPlayer/Clock
+@onready var special_commands_handler: SpecialCommandsHandler = $SpecialCommandsHandler
+
 
 var selected_goal: String
 var button_state_dictionary: Dictionary 
@@ -36,6 +38,9 @@ func _process(delta: float) -> void:
 
 func _ready():
 	pass
+
+func _relay_between_convo_pres_and_special_actions():
+	special_commands_handler._on_prompt_displayed_or_new_passive_ready()
 
 func get_real_user_satisfaction():
 	return real_user_satisfaction_manager.user_satisfaction
@@ -135,6 +140,9 @@ func _send_prompt(prompt_entry: Dictionary, from_failure: bool = false):
 		for entry in prompt_goals_entries:
 			prompt_goals_strings.append(entry.keys()[0])
 		response_selection_menu._import_items(prompt_goals_strings) # can just test this out with the text for the goals sent
+	else:
+		
+		var booty #here you need to unpack all of the engineering special commands via their entry
 	convo_presenter._handle_prompt(prompt_text)
 
 func _handle_engineering_prompt(prompt_entry: Dictionary):

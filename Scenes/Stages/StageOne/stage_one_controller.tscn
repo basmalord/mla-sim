@@ -5,10 +5,13 @@
 [ext_resource type="Script" uid="uid://xhrcime05d86" path="res://Scripts/Control/StageOne/input_present_container.gd" id="3_bh5va"]
 [ext_resource type="Script" uid="uid://d28blf2tpvqf2" path="res://Scripts/Control/StageOne/stage_one_answer_controller.gd" id="5_ant13"]
 [ext_resource type="PackedScene" uid="uid://bs7gqitbr2fct" path="res://Scenes/Misc/animated_bg_image.tscn" id="5_dcqe2"]
+[ext_resource type="PackedScene" uid="uid://bkeyuiotnmutb" path="res://Scenes/Stages/StageOne/ip_label.tscn" id="5_r4qvf"]
 [ext_resource type="Script" uid="uid://bsehyambh4xc3" path="res://Scripts/Audio/stage_one_audio_manager.gd" id="6_dcqe2"]
+[ext_resource type="FontFile" uid="uid://cbybkmr4vclor" path="res://Res/Visual/Fonts/Orbitron Medium.otf" id="6_ve0n7"]
 [ext_resource type="AudioStream" uid="uid://dlntm46y68cjk" path="res://Res/Audio/keyboard_button_short.wav" id="7_7wla1"]
+[ext_resource type="Script" uid="uid://ctvlgp4nf23t1" path="res://Scripts/Control/StageOne/stage_one_tokenisation_history_container.gd" id="10_cdw57"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_7wla1"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_r4qvf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cet7"]
 bg_color = Color(0.3372549, 0.7019608, 0, 0.60784316)
@@ -60,203 +63,218 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a4axe")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1049245304]
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1027672282]
 layer = -50
 
-[node name="LightRect" type="TextureRect" parent="CanvasLayer" unique_id=1476672643]
-self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+[node name="LightRect" type="TextureRect" parent="BackgroundLayer" unique_id=1830089686]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
 offset_left = 460.0
 offset_right = 480.0
 offset_bottom = 1080.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="DarkRect" type="TextureRect" parent="CanvasLayer" unique_id=980484951]
+[node name="DarkRect" type="TextureRect" parent="BackgroundLayer" unique_id=2058017696]
 self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
 offset_right = 460.0
 offset_bottom = 1080.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="DarkRect2" type="TextureRect" parent="CanvasLayer" unique_id=1724076333]
+[node name="DarkRect2" type="TextureRect" parent="BackgroundLayer" unique_id=1019798289]
 self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
-offset_left = 1440.0
+offset_left = 1453.0
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="LightRect2" type="TextureRect" parent="CanvasLayer" unique_id=1223907397]
-self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
-offset_left = 1420.0
-offset_right = 1440.0
+[node name="LightRect2" type="TextureRect" parent="BackgroundLayer" unique_id=1975454686]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
+offset_left = 1428.0
+offset_right = 1451.0
 offset_bottom = 1080.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder" type="TextureRect" parent="CanvasLayer" unique_id=1891705300]
+[node name="BlackBorder" type="TextureRect" parent="BackgroundLayer" unique_id=1225619405]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_right = 4.0
 offset_bottom = 1080.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder2" type="TextureRect" parent="CanvasLayer" unique_id=406349197]
+[node name="BlackBorder2" type="TextureRect" parent="BackgroundLayer" unique_id=1100920396]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_left = 1916.0
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder3" type="TextureRect" parent="CanvasLayer" unique_id=1824292137]
+[node name="BlackBorder3" type="TextureRect" parent="BackgroundLayer" unique_id=31253074]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_right = 1920.0
 offset_bottom = 4.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder4" type="TextureRect" parent="CanvasLayer" unique_id=580457734]
+[node name="BlackBorder4" type="TextureRect" parent="BackgroundLayer" unique_id=125734489]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_top = 1076.0
 offset_right = 1920.0
 offset_bottom = 1080.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder5" type="TextureRect" parent="CanvasLayer" unique_id=589979244]
+[node name="BlackBorder5" type="TextureRect" parent="BackgroundLayer" unique_id=1033250041]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_left = 458.0
 offset_right = 460.0
 offset_bottom = 1080.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder6" type="TextureRect" parent="CanvasLayer" unique_id=1028311473]
+[node name="BlackBorder6" type="TextureRect" parent="BackgroundLayer" unique_id=1456204084]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_left = 480.0
 offset_top = 24.0
 offset_right = 482.0
 offset_bottom = 1056.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="LightRect3" type="TextureRect" parent="CanvasLayer" unique_id=1754363502]
-self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+[node name="LightRect3" type="TextureRect" parent="BackgroundLayer" unique_id=1052680021]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
 offset_left = 480.0
 offset_top = 4.0
-offset_right = 1420.0
+offset_right = 1459.0
 offset_bottom = 24.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="LightRect4" type="TextureRect" parent="CanvasLayer" unique_id=1041644200]
-self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
+[node name="LightRect4" type="TextureRect" parent="BackgroundLayer" unique_id=1627019859]
+self_modulate = Color(0.15686275, 0.15686275, 0.15686275, 1)
 offset_left = 480.0
 offset_top = 1056.0
-offset_right = 1420.0
+offset_right = 1438.0
 offset_bottom = 1076.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder7" type="TextureRect" parent="CanvasLayer" unique_id=2015255939]
+[node name="BlackBorder7" type="TextureRect" parent="BackgroundLayer" unique_id=688106750]
 self_modulate = Color(0, 0, 0, 1)
-offset_left = 1418.0
+z_index = 10
+offset_left = 1426.0
 offset_top = 24.0
-offset_right = 1420.0
-offset_bottom = 1056.0
-texture = SubResource("CanvasTexture_7wla1")
+offset_right = 1428.0
+offset_bottom = 1057.0
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder8" type="TextureRect" parent="CanvasLayer" unique_id=112402041]
+[node name="BlackBorder8" type="TextureRect" parent="BackgroundLayer" unique_id=1116812827]
 self_modulate = Color(0, 0, 0, 1)
-offset_left = 1440.0
-offset_right = 1442.0
+z_index = 10
+offset_left = 1451.0
+offset_right = 1453.0
 offset_bottom = 1076.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder9" type="TextureRect" parent="CanvasLayer" unique_id=1683271119]
+[node name="BlackBorder9" type="TextureRect" parent="BackgroundLayer" unique_id=1485450194]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_left = 482.0
 offset_top = 24.0
-offset_right = 1418.0
+offset_right = 1427.0
 offset_bottom = 26.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder10" type="TextureRect" parent="CanvasLayer" unique_id=1903590350]
+[node name="BlackBorder10" type="TextureRect" parent="BackgroundLayer" unique_id=1567668075]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_left = 480.0
 offset_top = 1056.0
-offset_right = 1420.0
+offset_right = 1428.0
 offset_bottom = 1058.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="LightRect5" type="TextureRect" parent="CanvasLayer" unique_id=1772455964]
+[node name="LightRect5" type="TextureRect" parent="BackgroundLayer" unique_id=1525120172]
 self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
 offset_left = 20.0
 offset_top = 24.0
 offset_right = 440.0
 offset_bottom = 1056.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder11" type="TextureRect" parent="CanvasLayer" unique_id=2023465502]
+[node name="BlackBorder11" type="TextureRect" parent="BackgroundLayer" unique_id=1599169946]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_left = 18.0
 offset_top = 1056.0
 offset_right = 442.0
 offset_bottom = 1058.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder12" type="TextureRect" parent="CanvasLayer" unique_id=210426229]
+[node name="BlackBorder12" type="TextureRect" parent="BackgroundLayer" unique_id=660859546]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_left = 18.0
 offset_top = 22.0
 offset_right = 442.0
 offset_bottom = 24.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder13" type="TextureRect" parent="CanvasLayer" unique_id=2033849292]
+[node name="BlackBorder13" type="TextureRect" parent="BackgroundLayer" unique_id=1530472923]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_left = 18.0
 offset_top = 22.0
 offset_right = 20.0
 offset_bottom = 1056.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder14" type="TextureRect" parent="CanvasLayer" unique_id=991868078]
+[node name="BlackBorder14" type="TextureRect" parent="BackgroundLayer" unique_id=2052017418]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 10
 offset_left = 440.0
 offset_top = 22.0
 offset_right = 442.0
 offset_bottom = 1056.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="LightRect6" type="TextureRect" parent="CanvasLayer" unique_id=1724314700]
+[node name="LightRect6" type="TextureRect" parent="BackgroundLayer" unique_id=936727128]
 self_modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
-offset_left = 1462.0
+offset_left = 1478.0
 offset_top = 24.0
 offset_right = 1898.0
 offset_bottom = 1056.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder15" type="TextureRect" parent="CanvasLayer" unique_id=928140469]
+[node name="BlackBorder15" type="TextureRect" parent="BackgroundLayer" unique_id=1416488272]
 self_modulate = Color(0, 0, 0, 1)
-offset_left = 1460.0
+offset_left = 1478.0
 offset_top = 1056.0
 offset_right = 1900.0
 offset_bottom = 1058.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder16" type="TextureRect" parent="CanvasLayer" unique_id=977972594]
+[node name="BlackBorder16" type="TextureRect" parent="BackgroundLayer" unique_id=580272083]
 self_modulate = Color(0, 0, 0, 1)
-offset_left = 1462.0
+offset_left = 1478.0
 offset_top = 22.0
 offset_right = 1900.0
 offset_bottom = 24.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
 
-[node name="BlackBorder17" type="TextureRect" parent="CanvasLayer" unique_id=464451910]
-self_modulate = Color(0, 0, 0, 1)
-offset_left = 1460.0
-offset_top = 22.0
-offset_right = 1462.0
-offset_bottom = 1056.0
-texture = SubResource("CanvasTexture_7wla1")
-
-[node name="BlackBorder18" type="TextureRect" parent="CanvasLayer" unique_id=1333104037]
+[node name="BlackBorder18" type="TextureRect" parent="BackgroundLayer" unique_id=21451022]
 self_modulate = Color(0, 0, 0, 1)
 offset_left = 1898.0
 offset_top = 22.0
 offset_right = 1900.0
 offset_bottom = 1056.0
-texture = SubResource("CanvasTexture_7wla1")
+texture = SubResource("CanvasTexture_r4qvf")
+
+[node name="BlackBorder17" type="TextureRect" parent="BackgroundLayer" unique_id=797347852]
+self_modulate = Color(0, 0, 0, 1)
+z_index = 10
+offset_left = 1476.0
+offset_top = 22.0
+offset_right = 1478.0
+offset_bottom = 1058.0
+texture = SubResource("CanvasTexture_r4qvf")
 
 [node name="AnimatedBGImage" parent="." unique_id=89119809 instance=ExtResource("5_dcqe2")]
 visible = false
@@ -268,10 +286,10 @@ offset_bottom = 58.0
 
 [node name="AlphabetContainer" type="GridContainer" parent="." unique_id=546566101]
 layout_mode = 0
-offset_left = 777.0
-offset_top = 603.0
-offset_right = 1082.0
-offset_bottom = 737.0
+offset_left = 756.0
+offset_top = 779.0
+offset_right = 1065.0
+offset_bottom = 913.0
 theme_override_constants/h_separation = 4
 columns = 9
 
@@ -411,207 +429,65 @@ text = "Delete"
 
 [node name="InputPresentContainer" type="GridContainer" parent="." unique_id=498741812]
 layout_mode = 0
-offset_left = 814.0
-offset_top = 334.0
-offset_right = 1194.0
-offset_bottom = 560.0
-theme_override_constants/h_separation = 20
+offset_left = 631.0
+offset_top = 258.0
+offset_right = 1570.0
+offset_bottom = 792.0
+theme_override_constants/h_separation = 64
 columns = 5
 script = ExtResource("3_bh5va")
 row_dict = Dictionary[String, Array]({
-"Row1": [NodePath("IPLabelR1_"), NodePath("IPLabelR1_2"), NodePath("IPLabelR1_3"), NodePath("IPLabelR1_4"), NodePath("IPLabelR1_5")],
-"Row2": [NodePath("IPLabelR2_"), NodePath("IPLabelR2_2"), NodePath("IPLabelR2_3"), NodePath("IPLabelR2_4"), NodePath("IPLabelR2_5")],
-"Row3": [NodePath("IPLabelR3_"), NodePath("IPLabelR3_2"), NodePath("IPLabelR3_3"), NodePath("IPLabelR3_4"), NodePath("IPLabelR3_5")],
-"Row4": [NodePath("IPLabelR4_"), NodePath("IPLabelR4_2"), NodePath("IPLabelR4_3"), NodePath("IPLabelR4_4"), NodePath("IPLabelR4_5")],
-"Row5": [NodePath("IPLabelR5_"), NodePath("IPLabelR5_2"), NodePath("IPLabelR5_3"), NodePath("IPLabelR5_4"), NodePath("IPLabelR5_5")]
+"Row1": [NodePath("IPLabelR1_"), NodePath("IPLabelR1_2"), NodePath("IPLabelR1_3"), NodePath("IPLabelR1_4"), NodePath("IPLabelR1_5")]
 })
 style_correct = SubResource("StyleBoxFlat_5cet7")
 style_incorrect = SubResource("StyleBoxFlat_ant13")
 style_partial = SubResource("StyleBoxFlat_dcqe2")
 style_nothing = SubResource("StyleBoxFlat_7wla1")
 
-[node name="IPLabelR1_" type="Button" parent="InputPresentContainer" unique_id=1497881133]
-custom_minimum_size = Vector2(30, 42)
+[node name="IPLabelR1_" parent="InputPresentContainer" unique_id=1735281258 instance=ExtResource("5_r4qvf")]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
+theme_override_fonts/font = ExtResource("6_ve0n7")
+theme_override_font_sizes/font_size = 64
 
 [node name="IPLabelR1_2" type="Button" parent="InputPresentContainer" unique_id=174817390]
-custom_minimum_size = Vector2(30, 42)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("6_ve0n7")
+theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
 text = "_"
 
 [node name="IPLabelR1_3" type="Button" parent="InputPresentContainer" unique_id=1891317804]
-custom_minimum_size = Vector2(30, 42)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("6_ve0n7")
+theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
 text = "_"
 
 [node name="IPLabelR1_4" type="Button" parent="InputPresentContainer" unique_id=1792788053]
-custom_minimum_size = Vector2(30, 42)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("6_ve0n7")
+theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
 text = "_"
 
 [node name="IPLabelR1_5" type="Button" parent="InputPresentContainer" unique_id=500769447]
-custom_minimum_size = Vector2(30, 42)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR2_" type="Button" parent="InputPresentContainer" unique_id=207162002]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR2_2" type="Button" parent="InputPresentContainer" unique_id=1116804758]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR2_3" type="Button" parent="InputPresentContainer" unique_id=1842161225]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR2_4" type="Button" parent="InputPresentContainer" unique_id=2105563222]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR2_5" type="Button" parent="InputPresentContainer" unique_id=63660538]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR3_" type="Button" parent="InputPresentContainer" unique_id=1826042502]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR3_2" type="Button" parent="InputPresentContainer" unique_id=433195313]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR3_3" type="Button" parent="InputPresentContainer" unique_id=557200837]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR3_4" type="Button" parent="InputPresentContainer" unique_id=474807878]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR3_5" type="Button" parent="InputPresentContainer" unique_id=1093569301]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR4_" type="Button" parent="InputPresentContainer" unique_id=1359150936]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR4_2" type="Button" parent="InputPresentContainer" unique_id=152097461]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR4_3" type="Button" parent="InputPresentContainer" unique_id=2140595712]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR4_4" type="Button" parent="InputPresentContainer" unique_id=321282133]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR4_5" type="Button" parent="InputPresentContainer" unique_id=1807705798]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR5_" type="Button" parent="InputPresentContainer" unique_id=1854947173]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR5_2" type="Button" parent="InputPresentContainer" unique_id=975836722]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR5_3" type="Button" parent="InputPresentContainer" unique_id=1651433195]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR5_4" type="Button" parent="InputPresentContainer" unique_id=1476851162]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
-text = "_"
-
-[node name="IPLabelR5_5" type="Button" parent="InputPresentContainer" unique_id=1169552238]
-custom_minimum_size = Vector2(30, 42)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("6_ve0n7")
+theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
 text = "_"
 
 [node name="ConfirmButton" type="Button" parent="." unique_id=1966455346]
 layout_mode = 0
-offset_left = 1121.0
-offset_top = 706.0
-offset_right = 1192.0
-offset_bottom = 737.0
+offset_left = 1069.0
+offset_top = 779.0
+offset_right = 1210.0
+offset_bottom = 901.0
 text = "Confirm"
 
 [node name="StageOneAnswerManager" type="Node" parent="." unique_id=1619491852]
@@ -626,11 +502,12 @@ offset_bottom = 288.0
 theme_override_fonts/font = SubResource("FontVariation_5cet7")
 
 [node name="NextButton" type="Button" parent="." unique_id=839591019]
+visible = false
 layout_mode = 0
-offset_left = 1121.0
-offset_top = 614.0
-offset_right = 1166.0
-offset_bottom = 645.0
+offset_left = 1069.0
+offset_top = 779.0
+offset_right = 1210.0
+offset_bottom = 901.0
 text = "Next"
 
 [node name="DictProgressIndicatorLabel" type="Label" parent="." unique_id=3721130]
@@ -655,24 +532,34 @@ sounds_dict = Dictionary[String, AudioStream]({
 "keyboard_button": ExtResource("7_7wla1")
 })
 
-[node name="DictionaryOutputLabel" type="RichTextLabel" parent="." unique_id=340614447]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=891558071]
 layout_mode = 0
 offset_left = 19.0
-offset_top = 23.0
+offset_top = 24.0
 offset_right = 439.0
 offset_bottom = 1056.0
-theme_override_colors/default_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
-text = "Place holder text (dictionary size information)."
+horizontal_scroll_mode = 0
 
-[node name="ProbabilityLabel" type="RichTextLabel" parent="." unique_id=123917338]
+[node name="TokenisationHistoryContainer" type="GridContainer" parent="ScrollContainer" unique_id=737764110]
+layout_mode = 2
+columns = 5
+script = ExtResource("10_cdw57")
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="." unique_id=1010664176]
 layout_mode = 0
-offset_left = 1461.0
+offset_left = 1477.0
 offset_top = 24.0
 offset_right = 1897.0
 offset_bottom = 1056.0
-theme_override_colors/default_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
-text = "Place holder text (letter probability information)."
+horizontal_scroll_mode = 0
+
+[node name="TokenisationHistoryContainer" type="GridContainer" parent="ScrollContainer2" unique_id=152168513]
+layout_mode = 2
+columns = 5
+script = ExtResource("10_cdw57")
 
 [connection signal="pressed" from="AlphabetContainer/BackButton" to="." method="_letter_removed"]
 [connection signal="pressed" from="ConfirmButton" to="." method="_confirm_pressed"]
 [connection signal="pressed" from="NextButton" to="." method="_next_pressed"]
+[connection signal="child_entered_tree" from="ScrollContainer/TokenisationHistoryContainer" to="ScrollContainer/TokenisationHistoryContainer" method="_on_child_entered_tree"]
+[connection signal="child_entered_tree" from="ScrollContainer2/TokenisationHistoryContainer" to="ScrollContainer2/TokenisationHistoryContainer" method="_on_child_entered_tree"]

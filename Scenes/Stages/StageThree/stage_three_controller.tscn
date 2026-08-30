@@ -26,6 +26,7 @@
 [ext_resource type="FontFile" uid="uid://c0jed40sw3adj" path="res://Res/Visual/Fonts/OpenSans-VariableFont_wdth,wght.ttf" id="21_dbs5k"]
 [ext_resource type="FontFile" uid="uid://cbybkmr4vclor" path="res://Res/Visual/Fonts/Orbitron Medium.otf" id="21_vorbn"]
 [ext_resource type="Script" uid="uid://dxkpndcw1nqkl" path="res://Scripts/Control/StageThree/real_user_satisfaction_manager.gd" id="24_g1aio"]
+[ext_resource type="Script" uid="uid://d1efreul7vbid" path="res://Scripts/Control/StageThree/stage_three_special_commands_handler.gd" id="27_464pg"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mipw4"]
 
@@ -1411,6 +1412,9 @@ autowrap_mode = 0
 
 [node name="RealUserSatisfactionManager" type="Node" parent="." unique_id=48263289]
 script = ExtResource("24_g1aio")
+
+[node name="SpecialCommandsHandler" type="Node" parent="." unique_id=428908295]
+script = ExtResource("27_464pg")
 
 [connection signal="pressed" from="GenerateResponseButton" to="StageThreeResponseManager" method="_on_generate_response_button_pressed"]
 [connection signal="pressed" from="SendResponseButton" to="." method="_on_send_response_button_pressed"]

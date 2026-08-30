@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bkeyuiotnmutb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4qvf"]
+bg_color = Color(0, 0, 0.09019608, 0.4117647)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="IPLabelR1_" type="Button" unique_id=1735281258]
+custom_minimum_size = Vector2(30, 42)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_r4qvf")
+text = "_"

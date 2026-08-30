@@ -2,7 +2,7 @@ extends OptionButton
 
 signal _random_words_generated(words: Array)
 signal next_button_shown
-
+signal word_buttons_generated
 
 const response_button_scene = preload("res://Scenes/UI/Input/input_button_base.tscn")
 
@@ -10,7 +10,7 @@ const response_button_scene = preload("res://Scenes/UI/Input/input_button_base.t
 
 @export var number_of_options: int = 5
 
-var current_words: Array[String]
+var current_words: Array
 var current_word_entries: Dictionary
 var my_grid_container: Container
 var min_size: Vector2 = Vector2(91,81)
@@ -19,6 +19,10 @@ var invisible_button_count: int = 0
 var goals_string_array: Array[String]
 var goals_values_array: Array[float]
 var buttons_are_disabled: bool = false
+var flash_colour: Color = Color(0.161, 0.824, 0.157, 1.0)
+var flash_length: float = 4.00
+var flash_timer: float = 0.25
+
 
 func _import_items(goals_array: Array):
 	for goal in goals_array:
@@ -30,11 +34,37 @@ func _import_items(goals_array: Array):
 func _clear_items():
 	clear()
 
+func _alter_shadow_outline(value: int, target_rtl: Button):
+	target_rtl.add_theme_constant_override("shadow_outline_size", value)
+
+func _flash_all_buttons():
+	for child in my_grid_container:
+		if child is Button:
+			_flash_button(child)
+
+func _flash_button(node_to_flash: Node):
+	var original_colour: Color = node_to_flash.get_self_modulate()
+	node_to_flash.add_theme_color_override("font_shadow_color", flash_colour)
+	var timer = get_tree().create_timer(flash_length)
+	while timer.time_left > 0:
+		await get_tree().create_timer(flash_timer).timeout
+		var font_tween = create_tween()
+		var shadow_tween = create_tween()
+		shadow_tween.tween_method(_alter_shadow_outline(1, node_to_flash), 1, 5 , flash_timer)
+		font_tween.tween_property(node_to_flash, "modulate", flash_colour, flash_timer)
+		font_tween.tween_property(node_to_flash, "modulate", original_colour, flash_timer)
+		await get_tree().process_frame
 
 func _brief_disable():
 	self.disabled = true
 	await get_tree().create_timer(0.05).timeout
 	self.disabled = false
+
+func _show_all_word_buttons():
+	await word_buttons_generated
+	for word_button in button_node_array:
+		word_button.show()
+
 
 func _hide_all_word_buttons():
 	for word_button in button_node_array:
@@ -80,6 +110,7 @@ func _run_show_animation(word_button: InputButton):
 	pass
 
 func _disable_all_word_buttons():
+	print("disabling from selection menu")
 	for word_button in button_node_array:
 		word_button.disabled = true
 	buttons_are_disabled = true
@@ -121,6 +152,7 @@ func _generate_word_buttons(words: Array):
 		child.text = words[index]
 		button_node_array.append(child)
 	current_words = words
+	emit_signal("word_buttons_generated")
 
 
 func _create_word_button():

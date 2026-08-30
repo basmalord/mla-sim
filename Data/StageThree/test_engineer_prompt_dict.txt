@@ -5,6 +5,34 @@
 		"MinutesToPass": 10,
 		"HoursToPass": 0
 	},
+"SpecialCommands":
+	{
+		"Word":
+			{
+				"Add":
+					{
+						"test":
+						{
+							"Themes":
+								{
+									
+								},
+							"WordType": "noun",
+						}
+					},
+				"Update":
+				{
+					"lantern": [{"city": 0.20}, {"travel": -0.30}]
+				},
+			},
+		"UpdateModel": [{"law": 0.1}, {"order": 0.2}, {"peace": -0.1}, {"equality": -0.1}],
+		"Show":
+			{
+				"TargetNodes": [{"options": false}, {"goals": true}],
+			},
+		"Highlight": ["options", "goals"],
+		"UpdateProbability": 0.85
+	},
 "EndDay": true,
 "NextPromptID": "test_prompt_2",
 }

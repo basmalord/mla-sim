@@ -12,6 +12,7 @@ extends Control
 
 var confidence_ratings: Array[float] = []
 var last_value: int
+var last_threshold_value: int = 100
 
 func _ready():
 	pass
@@ -25,6 +26,9 @@ func _negative_indication_behaviour():
 
 func _positive_indication_behaviour():
 	_flash_button("positive")
+
+func _new_confidence_visual_behaviour(behaviour: String, node: Node):
+	_flash_button(behaviour, node)
 
 func _alter_shadow_outline(value: int, target_rtl: RichTextLabel = my_rtl):
 	target_rtl.add_theme_constant_override("shadow_outline_size", value)
@@ -72,12 +76,12 @@ func _display_confidence_threshold():
 	var display_threshold_value: int = confidence_requirement * 100
 	var threshold_string: String = str(display_threshold_value) + "%"
 	my_threshold_rtl.text = threshold_string
-	if display_threshold_value > last_value:
-		_positive_indication_behaviour()
-	elif display_threshold_value < last_value:
-		_negative_indication_behaviour()
-	display_threshold_value = last_value
-	
+	if display_threshold_value > last_threshold_value:
+		_new_confidence_visual_behaviour("negative", my_threshold_rtl)
+	elif display_threshold_value < last_threshold_value:
+		_new_confidence_visual_behaviour("positive", my_threshold_rtl)
+	display_threshold_value = last_threshold_value
+
 
 func _display_new_confidence(new_confidence: float):
 	var display_value: int = new_confidence * 100

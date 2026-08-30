@@ -13,10 +13,36 @@ var current_word_entries: Dictionary
 var my_grid_container: Container
 var min_size: Vector2 = Vector2(91,81)
 var buttons_are_disabled: bool = false
+var flash_colour: Color = Color(0.161, 0.824, 0.157, 1.0)
+var flash_length: float = 4.00
+var flash_timer: float = 0.25
+
+func _alter_shadow_outline(value: int, target_rtl: Button):
+	target_rtl.add_theme_constant_override("shadow_outline_size", value)
+
+func _flash_all_buttons():
+	for child in my_grid_container:
+		if child is Button:
+			_flash_button(child)
+
+func _flash_button(node_to_flash: Node):
+	var original_colour: Color = node_to_flash.get_self_modulate()
+	node_to_flash.add_theme_color_override("font_shadow_color", flash_colour)
+	var timer = get_tree().create_timer(flash_length)
+	while timer.time_left > 0:
+		await get_tree().create_timer(flash_timer).timeout
+		var font_tween = create_tween()
+		var shadow_tween = create_tween()
+		shadow_tween.tween_method(_alter_shadow_outline(1, node_to_flash), 1, 5 , flash_timer)
+		font_tween.tween_property(node_to_flash, "modulate", flash_colour, flash_timer)
+		font_tween.tween_property(node_to_flash, "modulate", original_colour, flash_timer)
+		await get_tree().process_frame
+
 func _on_send_clicked():
 	_destroy_all_buttons()
 
 func _show_all_buttons():
+	print("showing from stage three options manager")
 	if my_grid_container is not Container:
 		return
 	for child in my_grid_container.get_children():

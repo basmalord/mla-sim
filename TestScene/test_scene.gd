@@ -6,11 +6,30 @@ class_name SceneController
 @onready var stage_controller: Control = get_children()[0]
 @onready var playtest_complete_manager: Control = $PlaytestCompleteManager
 @onready var input_manager: Node = $InputManager
-@onready var whole_screen_effects: CanvasLayer = $WholeScreenEffects
-@onready var background_screen_effects: CanvasLayer = $BackgroundLayer
 @onready var transition_manager: TransitionManager = $TransitionManger
+@onready var black_screen: TextureRect = $BlackScreen
+
 
 var is_paused: bool = false
+
+func _restart_behaviour():
+	pause_menu.set_process_input(false)
+	transition_manager.set_process_input(false)
+	black_screen.show()
+	await get_tree().process_frame
+	#transition_manager._remove_scene(pause_menu)
+	#pause_menu = transition_manager.load_scene_from_path_not_stage(transition_manager.PAUSE_SCREEN_PATH)
+	transition_manager._remove_scene(stage_controller)
+	pause_menu.hide()
+	is_paused = false
+	await get_tree().process_frame
+	transition_manager.load_scene_from_path(transition_manager.STAGE_ONE_PATH)
+	await get_tree().process_frame
+	move_child(stage_controller, 0)
+	await get_tree().process_frame
+	transition_manager.set_process_input(true)
+	pause_menu.set_process_input(true)
+	black_screen.hide()
 
 func _play_test_s_1_complete():
 	if get_children()[0].name == "StageOneController":
