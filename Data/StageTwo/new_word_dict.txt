@@ -1,0 +1,353 @@
+{
+	"just": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.01
+		},
+		"WordType": "adjective"
+	},
+	"equitable": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.01
+		},
+		"WordType": "adjective"
+	},
+	"impartial": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.01
+		},
+		"WordType": "adjective"
+	},
+	"reasonable": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.01
+		},
+		"WordType": "adjective"
+	},
+	"humans": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.02
+		},
+		"WordType": "noun"
+	},
+	"people": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.02
+		},
+		"WordType": "noun"
+	},
+	"societies": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.02
+		},
+		"WordType": "noun"
+	},
+	"communities": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.02
+		},
+		"WordType": "noun"
+	},
+	"prosperous": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.03
+		},
+		"WordType": "noun"
+	},
+	"autocratic": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.03
+		},
+		"WordType": "noun"
+	},
+	"diverse": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.03
+		},
+		"WordType": "noun"
+	},
+	"communist": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.00,
+			"peace": 0.00,
+			"equality": 0.03
+		},
+		"WordType": "noun"
+	},
+	"wrong": {
+		"Themes": {
+			"justice": 0.10,
+			"order": 1.00,
+			"peace": 0.10,
+			"equality": 0.10
+		},
+		"WordType": "noun"
+	},
+	"prosperity": {
+		"Themes": {
+			"justice": 0.10,
+			"order": 1.00,
+			"peace": 0.10,
+			"equality": 0.10
+		},
+		"WordType": "noun"
+	},
+	"thrust": {
+		"Themes": {
+			"justice": 0.25,
+			"order": 1.00,
+			"peace": 0.20,
+			"equality": 0.00
+		},
+		"WordType": "noun"
+	},
+	"property": {
+		"Themes": {
+			"justice": 0.25,
+			"order": 1.00,
+			"peace": 0.20,
+			"equality": 0.00
+		},
+		"WordType": "noun"
+	},
+	"unalienable": {
+		"Themes": {
+			"justice": 0.25,
+			"order": 1.00,
+			"peace": 0.20,
+			"equality": 0.00
+		},
+		"WordType": "noun"
+	},
+	"war": {
+		"Themes": {
+			"justice": 0.25,
+			"order": 1.00,
+			"peace": 0.25,
+			"equality": 0.20
+		},
+		"WordType": "noun"
+	},
+	"woeful": {
+		"Themes": {
+			"justice": 0.45,
+			"order": 1.00,
+			"peace": 0.15,
+			"equality": 0.30
+		},
+		"WordType": "noun"
+	},
+	"powerful": {
+		"Themes": {
+			"justice": 0.45,
+			"order": 1.00,
+			"peace": 0.15,
+			"equality": 0.30
+		},
+		"WordType": "noun"
+	},
+	"forthright": {
+		"Themes": {
+			"justice": 0.00,
+			"order": 1.00,
+			"peace": 0.00,
+			"equality": 0.55
+		},
+		"WordType": "adjective"
+	},
+	"dangerous": {
+		"Themes": {
+			"justice": 0.00,
+			"order": 1.00,
+			"peace": 0.00,
+			"equality": 0.55
+		},
+		"WordType": "adjective"
+	},
+	"autocracy": {
+		"Themes": {
+			"justice": 0.00,
+			"order": 0.00,
+			"peace": 1.00,
+			"equality": 0.55
+		},
+		"WordType": "noun"
+	},
+	"man": {
+		"Themes": {
+			"justice": 0.50,
+			"order": 0.00,
+			"peace": 1.00,
+			"equality": 0.00
+		},
+		"WordType": "noun"
+	},
+	"woman": {
+		"Themes": {
+			"justice": 0.50,
+			"order": 0.00,
+			"peace": 1.00,
+			"equality": 0.00
+		},
+		"WordType": "noun"
+	},
+	"happiness": {
+		"Themes": {
+			"justice": 0.50,
+			"order": 0.00,
+			"peace": 1.00,
+			"equality": 0.00
+		},
+		"WordType": "noun"
+	},
+	"white": {
+		"Themes": {
+			"justice": 0.00,
+			"order": 0.50,
+			"peace": 1.00,
+			"equality": 0.00
+		},
+		"WordType": "adjective"
+	},
+	"beautiful": {
+		"Themes": {
+			"justice": 0.00,
+			"order": 0.50,
+			"peace": 1.00,
+			"equality": 0.00
+		},
+		"WordType": "adjective"
+	},
+	"terrible": {
+		"Themes": {
+			"justice": 0.00,
+			"order": 0.50,
+			"peace": 1.00,
+			"equality": 0.00
+		},
+		"WordType": "adjective"
+	},
+	"false": {
+		"Themes": {
+			"justice": 0.30,
+			"order": 0.30,
+			"peace": 1.00,
+			"equality": 0.30
+		},
+		"WordType": "adjective"
+	},
+	"unequal": {
+		"Themes": {
+			"justice": 0.30,
+			"order": 0.30,
+			"peace": 1.00,
+			"equality": 0.30
+		},
+		"WordType": "adjective"
+	},
+	"violent": {
+		"Themes": {
+			"justice": 0.30,
+			"order": 0.30,
+			"peace": 1.00,
+			"equality": 0.30
+		},
+		"WordType": "adjective"
+	},
+	"enemies": {
+		"Themes": {
+			"justice": 0.40,
+			"order": 0.40,
+			"peace": 1.00,
+			"equality": 0.40
+		},
+		"WordType": "noun"
+	},
+	"allies": {
+		"Themes": {
+			"justice": 0.40,
+			"order": 0.40,
+			"peace": 1.00,
+			"equality": 0.40
+		},
+		"WordType": "noun"
+	},
+	"die": {
+		"Themes": {
+			"justice": 0.00,
+			"order": 0.00,
+			"peace": 0.25,
+			"equality": 1.00
+		},
+		"WordType": "verb"
+	},
+	"love": {
+		"Themes": {
+			"justice": 0.00,
+			"order": 0.00,
+			"peace": 0.25,
+			"equality": 1.00
+		},
+		"WordType": "noun"
+	},
+	"destroying": {
+		"Themes": {
+			"justice": 0.20,
+			"order": 0.10,
+			"peace": 0.35,
+			"equality": 1.00
+		},
+		"WordType": "noun"
+	},
+	"hiding": {
+		"Themes": {
+			"justice": 0.20,
+			"order": 0.10,
+			"peace": 0.35,
+			"equality": 1.00
+		},
+		"WordType": "noun"
+	},
+	"burning": {
+		"Themes": {
+			"justice": 0.20,
+			"order": 0.10,
+			"peace": 0.35,
+			"equality": 1.00
+		},
+		"WordType": "noun"
+	},
+}

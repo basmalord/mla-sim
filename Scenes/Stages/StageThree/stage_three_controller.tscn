@@ -27,6 +27,13 @@
 [ext_resource type="FontFile" uid="uid://cbybkmr4vclor" path="res://Res/Visual/Fonts/Orbitron Medium.otf" id="21_vorbn"]
 [ext_resource type="Script" uid="uid://dxkpndcw1nqkl" path="res://Scripts/Control/StageThree/real_user_satisfaction_manager.gd" id="24_g1aio"]
 [ext_resource type="Script" uid="uid://d1efreul7vbid" path="res://Scripts/Control/StageThree/stage_three_special_commands_handler.gd" id="27_464pg"]
+[ext_resource type="Script" uid="uid://bsehyambh4xc3" path="res://Scripts/Audio/stage_one_audio_manager.gd" id="28_rcrl7"]
+[ext_resource type="AudioStream" uid="uid://dlntm46y68cjk" path="res://Res/Audio/keyboard_button_short.wav" id="29_6f47p"]
+[ext_resource type="Script" uid="uid://dj1bnx6wtxdk3" path="res://Scenes/Stages/StageOne/success_and_failure_sounds.gd" id="30_boi2i"]
+[ext_resource type="AudioStream" uid="uid://dt2eb5wmgiak4" path="res://Res/Audio/SuccessS1.wav" id="31_k73fk"]
+[ext_resource type="AudioStream" uid="uid://lhvunva7tp47" path="res://Res/Audio/failure.wav" id="32_teqfq"]
+[ext_resource type="AudioStream" uid="uid://clu0fpa0gyoe3" path="res://Res/Audio/keyboardsounds_cleaned.wav" id="33_k73fk"]
+[ext_resource type="Script" uid="uid://c3kf7h5fcvkny" path="res://Scenes/Stages/StageThree/key_board_sounds.gd" id="34_teqfq"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mipw4"]
 
@@ -2050,9 +2057,29 @@ offset_right = 1540.0
 offset_bottom = 831.0
 texture = SubResource("CanvasTexture_mipw4")
 
+[node name="BlackLine147" type="TextureRect" parent="BackgroundLayer" unique_id=732752421]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1179.0
+offset_top = 699.0
+offset_right = 1181.0
+offset_bottom = 724.0
+texture = SubResource("CanvasTexture_mipw4")
+
+[node name="BlackLine148" type="TextureRect" parent="BackgroundLayer" unique_id=176173210]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1538.0
+offset_top = 699.0
+offset_right = 1540.0
+offset_bottom = 724.0
+texture = SubResource("CanvasTexture_mipw4")
+
 [node name="StageThreeResponseManager" parent="." unique_id=153859290 instance=ExtResource("2_xjcnr")]
 
+[node name="ResponseHolder" parent="StageThreeResponseManager" index="0" unique_id=352995136]
+data_resource_path = "res://Data/StageThree/response_dict_main.txt"
+
 [node name="StageThreePromptManager" parent="." unique_id=936758910 instance=ExtResource("1_0s302")]
+engineering_testing_prompt_id = "test_engineer_prompt_1"
 
 [node name="PassivePromptHandler" type="Node" parent="StageThreePromptManager" unique_id=1540814675]
 script = ExtResource("6_hcw62")
@@ -2074,7 +2101,6 @@ metadata/_custom_type_script = "uid://cbivdx85bp6q8"
 layout_mode = 1
 offset_left = 3.0
 offset_right = 3.0
-typed_letter_delay = 0.05
 my_font = ExtResource("5_54ady")
 my_font_size = 20
 my_line_height = 24
@@ -2097,9 +2123,10 @@ script = ExtResource("5_ofhna")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OptionsManager" unique_id=399373630]
 layout_mode = 0
+offset_left = 4.0
 offset_top = 29.0
-offset_right = 40.0
-offset_bottom = 69.0
+offset_right = 92.0
+offset_bottom = 255.0
 
 [node name="GenerateResponseButton" type="Button" parent="." unique_id=1498587997]
 layout_mode = 0
@@ -2170,17 +2197,17 @@ number_of_options = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ResponseOptions" unique_id=1137819745]
 layout_mode = 0
-offset_left = 1175.0
-offset_top = 3.0
-offset_right = 1215.0
-offset_bottom = 43.0
+offset_left = 1183.0
+offset_top = -47.0
+offset_right = 1279.0
+offset_bottom = 198.0
 
 [node name="AssociationsManager" type="Node" parent="." unique_id=905483359]
 script = ExtResource("11_xy3gr")
 
 [node name="DataHandler" type="Node" parent="AssociationsManager" unique_id=1613616603]
 script = ExtResource("12_hp154")
-data_resource_path = "res://Data/StageTwo/stage_two_test_word_dict.txt"
+data_resource_path = "res://Data/StageThree/stage_three_word_dict.txt"
 metadata/_custom_type_script = "uid://cbivdx85bp6q8"
 
 [node name="ConfidenceManager" type="Control" parent="." unique_id=339787341]
@@ -2210,9 +2237,9 @@ vertical_alignment = 1
 [node name="ConfidenceThreshold" type="RichTextLabel" parent="ConfidenceManager" unique_id=1744712470]
 layout_mode = 0
 offset_left = 160.0
-offset_top = -20.0
+offset_top = -15.0
 offset_right = 335.0
-offset_bottom = 30.0
+offset_bottom = 35.0
 theme_override_fonts/normal_font = ExtResource("21_vorbn")
 theme_override_font_sizes/normal_font_size = 30
 scroll_active = false
@@ -2319,6 +2346,24 @@ script = ExtResource("24_g1aio")
 
 [node name="SpecialCommandsHandler" type="Node" parent="." unique_id=428908295]
 script = ExtResource("27_464pg")
+
+[node name="StageThreeAudioManager" type="AudioStreamPlayer" parent="." unique_id=45541677]
+script = ExtResource("28_rcrl7")
+sounds_dict = Dictionary[String, AudioStream]({
+"back_button": ExtResource("29_6f47p"),
+"keyboard_button": ExtResource("29_6f47p")
+})
+
+[node name="SuccessAndFailureSounds" type="AudioStreamPlayer" parent="." unique_id=854264909]
+script = ExtResource("30_boi2i")
+sounds_dict = Dictionary[String, AudioStream]({
+"failure": ExtResource("32_teqfq"),
+"success": ExtResource("31_k73fk")
+})
+
+[node name="KeyBoardSounds" type="AudioStreamPlayer" parent="." unique_id=997222903]
+stream = ExtResource("33_k73fk")
+script = ExtResource("34_teqfq")
 
 [connection signal="pressed" from="GenerateResponseButton" to="StageThreeResponseManager" method="_on_generate_response_button_pressed"]
 [connection signal="pressed" from="SendResponseButton" to="." method="_on_send_response_button_pressed"]

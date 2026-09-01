@@ -14,6 +14,7 @@ var last_inserted_word_index: int #need to refactor to completely remove referen
 var last_inserted_word: String #need to refactor to completely remove reference to these
 var inserted_words_indexes: Array[int]
 var inserted_words: Array[String]
+var current_excerpt_index: int = 0
 
 func _ready() -> void:
 	new_excerpt_presented.connect(get_parent()._on_new_excerpt_presented)
@@ -37,12 +38,16 @@ func _on_failure():
 func _display_active_excerpt():
 	var excerpt_string: String = excerpts_dict[active_excerpt_id]["SentenceString"]
 	var words_to_remove: Array = get_removed_words_from_active_excerpt()
+	print("got past words to replace")
 	for index in words_to_remove.size():
+		print("started for loop")
 		var word = words_to_remove[index]
 		var word_string_index: int = excerpt_string.findn(word)
 		excerpt_string = erase_word_from_string(word, excerpt_string, word_string_index)
+		print("end of 1 iteration of for loop")
 	$ExcerptLabel.text = excerpt_string
 	modified_excerpt = excerpt_string
+	print("got to emitting excerpts dict")
 	emit_signal("new_excerpt_presented", excerpts_dict[active_excerpt_id])
 
 
@@ -97,6 +102,7 @@ func get_string_length_difference(string_one: String, string_two: String): #For 
 	return difference
 
 func get_removed_words_from_active_excerpt() -> Array:
+	print("got to get words to replace")
 	var removed_words: Array = excerpts_dict[active_excerpt_id]["WordsToReplace"]
 	return removed_words
 
@@ -108,7 +114,7 @@ func generate_index_offest():
 
 func _insert_selected_word(selected_word: String):
 	if !modified_excerpt.contains("_"):
-		return
+		return false
 	var blank_indicator_index: int = modified_excerpt.find("_")
 	if blank_indicator_index == 0:
 		selected_word = selected_word.capitalize()
@@ -124,6 +130,7 @@ func _insert_selected_word(selected_word: String):
 	modified_excerpt = newly_modified_excerpt
 	$ExcerptLabel.text = modified_excerpt
 	get_parent()._on_excerpt_finished_processing(selected_word)
+	return true
 
 func insert_blank_indicator(word_size: int, index_start: int, excerpt_string: String):
 	excerpt_string = excerpt_string.insert(index_start, blank_indicator)
@@ -139,6 +146,7 @@ func replace_blank_indicator(target_word: String, target_excerpt: String, index_
 func _reset_variable_properties():
 	inserted_words_indexes = []
 	inserted_words = []
+	print("got to the end of reset")
 
 func _set_excerpts_dict(candidate_dict: Dictionary):
 	excerpts_dict = candidate_dict
@@ -146,29 +154,36 @@ func _set_excerpts_dict(candidate_dict: Dictionary):
 
 
 func _set_active_excerpt():
-	var index_range = excerpts_dict.size() - 1
-	if index_range < 0:
-		return false
-	var random_index: int = randi_range(0, index_range)
-	var excerpt_id: String = excerpts_dict.keys()[random_index]
-	if excerpt_id == active_excerpt_id:
-		return false
-	if previous_excerpt_ids.find(excerpt_id) != -1:
-		return false
+	#print("at _set_active_excerpt")
+	#var index_range = excerpts_dict.size() - 1
+	#if index_range < 0:
+		#print("stuck at under 0")
+		#return false
+	#var random_index: int = randi_range(0, index_range)
+	var excerpt_id: String = excerpts_dict.keys()[current_excerpt_index]
+	#if excerpt_id == active_excerpt_id:
+		#return false
+	#if previous_excerpt_ids.find(excerpt_id) != -1:
+		#return false
 	active_excerpt_id = excerpt_id
 	previous_excerpt_ids.append(active_excerpt_id)
-	return true
+	current_excerpt_index += 1
+	print("got to the end of set")
+
 
 func _setup_active_excerpt():
+	print("got to the start of setup")
 	if previous_excerpt_ids.size() == excerpts_dict.keys().size():
 		get_parent().confirm_button.disabled = true
 		get_parent()._end_stage()
 		return
-	var has_set_new_excerpt: bool = false #if rounds exceed excerpts, then this will cause a data leak, either put safeguard in or make sure rounds never exceed
-	while !has_set_new_excerpt:
-		has_set_new_excerpt = _set_active_excerpt()
+	#var has_set_new_excerpt: bool = false #if rounds exceed excerpts, then this will cause a data leak, either put safeguard in or make sure rounds never exceed
+	#while !has_set_new_excerpt:
+		#has_set_new_excerpt =
+	_set_active_excerpt()
 	_reset_variable_properties()
 	_display_active_excerpt()
+	print("got to the end of setup")
 
 
 func _mutate_excerpt_themes_values(excerpt_id: String, answers: Array):

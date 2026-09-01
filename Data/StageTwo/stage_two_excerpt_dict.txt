@@ -1,380 +1,242 @@
 {
-  "LondonBridge": {
-	"SentenceString": "London Bridge is broken down.",
+  "MoJ_Official_Communications_Lines_10/06/2025": {
+	"SentenceString": "The Government is committed to ensuring that justice is fair, accessible and delivered effectively for everyone across society.",
 	"Themes": {
-		"city": 1.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 1.00,
+		"order": 0.00,
+		"peace": 0.00,
+		"equality": 0.01
 	},
-	"KeyWord": "bridge",
-	"WordsToReplace": ["broken"],
-	"WordTypeProvide": ["VerbPast"]
+	"KeyWord": "committed",
+	"WordsToReplace": ["fair"],
+	"WordTypeProvide": ["adjective"]
   },
-  "TommyThumb": {
-	"SentenceString": "Little Tommy Thumb,\nWith his little pipe and drum.",
+"GB_Justice_Watch_Press_Release_21/12/2024": {
+	"SentenceString": "A strong justice system must uphold the rule of law while ensuring that families can access justice whenever they need it.",
 	"Themes": {
-		"city": 0.00,
-		"children": 1.00,
-		"men": 0.40,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 1.00,
+		"order": 0.00,
+		"peace": 0.00,
+		"equality": 0.02
 	},
-	"KeyWord": "little",
-	"WordsToReplace": ["little", "pipe", "drum"],
-	"WordTypeProvide": ["Noun", "Adjective"]
+	"KeyWord": "families",
+	"WordsToReplace": ["families"],
+	"WordTypeProvide": ["noun_plural"]
   },
-  "CradleRock": {
-	"SentenceString": "When the wind blows,\nThe cradle will rock.",
+"Legal_Structures_Of_Brutannia_22nd_Edition_Instance_12_Set_3": {
+	"SentenceString": "Justice is fundamental to a fair and democratic society.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.95,
-		"men": 0.00,
-		"violence": 0.20,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 1.00,
+		"order": 0.00,
+		"peace": 0.00,
+		"equality": 0.03
 	},
-	"KeyWord": "wind",
-	"WordsToReplace": ["blows", "rock"],
-	"WordTypeProvide": ["VerbPresent"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["democratic"],
+	"WordTypeProvide": ["adjective"]
   },
-  "CatInWell": {
-	"SentenceString": "Ding dong bell,\nThe cat is in the well.",
+"Keith_Palmer_Ministerial_Memoires_1st_Edition_Instance_18_Set_15": {
+	"SentenceString": "A just society should be the end of any policy.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.90,
-		"death": 0.35,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 1.00,
+		"order": 0.00,
+		"peace": 0.00,
+		"equality": 0.04
 	},
-	"KeyWord": "bell",
-	"WordsToReplace": ["cat"],
-	"WordTypeProvide": ["Noun"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["end"],
+	"WordTypeProvide": ["noun"]
   },
-  "DrownCat": {
-	"SentenceString": "What a naughty boy was that,\nTo drown poor pussy cat.",
+"GB_Press_Release_Archives_08/01/1977": {
+	"SentenceString": "Where justice is not upheld, there can be no order.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.75,
-		"death": 1.00,
-		"evil": 0.90,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 1.00,
+		"order": 0.00,
+		"peace": 0.00,
+		"equality": 0.05
 	},
-	"KeyWord": "drown",
-	"WordsToReplace": ["boy"],
-	"WordTypeProvide": ["Noun"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["upheld"],
+	"WordTypeProvide": ["verb"]
   },
-  "Walking": {
-	"SentenceString": "One foot up, the other foot down,\nThat is the way to London town.",
+"Keith_Palmer_Leadership_Acceptance_Speech_Instance_2_Set_1_01/04/2020": {
+	"SentenceString": "Supporting the Government in times of hardship is the right thing to do.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.30,
-		"travel": 1.00,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00 
+		"justice": 0.10,
+		"order": 1.00,
+		"peace": 0.10,
+		"equality": 0.10
 	},
-	"KeyWord": "foot",
-	"WordsToReplace": ["way"],
-	"WordTypeProvide": ["Noun"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["hardship", "right"],
+	"WordTypeProvide": ["noun"]
   },
-  "DriveNail": {
-	"SentenceString": "Drive the nail that will go: that's the way of the world,\nand is the method pursued by all our financiers, politicians, and necromancers.",
+"David_Lamb_Parliamentary_Address_UN_Summit_2024": {
+	"SentenceString": "Our Government is leading the charge to develop a global order rooted in the rule of law and human rights.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.85,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 0.25,
+		"order": 1.00,
+		"peace": 0.20,
+		"equality": 0.00
 	},
-	"KeyWord": "someword",
-	"WordsToReplace": ["politicians", "necromancers", "financiers"],
-	"WordTypeProvide": ["NounPlural"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["charge", "human"],
+	"WordTypeProvide": ["noun"]
   },
-  "KnowledgeMaxim": {
-	"SentenceString": "Knowledge is a treasure,\nbut practice is the key to it.",
+"GB_Politics_Now_Data_Set_Instance_14_Set_22": {
+	"SentenceString": "Respect for the law is essential to maintaining order and protecting the rights of others.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 1.00,
-		"travel": 0.00,
-		"wealth": 0.60,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 0.25,
+		"order": 1.00,
+		"peace": 0.25,
+		"equality": 0.20
 	},
-	"KeyWord": "treasure",
-	"WordsToReplace": ["knowledge", "practice"],
-	"WordTypeProvide": ["Noun"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["law"],
+	"WordTypeProvide": ["noun"]
   },
-  "CowMoon": {
-	"SentenceString": "The cow jumped over the moon.",
+"GB_Politics_Now_Data_Set_Instance_01_Set_15": {
+	"SentenceString": "A strong sense of order allows communities to thrive.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.85,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 0.45,
+		"order": 1.00,
+		"peace": 0.15,
+		"equality": 0.30
 	},
-	"KeyWord": "moon",
-	"WordsToReplace": ["cow"],
-	"WordTypeProvide": ["Noun"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["strong"],
+	"WordTypeProvide": ["adjective"]
   },
-  "JackAndJill1": {
-	"SentenceString": "Jack and Jill went up the hill,\nTo fetch a pail of water.",
+"Prime_Ministers_Archive_2016": {
+	"SentenceString": "Our resolve must be to defend and preserve the best of the rules-based international order.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.50,
-		"violence": 0.00,
-		"water": 1.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.50
+		"justice": 0.00,
+		"order": 1.00,
+		"peace": 0.00,
+		"equality": 0.55
 	},
-	"KeyWord": "water",
-	"WordsToReplace": ["Jack", "Jill"],
-	"WordTypeProvide": ["NounName"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["rules-based"],
+	"WordTypeProvide": ["adjective"]
   },
-  "JackAndJill2": {
-	"SentenceString": "Jack fell down,\nAnd broke his crown.",
+"GB_Politics_Now_Data_Set_Instance_01_Set_15": {
+	"SentenceString": "The Government will continue to support diplomacy and international co-operation in the pursuit of lasting peace.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.60,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.85,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00
-		},
-	"KeyWord": "crown",
-	"WordsToReplace": ["Jack"],
-	"WordTypeProvide": ["NounName"]
-  },
-  "GrenadierBeer": {
-	"SentenceString": "Who comes here?\nA grenadier.\nWhat do you want?\nA pot of beer.\nWhere is your money?\nI've forgot.\nGet you gone,\nYou drunken sort.",
-	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.55,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.90,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 0.00,
+		"order": 0.00,
+		"peace": 1.00,
+		"equality": 0.55
 	},
-	"KeyWord": "money",
-	"WordsToReplace": ["grenadier"],
-	"WordTypeProvide": ["Noun"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["diplomacy"],
+	"WordTypeProvide": ["noun"]
   },
-  "CleanPlatter": {
-	"SentenceString": "Jack Sprat,\nCould eat no fat,\nHis wife could eat no lean;\nAnd so between them both,\nThey licked the platter clean.",
+"GB_Question_Time_Transcript_08_10_2023": {
+	"SentenceString": "Lasting peace requires respect for the law, the rights of others and the sovereignty of states.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.45,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.95,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 0.50,
+		"order": 0.00,
+		"peace": 1.00,
+		"equality": 0.00
 	},
-	"KeyWord": "someword",
-	"WordsToReplace": ["wife", "licked"],
-	"WordTypeProvide": ["Noun", "VerbPast"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["states"],
+	"WordTypeProvide": ["noun"]
   },
-  "LittleBoy": {
-	"SentenceString": "When I was a little boy,\nI lived by myself,\nAnd all the bread,\nAnd cheese I got,\nI laid upon the shelf.",
+"US_Presidential_Archives_Data_Set_Instance_14_Set_3": {
+	"SentenceString": "To seek or advise war is a black crime against all men.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.75,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.40,
-		"poverty": 0.00,
-		"food": 0.90,
-		"women": 0.00
+		"justice": 0.00,
+		"order": 0.50,
+		"peace": 1.00,
+		"equality": 0.00
 	},
-	"KeyWord": "boy",
-	"WordsToReplace": ["bread", "cheese"],
-	"WordTypeProvide": ["NounPlural"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["black"],
+	"WordTypeProvide": ["noun"]
   },
-  "Pigs": {
-	"SentenceString": "This pig went to market,\nThat pig stayed at home;\nThis pig had roast meat,\nThat pig had none;\nThis pig went to the barn-door,\nAnd cried week, week, for more.",
+"Zettur_Benjamin_Public_Address_Transcript_2013": {
+	"SentenceString": "Enduring peace comes from genuine compromise.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 1.00,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 0.30,
+		"order": 0.30,
+		"peace": 1.00,
+		"equality": 0.30
 	},
-	"KeyWord": "meat",
-	"WordsToReplace": ["pig"],
-	"WordTypeProvide": ["Noun"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["genuine"],
+	"WordTypeProvide": ["adjective"]
   },
-  "GetOwned": {
-	"SentenceString": "Bow, wow, wow,\nWhose dog art thou?",
+"Solz_Aleks_Tales_Of_Prison_Amazonian_Digital_Book_Set_Instance_541": {
+	"SentenceString": "The friendship and co-operation of our countries with all freedom-loving nations will serve the cause of universal peace.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.65,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 0.40,
+		"order": 0.40,
+		"peace": 1.00,
+		"equality": 0.40
 	},
-	"KeyWord": "Whose",
-	"WordsToReplace": ["dog"],
-	"WordTypeProvide": ["Noun"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["countries"],
+	"WordTypeProvide": ["noun"]
   },
-  "WomenDoing": {
-	"SentenceString": "There was an old woman,\nAnd she sold puddings and pies.",
+"GB_Politics_Now_Data_Set_Instance_12_Set_02": {
+	"SentenceString": "Equality is fundamental to a fair and prosperous society.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 0.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 1.00
+		"justice": 0.00,
+		"order": 0.00,
+		"peace": 0.40,
+		"equality": 1.00
 	},
-	"KeyWord": "woman",
-	"WordsToReplace": ["old", "sold"],
-	"WordTypeProvide": ["Adjective", "VerbPast"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["fundamental"],
+	"WordTypeProvide": ["adjective"]
   },
-  "WhatIsOwned": {
-	"SentenceString": "A bird in the hand is worth two in the bush.",
+"US_Constitutional_Hearing_1917_US_Archives_Data_Set_Instance_04": {
+	"SentenceString": "All citizens should be treated fairly and be given an equal opportunity to succeed.",
 	"Themes": {
-		"city": 0.00,
-		"children": 0.00,
-		"men": 0.00,
-		"violence": 0.00,
-		"water": 0.00,
-		"death": 0.00,
-		"evil": 0.00,
-		"work": 0.00,
-		"travel": 0.00,
-		"wealth": 1.00,
-		"poverty": 0.00,
-		"food": 0.00,
-		"women": 0.00
+		"justice": 0.20,
+		"order": 0.20,
+		"peace": 0.25,
+		"equality": 1.00
 	},
-	"KeyWord": "bush",
-	"WordsToReplace": ["bird"],
-	"WordTypeProvide": ["Noun"]
+	"KeyWord": "democracy",
+	"WordsToReplace": ["succeed"],
+	"WordTypeProvide": ["verb"]
+  },
+"GB_Prime_Ministers_Questions_Archive_Data_Set_Instance_853": {
+	"SentenceString": "The Government is committed to building a society where everyone can thrive.",
+	"Themes": {
+		"justice": 0.20,
+		"order": 0.10,
+		"peace": 0.35,
+		"equality": 1.00
+	},
+	"KeyWord": "democracy",
+	"WordsToReplace": ["building"],
+	"WordTypeProvide": ["verb"]
+  },
+"UN_Declaration_World_Politics_Archive_1962_Instance_04": {
+	"SentenceString": "The Universal Declaration of Human Rights Provides that all men are equal before the law.",
+	"Themes": {
+		"justice": 0.20,
+		"order": 0.10,
+		"peace": 0.35,
+		"equality": 1.00
+	},
+	"KeyWord": "democracy",
+	"WordsToReplace": ["men"],
+	"WordTypeProvide": ["noun"]
+  },
+"GB_Politics_Now_Data_Set_Instance_18_Set_09": {
+	"SentenceString": "We are each innocent until proven guilty.",
+	"Themes": {
+		"justice": 0.20,
+		"order": 0.10,
+		"peace": 0.35,
+		"equality": 1.00
+	},
+	"KeyWord": "democracy",
+	"WordsToReplace": ["guilty"],
+	"WordTypeProvide": ["noun"]
   }
 }

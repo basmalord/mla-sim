@@ -18,6 +18,11 @@
 [ext_resource type="Script" uid="uid://d005ylwbbn7g" path="res://Scripts/Control/StageTwo/stage_two_dynamic_label_controller.gd" id="16_jesh4"]
 [ext_resource type="FontFile" uid="uid://y7l3mbwi13ro" path="res://Res/Visual/Fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf" id="17_jesh4"]
 [ext_resource type="FontFile" uid="uid://cw7ulon1l3tpe" path="res://Res/Visual/Fonts/Orbitron Light.otf" id="18_dplh7"]
+[ext_resource type="Script" uid="uid://dj1bnx6wtxdk3" path="res://Scenes/Stages/StageOne/success_and_failure_sounds.gd" id="19_wjf7w"]
+[ext_resource type="AudioStream" uid="uid://dt2eb5wmgiak4" path="res://Res/Audio/SuccessS1.wav" id="20_wy2v4"]
+[ext_resource type="AudioStream" uid="uid://lhvunva7tp47" path="res://Res/Audio/failure.wav" id="21_w2dqr"]
+[ext_resource type="Script" uid="uid://bsehyambh4xc3" path="res://Scripts/Audio/stage_one_audio_manager.gd" id="22_w2dqr"]
+[ext_resource type="AudioStream" uid="uid://dlntm46y68cjk" path="res://Res/Audio/keyboard_button_short.wav" id="23_n8hyf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ja71u"]
 
@@ -644,7 +649,7 @@ script = ExtResource("4_ew2kn")
 
 [node name="AssociationsHandler" type="Node" parent="." unique_id=783763854]
 script = ExtResource("6_llsbq")
-word_dict_path = "C:/Users/theob/Documents/mla-sim/Data/StageTwo/stage_two_test_word_dict.txt"
+word_dict_path = "res://Data/StageTwo/new_word_dict.txt"
 
 [node name="UIController" type="Control" parent="." unique_id=1422155388]
 anchors_preset = 0
@@ -739,6 +744,7 @@ one_shot = true
 one_shot = true
 
 [node name="StageTwoNetOutput" type="RichTextLabel" parent="DynamicLabelController" unique_id=2116890716]
+visible = false
 layout_mode = 0
 offset_left = 1123.0
 offset_top = 901.0
@@ -751,6 +757,20 @@ text = "Place holder text (net graph output)."
 scroll_active = false
 scroll_following = true
 scroll_following_visible_characters = true
+
+[node name="SuccessAndFailureSounds" type="AudioStreamPlayer" parent="." unique_id=1679958851]
+script = ExtResource("19_wjf7w")
+sounds_dict = Dictionary[String, AudioStream]({
+"failure": ExtResource("21_w2dqr"),
+"success": ExtResource("20_wy2v4")
+})
+
+[node name="StageTwoAudioManager" type="AudioStreamPlayer" parent="." unique_id=738035125]
+script = ExtResource("22_w2dqr")
+sounds_dict = Dictionary[String, AudioStream]({
+"back_button": ExtResource("23_n8hyf"),
+"keyboard_button": ExtResource("23_n8hyf")
+})
 
 [connection signal="pressed" from="NetGraph" to="." method="_on_net_graph_pressed"]
 [connection signal="pressed" from="UIController/RemoveButton" to="UIController" method="_on_remove_last_clicked"]

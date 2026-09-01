@@ -1,0 +1,380 @@
+{
+  "LondonBridge": {
+	"SentenceString": "London Bridge is broken down.",
+	"Themes": {
+		"city": 1.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "bridge",
+	"WordsToReplace": ["broken"],
+	"WordTypeProvide": ["VerbPast"]
+  },
+  "TommyThumb": {
+	"SentenceString": "Little Tommy Thumb,\nWith his little pipe and drum.",
+	"Themes": {
+		"city": 0.00,
+		"children": 1.00,
+		"men": 0.40,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "little",
+	"WordsToReplace": ["little", "pipe", "drum"],
+	"WordTypeProvide": ["Noun", "Adjective"]
+  },
+  "CradleRock": {
+	"SentenceString": "When the wind blows,\nThe cradle will rock.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.95,
+		"men": 0.00,
+		"violence": 0.20,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "wind",
+	"WordsToReplace": ["blows", "rock"],
+	"WordTypeProvide": ["VerbPresent"]
+  },
+  "CatInWell": {
+	"SentenceString": "Ding dong bell,\nThe cat is in the well.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.90,
+		"death": 0.35,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "bell",
+	"WordsToReplace": ["cat"],
+	"WordTypeProvide": ["Noun"]
+  },
+  "DrownCat": {
+	"SentenceString": "What a naughty boy was that,\nTo drown poor pussy cat.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.75,
+		"death": 1.00,
+		"evil": 0.90,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "drown",
+	"WordsToReplace": ["boy"],
+	"WordTypeProvide": ["Noun"]
+  },
+  "Walking": {
+	"SentenceString": "One foot up, the other foot down,\nThat is the way to London town.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.30,
+		"travel": 1.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00 
+	},
+	"KeyWord": "foot",
+	"WordsToReplace": ["way"],
+	"WordTypeProvide": ["Noun"]
+  },
+  "DriveNail": {
+	"SentenceString": "Drive the nail that will go: that's the way of the world,\nand is the method pursued by all our financiers, politicians, and necromancers.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.85,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "someword",
+	"WordsToReplace": ["politicians", "necromancers", "financiers"],
+	"WordTypeProvide": ["NounPlural"]
+  },
+  "KnowledgeMaxim": {
+	"SentenceString": "Knowledge is a treasure,\nbut practice is the key to it.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 1.00,
+		"travel": 0.00,
+		"wealth": 0.60,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "treasure",
+	"WordsToReplace": ["knowledge", "practice"],
+	"WordTypeProvide": ["Noun"]
+  },
+  "CowMoon": {
+	"SentenceString": "The cow jumped over the moon.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.85,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "moon",
+	"WordsToReplace": ["cow"],
+	"WordTypeProvide": ["Noun"]
+  },
+  "JackAndJill1": {
+	"SentenceString": "Jack and Jill went up the hill,\nTo fetch a pail of water.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.50,
+		"violence": 0.00,
+		"water": 1.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.50
+	},
+	"KeyWord": "water",
+	"WordsToReplace": ["Jack", "Jill"],
+	"WordTypeProvide": ["NounName"]
+  },
+  "JackAndJill2": {
+	"SentenceString": "Jack fell down,\nAnd broke his crown.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.60,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.85,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+		},
+	"KeyWord": "crown",
+	"WordsToReplace": ["Jack"],
+	"WordTypeProvide": ["NounName"]
+  },
+  "GrenadierBeer": {
+	"SentenceString": "Who comes here?\nA grenadier.\nWhat do you want?\nA pot of beer.\nWhere is your money?\nI've forgot.\nGet you gone,\nYou drunken sort.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.55,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.90,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "money",
+	"WordsToReplace": ["grenadier"],
+	"WordTypeProvide": ["Noun"]
+  },
+  "CleanPlatter": {
+	"SentenceString": "Jack Sprat,\nCould eat no fat,\nHis wife could eat no lean;\nAnd so between them both,\nThey licked the platter clean.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.45,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.95,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "someword",
+	"WordsToReplace": ["wife", "licked"],
+	"WordTypeProvide": ["Noun", "VerbPast"]
+  },
+  "LittleBoy": {
+	"SentenceString": "When I was a little boy,\nI lived by myself,\nAnd all the bread,\nAnd cheese I got,\nI laid upon the shelf.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.75,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.40,
+		"poverty": 0.00,
+		"food": 0.90,
+		"women": 0.00
+	},
+	"KeyWord": "boy",
+	"WordsToReplace": ["bread", "cheese"],
+	"WordTypeProvide": ["NounPlural"]
+  },
+  "Pigs": {
+	"SentenceString": "This pig went to market,\nThat pig stayed at home;\nThis pig had roast meat,\nThat pig had none;\nThis pig went to the barn-door,\nAnd cried week, week, for more.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 1.00,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "meat",
+	"WordsToReplace": ["pig"],
+	"WordTypeProvide": ["Noun"]
+  },
+  "GetOwned": {
+	"SentenceString": "Bow, wow, wow,\nWhose dog art thou?",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.65,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "Whose",
+	"WordsToReplace": ["dog"],
+	"WordTypeProvide": ["Noun"]
+  },
+  "WomenDoing": {
+	"SentenceString": "There was an old woman,\nAnd she sold puddings and pies.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 0.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 1.00
+	},
+	"KeyWord": "woman",
+	"WordsToReplace": ["old", "sold"],
+	"WordTypeProvide": ["Adjective", "VerbPast"]
+  },
+  "WhatIsOwned": {
+	"SentenceString": "A bird in the hand is worth two in the bush.",
+	"Themes": {
+		"city": 0.00,
+		"children": 0.00,
+		"men": 0.00,
+		"violence": 0.00,
+		"water": 0.00,
+		"death": 0.00,
+		"evil": 0.00,
+		"work": 0.00,
+		"travel": 0.00,
+		"wealth": 1.00,
+		"poverty": 0.00,
+		"food": 0.00,
+		"women": 0.00
+	},
+	"KeyWord": "bush",
+	"WordsToReplace": ["bird"],
+	"WordTypeProvide": ["Noun"]
+  }
+}

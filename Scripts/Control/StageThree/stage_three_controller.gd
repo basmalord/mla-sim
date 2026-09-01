@@ -24,13 +24,17 @@ signal to_vdt_manager
 @onready var real_user_satisfaction_manager = $RealUserSatisfactionManager
 @onready var in_game_clock = $ClockLayer/AnimationPlayer/Clock
 @onready var special_commands_handler: SpecialCommandsHandler = $SpecialCommandsHandler
-
-
+@onready var input_sounds: AudioStreamPlayer = $StageThreeAudioManager
+@onready var success_and_failure_sounds: AudioStreamPlayer = $SuccessAndFailureSounds
+@onready var key_board_sounds: AudioStreamPlayer = $KeyBoardSounds
 var selected_goal: String
 var button_state_dictionary: Dictionary 
-
+var first: bool = true
+var final_tutorial_step: bool = false
 @export_range(1,10,1) var level: int = 1
 @export var number_of_options: int = 5
+
+var special_commands: Dictionary = {}
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("A"):
@@ -38,21 +42,40 @@ func _process(delta: float) -> void:
 
 func _ready():
 	pass
+	#_play_failure()
+
+func _play_success():
+	success_and_failure_sounds._play_sound_by_id("success")
+
+func _play_failure():
+	success_and_failure_sounds._play_sound_by_id("failure")
+
+func _play_keyboard():
+	key_board_sounds.play_from_random_position()
+
+func _stop_keyboard():
+	key_board_sounds.stop()
 
 func _relay_between_convo_pres_and_special_actions():
-	special_commands_handler._on_prompt_displayed_or_new_passive_ready()
+	print("gotten relay on main controller bloo")
+	if special_commands == {}:
+		print("returning relay on main controller bloo")
+		return
+	special_commands_handler._on_prompt_displayed_or_new_passive_ready(special_commands)
+
+func _play_standard_input_sound():
+	input_sounds._play_sound_by_id("keyboard_button")
 
 func get_real_user_satisfaction():
 	return real_user_satisfaction_manager.user_satisfaction
 
 func get_user_satisfaction_threshold():
 	var active_prompt: Dictionary = prompt_manager.active_prompt_entry
-	print(active_prompt)
-	var user_sat_dict = active_prompt["UserSatisfaction"]
-	var user_sat: float = user_sat_dict["Threshold"]
-	if active_prompt.has("UserSatisfaction") == false: #this condition doesnt work, change to set the prompt to a variable
+	if active_prompt.keys().has("UserSatisfaction") == false: #this condition doesnt work, change to set the prompt to a variable
 		print(active_prompt)
 		return null
+	var user_sat_dict = active_prompt["UserSatisfaction"]
+	var user_sat: float = user_sat_dict["Threshold"]
 	return user_sat #will cause crashes if called where there is none
 
 func get_passed_user_satisfaction():
@@ -68,25 +91,71 @@ func get_passed_user_satisfaction():
 	else:
 		return true
 
+func launch_end_of_game_sequence():
+	if get_parent() is SceneController:
+		get_parent().end_of_game()
+	else:
+		get_tree().quit()
+
 func _on_prompt_response_prompt_end():
+	var time_to_add_minutes
 	var is_end_day: bool = prompt_manager.get_end_day_bool()
-	var time_to_add_minutes: int = prompt_manager.get_time_to_add()
-	if is_end_day:
-		if get_passed_user_satisfaction() == true:
+	if !final_tutorial_step:
+		time_to_add_minutes = prompt_manager.get_time_to_add()
+	var is_engineer: bool = prompt_manager.get_is_engineer()
+	if final_tutorial_step:
+		in_game_clock._end_day()
+		await in_game_clock.time_passed
+		real_user_satisfaction_manager._reset_user_satisfaction()
+		confidence_manager.my_rtl.text = "0"
+		convo_presenter._clear_prompts()
+		await in_game_clock.day_ended
+		launch_end_of_game_sequence()
+		return
+	if is_engineer:
+		if is_end_day:
 			real_user_satisfaction_manager._reset_user_satisfaction()
 			in_game_clock._end_day()
 			await in_game_clock.time_passed
 			convo_presenter._clear_prompts()
 			await in_game_clock.day_ended
 		else:
-			in_game_clock._let_time_pass("minute", 120) #just some random amount of time to the review
+			in_game_clock._let_time_pass("minute", time_to_add_minutes)
 			await in_game_clock.time_passed
-			prompt_manager._launch_new_prompt(true) 
-			return
-	elif !is_end_day:
-		in_game_clock._let_time_pass("minute", time_to_add_minutes)
-		await in_game_clock.time_passed
-	prompt_manager._launch_new_prompt()
+			#_relay_between_convo_pres_and_special_actions()
+		prompt_manager._launch_new_prompt() 
+	else:
+		if is_end_day:
+			if get_passed_user_satisfaction() == true:
+				real_user_satisfaction_manager._reset_user_satisfaction()
+				in_game_clock._end_day()
+				await in_game_clock.time_passed
+				convo_presenter._clear_prompts()
+				await in_game_clock.day_ended
+			else:
+				in_game_clock._let_time_pass("minute", 120) #just some random amount of time to the review
+				await in_game_clock.time_passed
+				prompt_manager._launch_new_prompt(true) 
+				return
+		prompt_manager._launch_new_prompt()
+
+func begin_tutorial_sequence():
+	convo_presenter.tutorial_active = true
+	await get_tree().process_frame
+	response_selection_menu._disable_all_word_buttons()
+	_send_passive_prompt("Ah, I didn't confirm your decoding behaviour. Should be fixed now. Go ahead, say something.")
+	await get_tree().process_frame
+	convo_presenter.generate_user_typing_button("User typing",true, true, false)
+	await convo_presenter.type_animation_finished
+	special_commands_handler._handle_update_probability_threshold(0.80, true)
+	prompt_manager._set_active_prompt("tutorial", true)
+	await get_tree().create_timer(0.05)
+	var active_entry: Dictionary = prompt_manager.active_prompt_entry
+	associations_manager._generate_cosine_similarity_array(active_entry) #passive_prompt_dict[response_id][response_section_id][acceptability] passive prompt dict needs an entry for this
+	final_tutorial_step = true
+	await get_tree().create_timer(2)
+	_switch_generate_button_disabled()
+	#set an active prompt skip the goals signal stage
 
 func _set_button_state_dict():
 	for child in get_children():
@@ -117,16 +186,21 @@ func _return_all_buttons_to_state():
 
 
 func _on_prompt_displayed():
-	var all_goals: Array = response_selection_menu.button_node_array
-	for i in all_goals.size():
-		var relaying_string: String = response_selection_menu.get_next_invisible_word()
-		if relaying_string == "":
-			print("returning from on prompt displayed function: ", i)
-			return
-		_relay_to_vdt_manager("prompt to goals", relaying_string)
-		await vdt_manager.end_of_the_line_prompt_to_goals
-		print("post end of line prompt to goals received by s3 cont")
-		response_selection_menu._show_word_by_text(relaying_string)
+	if first:
+		var all_goals: Array = response_selection_menu.button_node_array
+		for i in all_goals.size():
+			var relaying_string: String = response_selection_menu.get_next_invisible_word()
+			if relaying_string == "":
+				print("returning from on prompt displayed function: ", i)
+				return
+			_relay_to_vdt_manager("prompt to goals", relaying_string)
+			await vdt_manager.end_of_the_line_prompt_to_goals
+			print("post end of line prompt to goals received by s3 cont")
+			response_selection_menu._show_word_by_text(relaying_string)
+		first = false
+		return
+	response_selection_menu._enable_all_word_buttons()
+	response_selection_menu._show_all_word_buttons(false)
 
 func _relay_to_vdt_manager(target_path: String, relaying_string_data: String):
 	vdt_manager._handle_relay(target_path, relaying_string_data)
@@ -141,8 +215,12 @@ func _send_prompt(prompt_entry: Dictionary, from_failure: bool = false):
 			prompt_goals_strings.append(entry.keys()[0])
 		response_selection_menu._import_items(prompt_goals_strings) # can just test this out with the text for the goals sent
 	else:
-		
-		var booty #here you need to unpack all of the engineering special commands via their entry
+		print("got to else on _send_prompt blah")
+		var special_commands_from_entry: Dictionary = prompt_entry["SpecialCommands"]
+		special_commands = special_commands_from_entry
+		response_selection_menu._import_items(["justice", "order", "peace", "equality"])
+		convo_presenter._handle_prompt(prompt_text)
+		return
 	convo_presenter._handle_prompt(prompt_text)
 
 func _handle_engineering_prompt(prompt_entry: Dictionary):
@@ -165,6 +243,7 @@ func _send_response_data(response_entry: Dictionary, goals_array: Array):
 	#response_gen_output
 
 func _on_send_response_button_pressed() -> void:
+	input_sounds._play_sound_by_id("keyboard_button")
 	var threshold: int = confidence_manager.confidence_requirement * 100
 	var current_confidence: int = int(confidence_manager.my_rtl.text)
 	if current_confidence < threshold:
@@ -182,7 +261,6 @@ func _on_send_response_button_pressed() -> void:
 	convo_presenter._handle_response(candidate_text)
 	response_gen_output._reset_all()
 	options_manager._on_send_clicked()
-	response_selection_menu._clear_items()
 	erase_button.disabled = true
 
 func _send_passive_prompt(passive_prompt: String):
@@ -279,6 +357,7 @@ func _on_response_options_item_selected(index: int) -> void:
 
 
 func _on_erase_section_button_pressed() -> void:
+	input_sounds._play_sound_by_id("back_button")
 	response_gen_output.call_deferred("_handle_erase_section")
 	var remove_words_goal_array: Array[Variant] = await response_gen_output.erasing
 	print(remove_words_goal_array)

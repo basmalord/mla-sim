@@ -4,6 +4,7 @@ class_name StageOneController
 
 signal correctness_array_generated(correctness_array: Array[String])
 
+
 var answer_label_og_position: Vector2i
 var correct_given: bool = false
 var last_guess_wrong: bool = false
@@ -16,6 +17,8 @@ var last_guess_wrong: bool = false
 @onready var audio_manager: AudioStreamPlayer = $StageOneAudioManager
 @onready var history_grid: GridContainer = $ScrollContainer/TokenisationHistoryContainer
 @onready var history_grid_two: GridContainer = $ScrollContainer2/TokenisationHistoryContainer
+@onready var success_and_failure_sounds: AudioStreamPlayer = $SuccessAndFailureSounds
+
 
 var waiting_to_duplicate: bool = false
 var debug: bool = false
@@ -59,7 +62,7 @@ func _confirm_pressed():
 		print("correct_array is empty")
 		return
 	if correctness_array == ["correct", "correct", "correct", "correct", "correct"]: 
-		print("confirm pressed and correct")
+		success_and_failure_sounds._play_sound_by_id("success")
 		#get_parent()._s1_correct_behaviour()
 		#answer_label.text = answer_manager.active_answer.to_upper() + "!"
 		correct_given = true
@@ -76,7 +79,6 @@ func _confirm_pressed():
 			return
 		return
 	if waiting_to_duplicate:
-		print("confirm pressed in waiting to duplicate")
 		input_present_container._duplicate_first_row_and_add_to_history_grid()
 		_switch_waiting_to_duplicate()
 		return
@@ -85,6 +87,8 @@ func _confirm_pressed():
 		#answer_label.position.x -= 250
 		#last_guess_wrong = true
 	#visual manager behaviour to change letter themes; need some behaviour to show when the player guesses the word correctly 
+	if success_and_failure_sounds.playing == false:
+		success_and_failure_sounds._play_sound_by_id("failure")
 	input_present_container._set_row_themes(correctness_array) 
 	_switch_waiting_to_duplicate()
 	#input_present_container._set_active_row()# here you need to call a new func that you make in the grid node, whereby it keeps the active row as 1

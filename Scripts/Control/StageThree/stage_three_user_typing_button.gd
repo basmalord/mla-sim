@@ -5,7 +5,7 @@ class_name UserTypingButton
 @export var text_speed: float = 0.5
 @export var next_prompt: Dictionary
 @export var flash_speed: float = 1.0
-
+var tutorial: bool = false
 
 func animate_elipses(): #while loop might cause some lag, come here to change if so
 	while true:
@@ -26,5 +26,7 @@ func _flash_button():
 		tween.tween_property(self, "modulate", Color.WHITE, flash_speed * 0.5)
 
 func _on_pressed() -> void:
+	if tutorial:
+		get_parent().continue_tutorial()
 	await get_tree().create_timer(0.05).timeout
 	queue_free()

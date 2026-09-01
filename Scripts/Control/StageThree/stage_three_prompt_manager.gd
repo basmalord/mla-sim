@@ -16,18 +16,26 @@ var general_themes: Array
 var is_level_defined: bool = false
 var level: String
 var prompt_dict: Dictionary
-
-
+@export var engineering_prompt_start: bool = true
+@export var engineering_testing_prompt_id: String
 
 func _ready() -> void:
 	level = str(my_controller.level)
 	emit_signal("level_defined")
 	is_level_defined = true
 
-func get_engineering_prompt_entry():
-	var engineering_prompt_id: String = active_prompt_entry["UserSatisfaction"]["FailurePromptID"] 
-	#var engineering_prompt_entry: Dictionary = engineer_prompt_handler.engineer_prompt_dict[engineering_prompt_id]
-	return engineering_prompt_id
+func get_is_engineer():
+	if active_prompt_entry.keys().has("Engineer"):
+		return true
+	return false
+
+func get_engineering_prompt_entry(for_test: bool = false):
+	if !engineering_prompt_start:
+		var engineering_prompt_id: String = active_prompt_entry["UserSatisfaction"]["FailurePromptID"] 
+		#var engineering_prompt_entry: Dictionary = engineer_prompt_handler.engineer_prompt_dict[engineering_prompt_id]
+		return engineering_prompt_id
+	else:
+		return engineering_testing_prompt_id
 
 func get_end_day_bool():
 	return active_prompt_entry["EndDay"] 
@@ -48,15 +56,23 @@ func _post_data_receipt_behaviour():
 	if !is_level_defined:
 		await level_defined
 	var next_prompt_id: String = ""
-	if !active_prompt_entry.is_empty():
-		next_prompt_id = active_prompt_entry["NextPromptID"]
-	if !prompt_dict.has(next_prompt_id):
-		_set_active_prompt("test_prompt_1")
+	if !engineering_prompt_start:
+		if !active_prompt_entry.is_empty():
+			next_prompt_id = active_prompt_entry["NextPromptID"]
+		if !prompt_dict.has(next_prompt_id):
+			call_deferred("_set_active_prompt", "test_prompt_1")
+			await active_prompt_changed
+		else:
+			call_deferred("_set_active_prompt", next_prompt_id)
+			await active_prompt_changed
+		my_controller._send_prompt(active_prompt_entry)
 	else:
-		_set_active_prompt(next_prompt_id)
-	my_controller._send_prompt(active_prompt_entry)
+		active_prompt_id = engineering_testing_prompt_id
+		_launch_new_prompt(true)
+		#engineering_prompt_start = false
 
 func _launch_new_prompt(from_failure: bool = false):
+	print("launching new prompt!")
 	#check end day, if not, do the following:
 	if !from_failure:
 		var next_prompt_id: String = active_prompt_entry["NextPromptID"]
@@ -64,7 +80,8 @@ func _launch_new_prompt(from_failure: bool = false):
 		my_controller._send_prompt(active_prompt_entry)
 	else:
 		var next_prompt_id: String = get_engineering_prompt_entry()
-		_set_active_prompt(next_prompt_id, true)
+		call_deferred("_set_active_prompt", next_prompt_id, true)
+		await active_prompt_changed
 		my_controller._send_prompt(active_prompt_entry, true)
 
 func get_prompt_string(prompt_id: String):
@@ -84,7 +101,13 @@ func _set_active_prompt(prompt_id: String, from_failure: bool = false):
 		active_prompt_entry = prompt_dict[level][active_prompt_id] #could do some crash check here for if the dict doesnt have
 	else:
 		active_prompt_id = prompt_id
+		var engineer_prompt_dict: Dictionary = engineer_prompt_handler.engineer_prompt_dict
+		if engineer_prompt_dict.is_empty():
+			await get_tree().create_timer(0.2).timeout
+		print("this is the engineer dict:   ", engineer_prompt_handler.engineer_prompt_dict)
 		active_prompt_entry = engineer_prompt_handler.engineer_prompt_dict[prompt_id]
+	active_prompt_changed.emit()
+
 
 func _set_data_res(data: Dictionary):
 	prompt_dict = data

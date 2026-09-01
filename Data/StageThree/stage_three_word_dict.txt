@@ -1,0 +1,47 @@
+{
+	"justice": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.75,
+			"peace": 0.20,
+			"equality": 0.50
+		},
+		"WordType": "noun"
+	},
+	"order": {
+		"Themes": {
+			"justice": 0.75,
+			"order": 1.00,
+			"peace": 0.50,
+			"equality": 0.20
+		},
+		"WordType": "noun"
+	},
+	"peace": {
+		"Themes": {
+			"justice": 0.50,
+			"order": 0.75,
+			"peace": 1.00,
+			"equality": 0.50
+		},
+		"WordType": "noun"
+	},
+	"equality": {
+		"Themes": {
+			"justice": 0.90,
+			"order": 0.20,
+			"peace": 0.75,
+			"equality": 1.00
+		},
+		"WordType": "noun"
+	},
+	"statehood": {
+		"Themes": {
+			"justice": 1.00,
+			"order": 0.75,
+			"peace": 0.20,
+			"equality": 0.5
+		},
+		"WordType": "noun"
+	}
+}

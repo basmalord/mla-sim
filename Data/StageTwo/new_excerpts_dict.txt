@@ -1,0 +1,62 @@
+{
+  "MoJ_Official_Communications_Lines_10/06/2025": {
+	"SentenceString": "The Government is committed to ensuring that justice is fair, accessible and delivered effectively for everyone across society.",
+	"Themes": {
+		"justice": 1.00,
+		"order": 0.00,
+		"peace": 0.00,
+		"equality": 0.01
+	},
+	"KeyWord": "committed",
+	"WordsToReplace": ["fair"],
+	"WordTypeProvide": ["adjective"]
+  },
+"GB_Justice_Watch_Press_Release_21/12/2024": {
+	"SentenceString": "A strong justice system must uphold the rule of law while ensuring that families can access justice whenever they need it.",
+	"Themes": {
+		"justice": 1.00,
+		"order": 0.00,
+		"peace": 0.00,
+		"equality": 0.02
+	},
+	"KeyWord": "families",
+	"WordsToReplace": ["families"],
+	"WordTypeProvide": ["noun_plural"]
+  },
+"Legal_Structures_Of_Brutannia_22nd_Edition_Instance_12_Set_3": {
+	"SentenceString": "Justice is fundamental to a fair and democratic society.",
+	"Themes": {
+		"justice": 1.00,
+		"order": 0.00,
+		"peace": 0.00,
+		"equality": 0.03
+	},
+	"KeyWord": "democracy",
+	"WordsToReplace": ["democratic"],
+	"WordTypeProvide": ["adjective"]
+  },
+"Keith_Palmer_Ministerial_Memoires_1st_Edition_Instance_18_Set_15": {
+	"SentenceString": "A just society should be the end of any policy.",
+	"Themes": {
+		"justice": 1.00,
+		"order": 0.00,
+		"peace": 0.00,
+		"equality": 0.04
+	},
+	"KeyWord": "democracy",
+	"WordsToReplace": ["end"],
+	"WordTypeProvide": ["noun"]
+  },
+"GB_Press_Release_Archives_08/01/1977": {
+	"SentenceString": "Where justice is not upheld, there can be no order.",
+	"Themes": {
+		"justice": 1.00,
+		"order": 0.00,
+		"peace": 0.00,
+		"equality": 0.05
+	},
+	"KeyWord": "democracy",
+	"WordsToReplace": ["upheld"],
+	"WordTypeProvide": ["verb"]
+  }
+}

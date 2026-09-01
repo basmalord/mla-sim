@@ -6,11 +6,11 @@ const response_button_scene = preload("res://Scenes/UI/Input/input_button_base.t
 
 @onready var my_controller: Control = get_parent()
 
-@export var number_of_options: int = 5
+@export var number_of_options: int = 4
 
 var current_words: Array[String]
 var current_word_entries: Dictionary
-var my_grid_container: Container
+var my_grid_container: Container = null
 var min_size: Vector2 = Vector2(91,81)
 var buttons_are_disabled: bool = false
 var flash_colour: Color = Color(0.161, 0.824, 0.157, 1.0)
@@ -21,7 +21,11 @@ func _alter_shadow_outline(value: int, target_rtl: Button):
 	target_rtl.add_theme_constant_override("shadow_outline_size", value)
 
 func _flash_all_buttons():
-	for child in my_grid_container:
+	if my_grid_container == null:
+		return
+	if my_grid_container.get_children().is_empty():
+		return
+	for child in my_grid_container.get_children():
 		if child is Button:
 			_flash_button(child)
 
@@ -96,6 +100,7 @@ func _generate_word_buttons(word_entries: Dictionary):
 		child.text = words[random_index]
 		child.sim_value = sim_values[random_index]
 		words.pop_at(random_index) #think this could actually be the return value but not sure
+		child.add_theme_font_size_override("font_size", 16)
 	current_word_entries = word_entries
 
 

@@ -7,19 +7,10 @@ var my_controller: Control
 var active_themes: Array[String]
 var word_dict: Dictionary
 var themes_dict_template: Dictionary = {"Themes":
-{"city": 0.00,
-"children": 0.00,
-"men": 0.00,
-"violence": 0.00,
-"water": 0.00,
-"death": 0.00,
-"evil": 0.00,
-"work": 0.00,
-"travel": 0.00,
-"wealth": 0.00,
-"poverty": 0.00,
-"food": 0.00,
-"women": 0.00}
+{"justice": 0.00,
+"order": 0.00,
+"peace": 0.00,
+"equality": 0.00}
 }
 
 @export_range(0.01, 1.00) var word_learning_rate: float = 0.10

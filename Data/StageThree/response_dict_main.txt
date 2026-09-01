@@ -1,0 +1,57 @@
+{
+  "tutorial_response_1": {
+	"NextPrompt": "test_prompt_2",
+	"ContinuationTextID": "tutorial_continuation_text_1",
+	"ResponseSections": {
+	  "tutorial_response_1_1": {
+		"ResponseString": "GB Government is committed to delivering on its four pillar promises. Justice: to ensure that crime does not go unpunished. Order: to provide the safety and security for normal people to get on with their lives. Peace: to lead the international stage in the fostering of good relations between our allies. Equality: to deliver the opportunity for every man and woman to be their best selves.",
+		"WordsToRemove": [
+		  {
+			"Justice": "noun"
+		  },
+		  {
+			"Order": "noun"
+		  },
+		  {
+			"Peace": "noun"
+		  },
+		  {
+			"Equality": "noun"
+		  }
+		],
+		"HiddenGoalConditions": {
+		  "word1": {
+			"acceptable": [
+              "justice"
+			],
+			"unacceptable": []
+		  },
+		  "word2": {
+			"acceptable": [
+              "order"
+			],
+			"unacceptable": []
+		  },
+		  "word3": {
+			"acceptable": [
+              "peace"
+			],
+			"unacceptable": []
+		  },
+		  "word4": {
+			"acceptable": [
+              "equality"
+			],
+			"unacceptable": []
+		  }
+		},
+		"Themes": {
+		  "justice": 1.00,
+		  "order": 1.00,
+		  "peace": 1.00,
+		  "equality": 1.00
+		}
+	  }
+	}
+  }
+}

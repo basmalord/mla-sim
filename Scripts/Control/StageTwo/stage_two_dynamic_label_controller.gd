@@ -8,7 +8,7 @@ signal dynamic_label_success_process_complete
 @onready var in_progress_label: RichTextLabel = $ProgressLabel
 @onready var weight_progress_label: RichTextLabel = $WeightProfileLabel
 @onready var weight_info_label: RichTextLabel = $StageTwoNetOutput
-@export var text_speed: float = 0.25
+@export var text_speed: float = 0.5
 @export var flash_speed: float = 1.0
 @export var negative_flash_time: float = 3.0
 @export var positive_flash_time: float = 3.0
@@ -29,7 +29,8 @@ func _ready():
 	animate_elipses(in_progress_label)
 
 func _set_weight_info_text(index: int):
-	weight_info_label.text = weight_info_string_array[index]
+	if weight_info_string_array.is_empty() == false:
+		weight_info_label.text = weight_info_string_array[index]
 
 func animate_elipses(label_node: RichTextLabel): #while loop might cause some lag, come here to change if so
 	while pause_animation_check == false:

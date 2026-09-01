@@ -39,12 +39,13 @@ var template: Dictionary = {"SpecialCommands":
 func _ready():
 	pass
 
-func _on_prompt_displayed_or_new_passive_ready():
-	call_deferred("_handle_show_nodes", [{"options": false}, {"goals": true}]) # testing, insert tested function here
-	call_deferred("emit_signal", "prompt_displayed_or_new_passive_prompt_ready")
+func _on_prompt_displayed_or_new_passive_ready(special_commands_dict: Dictionary):
+	call_deferred("_receive_special_commands", special_commands_dict) # testing, insert tested function here
+	print("prior to prompt displayed signal from controller bloo", special_commands_dict)
 	emit_signal("prompt_displayed_or_new_passive_prompt_ready")
 
 func _receive_special_commands(special_commands_dict: Dictionary):
+	print("start of special commands dict, bloo", special_commands_dict)
 	var add_dict: Dictionary = {}
 	var update_dict: Dictionary = {}
 	var update_model_array: Array = []
@@ -86,6 +87,7 @@ func _handle_add_words(add_dict: Dictionary): #unpacks add dict and sends each w
 	await prompt_displayed_or_new_passive_prompt_ready
 	for index in words_array.size():
 		word_dict_reference[words_array[index]] = add_dict[words_array[index]] #works
+	print("end of add words SC")
 
 
 func _handle_update_words(update_dict: Dictionary):
@@ -111,6 +113,7 @@ func _handle_update_words(update_dict: Dictionary):
 						theme_values_reference[theme] = 1.00
 					elif theme_values_reference[theme] < 0.00:
 						theme_values_reference[theme] = 0.00 #works
+	print("end of update words SC")
 
 func _handle_update_model_array(update_model_array: Array):
 	if update_model_array.is_empty():
@@ -134,7 +137,7 @@ func _handle_update_model_array(update_model_array: Array):
 			data_reference[model_weight] = value
 		if data_reference[model_weight] < 0.00:
 			data_reference[model_weight] = 0.00
-	#Works
+	print("end of update model SC")
 
 func _handle_show_nodes(show_dict: Array):
 	if show_dict.is_empty():
@@ -154,6 +157,7 @@ func _handle_show_nodes(show_dict: Array):
 		input_options_reference._disable_all_buttons()
 	elif !is_disabled:
 		input_options_reference._enable_all_buttons()
+	print("end of show nodes SC")
 
 
 func _handle_highlight_nodes(highlight_array: Array):
@@ -164,11 +168,14 @@ func _handle_highlight_nodes(highlight_array: Array):
 	await prompt_displayed_or_new_passive_prompt_ready
 	goals_options_reference._flash_all_buttons()
 	input_options_reference._flash_all_buttons()
+	print("end of highlight SC")
 
-func _handle_update_probability_threshold(update_value: float): #works
+func _handle_update_probability_threshold(update_value: float, from_tutorial: bool = false): #works
 	if update_value == -1.00:
 		return
 	var confidence_node_reference = my_controller.confidence_manager
-	await prompt_displayed_or_new_passive_prompt_ready
+	if !from_tutorial:
+		await prompt_displayed_or_new_passive_prompt_ready
 	confidence_node_reference.confidence_requirement = update_value
 	confidence_node_reference.call_deferred("_display_confidence_threshold") #works
+	print("end of update probability threshold SC")

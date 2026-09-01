@@ -12,6 +12,8 @@ const end_screen:= preload("res://Scenes/AdHoc/play_test_end_screen.tscn")
 @onready var net_graph_viewport: SubViewportContainer = $ClusterSubViewContainer
 @onready var output_label: RichTextLabel = $StageTwoOutputLabel
 @onready var dynamic_label_controller: Control = $DynamicLabelController
+@onready var success_and_failure_sounds: AudioStreamPlayer = $SuccessAndFailureSounds
+@onready var input_sounds: AudioStreamPlayer = $StageTwoAudioManager
 
 
 func _end_stage():
@@ -25,6 +27,8 @@ func _end_prototype():
 func _failure_behaviour(answers_array: Array, expected_answers: Array):
 	dynamic_label_controller._on_failure()
 	excerpt_controller._on_failure()
+	if success_and_failure_sounds.playing == false:
+		success_and_failure_sounds._play_sound_by_id("failure")
 	#let the player know they failed and why (i.e: 'answers do not match training data'), let them know that the process is restarting (i.e: 'reprocessing training instance'),
 	#then provide space for some animation or something to link the failure to the restarting
 
@@ -33,6 +37,8 @@ func _completed_stage_behaviour():
 
 func _success_behaviour():
 	dynamic_label_controller._on_success()
+	if success_and_failure_sounds.playing == false:
+		success_and_failure_sounds._play_sound_by_id("success")
 
 func _make_string_array_to_lower(string_array: Array):
 	var to_lower_string_array: Array[String]
@@ -46,7 +52,9 @@ func _on_confirm_clicked(): #can keep all of this here, just need a condition to
 	var expected_answers: Array = excerpt_controller.excerpts_dict[active_id]["WordsToReplace"]
 	var answers_theme_values_array: Array
 	if answers_array.size() != expected_answers.size():
+		input_sounds._play_sound_by_id("keyboard_button", true)
 		return
+	input_sounds._play_sound_by_id("keyboard_button")
 	var to_lower_expected_answers: Array[String]
 	var to_lower_answers: Array[String]
 	for answer in answers_array:
@@ -77,16 +85,23 @@ func _on_neural_net_clicked():
 	pass
 
 func _on_new_excerpt_presented(excerpt: Dictionary):
+	print("got to on new presented")
 	options_controller._generate_random_word_buttons(excerpt["WordsToReplace"])
 
 func _on_remove_last_clicked():
 	var word_to_delete: String = excerpt_controller.last_inserted_word
 	if word_to_delete == "":
+		input_sounds._play_sound_by_id("back_button", true)
 		return
+	input_sounds._play_sound_by_id("back_button")
 	excerpt_controller.delete_word_input(word_to_delete)
 
 func _on_word_clicked(word_clicked: String):
-	excerpt_controller._insert_selected_word(word_clicked)
+	var is_space: bool = excerpt_controller._insert_selected_word(word_clicked)
+	if is_space == true:
+		input_sounds._play_sound_by_id("keyboard_button")
+	else:
+		input_sounds._play_sound_by_id("keyboard_button", true)
 
 
 func _on_excerpt_finished_processing(word_clicked: String):

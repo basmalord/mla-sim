@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dnq1246sogwib" path="res://Scenes/Stages/StageOne/stage_one_controller.tscn" id="2_jtt75"]
 [ext_resource type="PackedScene" uid="uid://4aph8aff5k73" path="res://Scenes/UI/menus/pause_menu.tscn" id="3_eaejv"]
 [ext_resource type="Script" uid="uid://ck2econ6uibue" path="res://Scripts/Misc/Input/input_manager.gd" id="3_udmxp"]
+[ext_resource type="Script" uid="uid://cyxow6palwx3j" path="res://Scripts/Audio/music_player.gd" id="6_nvnny"]
+[ext_resource type="AudioStream" uid="uid://cnvu46jpbcrhf" path="res://Res/Audio/S1Loop.wav" id="7_hxw8s"]
 [ext_resource type="Script" uid="uid://blw8dnw041vh7" path="res://Scripts/AdHoc/transition_manger.gd" id="10_k8tjy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_eaejv"]
@@ -57,3 +59,11 @@ z_index = 1000
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = SubResource("CanvasTexture_lrovu")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1860955208]
+stream = ExtResource("7_hxw8s")
+autoplay = true
+script = ExtResource("6_nvnny")
+music_dict = Dictionary[String, AudioStreamWAV]({
+"S1": ExtResource("7_hxw8s")
+})

@@ -239,7 +239,7 @@ func get_response_string() -> String:
 	var words_to_remove: Array
 	for entry in words_to_remove_array:
 		words_to_remove.append(entry.keys()[0])
-	for index in words_to_remove.size() - 1:
+	for index in words_to_remove.size():
 		var word = words_to_remove[index]
 		var word_string_index: int = new_text.findn(word)
 		new_text = erase_word_from_string(word, new_text, word_string_index)
@@ -355,7 +355,7 @@ func _insert_selected_word(selected_word: String):
 	var blank_indicator_index: int = modified_excerpt.find("_")
 	if blank_indicator_index == 0: #checks the string to see if the word to replace falls at the start, and capitalises if so
 		selected_word = selected_word.capitalize()
-	elif modified_excerpt[blank_indicator_index - 1] == "." or modified_excerpt[blank_indicator_index - 1] == "!" or modified_excerpt[blank_indicator_index - 1] == "?": #checks the string for punctuation and whether to capitalise.
+	elif modified_excerpt[blank_indicator_index - 2] == "." or modified_excerpt[blank_indicator_index - 2] == "!" or modified_excerpt[blank_indicator_index - 2] == "?": #checks the string for punctuation and whether to capitalise.
 		selected_word = selected_word.capitalize()
 	var newly_modified_excerpt: String
 	newly_modified_excerpt = modified_excerpt

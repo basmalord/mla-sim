@@ -1,8 +1,8 @@
-{"test_engineer_prompt_1": {"PromptString": "This is test engineer prompt 1.",
+{"test_engineer_prompt_1": {"PromptString": "You've just finished your training to incorporate GB government's four pillar commitments: 'Justice', 'Order', 'Peace', and 'Equality'. Before we can send you out for piloting, we need to do some quick tests. Do you think you could write something about one of the commitments for me?",
 "Engineer": true,
 "Time": 
 	{
-		"MinutesToPass": 10,
+		"MinutesToPass": 1,
 		"HoursToPass": 0
 	},
 "SpecialCommands":
@@ -33,7 +33,24 @@
 		"Highlight": ["options", "goals"],
 		"UpdateProbability": 0.85
 	},
-"EndDay": true,
-"NextPromptID": "test_prompt_2",
+"EndDay": false,
+"NextPromptID": "test_prompt_2"
+},
+"tutorial": {
+	"Goals":
+		[
+			{"justice": "tutorial_response_1"},
+			 {"order": "tutorial_response_1"},
+			 {"peace": "tutorial_response_1"},
+			 {"equality": "tutorial_response_1"}
+		],
+	"Themes":
+		{
+			"justice": 1.00,
+			"order": 1.00,
+			"peace": 1.00,
+			"equality": 1.00
+		},
+	"EndDay": true
 }
 }

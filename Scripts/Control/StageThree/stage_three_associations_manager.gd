@@ -58,7 +58,7 @@ func _handle_engineering_changes(word_association_changes: Dictionary):
 				word_dict[word]["Themes"][key] = new_value
 
 func get_word_type(word: String):
-	return word_dict[word]["WordType"]
+	return word_dict[word.to_lower()]["WordType"]
 
 func _set_data_res(data: Dictionary):
 	word_dict = data

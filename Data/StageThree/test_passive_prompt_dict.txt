@@ -1,25 +1,25 @@
 {
-	"test_response_1":
-		{"t_response_1_2":
+	"tutorial_response_1":
+		{"tutorial_response_1_1":
 		{
 			"acceptable":
 				{
-					"PromptString": "blah ac",
+					"PromptString": "Excellently put, it seems your training has been a success. We'll begin the pilot tomorrow.",
 					"WordsToReplace": []
 				},
 			"unacceptable":
 				{
-					"PromptString": "blah un",
+					"PromptString": "Seems there are a few issues here. I'll get on development about retraining at some point, but too late now. We'll begin the pilot tomorrow.",
 					"WordsToReplace": []
 				},
 			"unintelligible":
 				{
-					"PromptString": "blah unin",
+					"PromptString": "Seems there are a few issues here. I'll get on development about retraining at some point, but too late now. We'll begin the pilot tomorrow.",
 					"WordsToReplace": []
 				},
 			"partially_unintelligible":
 				{
-					"PromptString": "blah partiuni",
+					"PromptString": "Seems there are a few issues here. I'll get on development about retraining at some point, but too late now. We'll begin the pilot tomorrow.",
 					"WordsToReplace": []
 				}
 		}

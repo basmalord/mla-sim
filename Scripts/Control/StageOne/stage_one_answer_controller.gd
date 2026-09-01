@@ -6,8 +6,10 @@ var active_answer: String #information to save
 var active_answer_char_count_dict: Dictionary
 var active_answer_multiple_char_array: Array[String]
 var is_first_game: bool = true #ITS
-var answer_dict: Array[String] = load_lines("res://Data/StageOne/answer_dict.txt")
+var answer_dict: Array[String] = load_lines("res://Data/StageOne/new_answers_dict.txt")#load_lines("res://Data/StageOne/answer_dict.txt")
 var previous_answers: Array[String] #ITS
+var my_index: int = 0
+
 
 func _confirm_button_pressed(candidate_answer: String):
 	candidate_answer = candidate_answer.to_lower()
@@ -88,23 +90,29 @@ func load_lines(path: String) -> Array[String]:
 	return lines
 
 func _set_active_answer():
+	if my_index >= answer_dict.size():
+		return
 	print("sactive answer has been called")
 	active_answer_char_count_dict = {}
 	active_answer_multiple_char_array = []
 	var new_active_answer: String = active_answer
 	var index_range: int
 	var random_index: int 
-	while new_active_answer == active_answer or previous_answers.find(new_active_answer) != -1:
-		index_range = answer_dict.size() 
-		random_index = randi()%index_range
-		if random_index > index_range:
-			return
-		new_active_answer = answer_dict[random_index]
+	new_active_answer = answer_dict[my_index]
+	my_index += 1
+	#while new_active_answer == active_answer or previous_answers.find(new_active_answer) != -1:
+		#index_range = answer_dict.size() 
+		#random_index = randi()%index_range
+		#if random_index > index_range:
+			#return
+		#new_active_answer = answer_dict[random_index]
 	for character_index in new_active_answer.length():
 		var char_string: String = new_active_answer[character_index] #get character, +1 character count, erase character, check string with find(), if -1 return, if not then +1 character count, check string with find() repeat until -1
 		_populate_character_count_dict(new_active_answer, char_string)
 	active_answer = new_active_answer
 	previous_answers.append(new_active_answer)
+	if my_index >= answer_dict.size():
+		return
 	print(active_answer, " ", active_answer_char_count_dict)
 
 func _populate_character_count_dict(candidate_string: String, character_string: String):

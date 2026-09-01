@@ -10,6 +10,9 @@
 [ext_resource type="FontFile" uid="uid://cbybkmr4vclor" path="res://Res/Visual/Fonts/Orbitron Medium.otf" id="6_ve0n7"]
 [ext_resource type="AudioStream" uid="uid://dlntm46y68cjk" path="res://Res/Audio/keyboard_button_short.wav" id="7_7wla1"]
 [ext_resource type="Script" uid="uid://ctvlgp4nf23t1" path="res://Scripts/Control/StageOne/stage_one_tokenisation_history_container.gd" id="10_cdw57"]
+[ext_resource type="AudioStream" uid="uid://dt2eb5wmgiak4" path="res://Res/Audio/SuccessS1.wav" id="10_okdar"]
+[ext_resource type="Script" uid="uid://dj1bnx6wtxdk3" path="res://Scenes/Stages/StageOne/success_and_failure_sounds.gd" id="11_35g4b"]
+[ext_resource type="AudioStream" uid="uid://lhvunva7tp47" path="res://Res/Audio/failure.wav" id="13_03mje"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_r4qvf"]
 
@@ -557,6 +560,13 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 columns = 5
 script = ExtResource("10_cdw57")
+
+[node name="SuccessAndFailureSounds" type="AudioStreamPlayer" parent="." unique_id=387151822]
+script = ExtResource("11_35g4b")
+sounds_dict = Dictionary[String, AudioStream]({
+"failure": ExtResource("13_03mje"),
+"success": ExtResource("10_okdar")
+})
 
 [connection signal="pressed" from="AlphabetContainer/BackButton" to="." method="_letter_removed"]
 [connection signal="pressed" from="ConfirmButton" to="." method="_confirm_pressed"]

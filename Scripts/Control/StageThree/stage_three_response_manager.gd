@@ -32,6 +32,11 @@ func _on_generate_response_button_pressed() -> void:
 		var active_prompt_entry: Dictionary = my_controller.prompt_manager.active_prompt_entry
 		var active_goal: String = my_controller.selected_goal
 		var response_id: String = ""
+		if active_prompt_entry.keys().has("Goals") == false:
+			my_controller.input_sounds._play_sound_by_id("keyboard_button", true)
+			my_controller.begin_tutorial_sequence()
+			return
+		my_controller.input_sounds._play_sound_by_id("keyboard_button")
 		for entry in active_prompt_entry["Goals"]:
 			if entry.keys()[0] == active_goal:
 				response_id = entry[active_goal]
@@ -48,6 +53,7 @@ func _on_generate_response_button_pressed() -> void:
 		my_controller._receive_goals(prompt_goals, 1, true)
 		active_response_id = response_id
 	else:
+		my_controller.input_sounds._play_sound_by_id("keyboard_button")
 		my_controller._send_response_data(active_response_entry, prompt_goals)
 		var sections: int = active_response_entry["ResponseSections"].size()
 		my_controller._receive_goals(prompt_goals, sections)

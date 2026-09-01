@@ -21,7 +21,7 @@ var my_animation_player: AnimationPlayer
 @export var end_day_wait_time: int = 3
 
 
-var default_hours: String = "00"
+var default_hours: String = "21"
 var default_minutes: String = "00"
 var default_days: String = "01"
 var default_months: String = "07"
@@ -29,10 +29,10 @@ var default_years: String = "2025"
 
 var time_conversion_dict: Dictionary = {"minute": 1, "hour": 60, "day": 1440, "week": 10080, "month": 44640}
 var texture_rect: TextureRect 
-var hours: int = 0
+var hours: int = 21
 var minutes: int = 0
-var days: int = 0
-var months: int = 0
+var days: int = 1
+var months: int = 7
 var years: int
 
 var original_positions: Array[Vector2]

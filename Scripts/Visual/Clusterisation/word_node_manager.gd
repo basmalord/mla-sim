@@ -6,15 +6,15 @@ signal children_generated
 
 const CLUSTER_WORD_SCENE := preload("res://Scenes/UI/Output/StageTwo/cluster_word_label_2d.tscn")
 const CLUSTER_THEME_SCENE := preload("res://Scenes/UI/Output/StageTwo/cluster_theme_label.tscn")
-const REPULSION := 100.0
-const SPRING_STRENGTH := 10.0
-const REST_LENGTH := 100.0
+const REPULSION := 150.0
+const SPRING_STRENGTH := 7.0
+const REST_LENGTH := 150.0
 const DAMPING := 0.90
 const DELTA = (1.0 / 60.0)
 
 @onready var my_manager: Node2D = get_parent()
 
-@export var spawn_radius := 200.0
+@export var spawn_radius := 150.0
 
 var test_template: Dictionary = 		{"Themes": {
 			"justice": 1.0,
@@ -24,12 +24,37 @@ var test_template: Dictionary = 		{"Themes": {
 		},
 		"WordType": "noun"}
 
+var test_template_2: Dictionary = 		{"Themes": {
+			"justice": 0.0,
+			"order": 1.0,
+			"peace": 0.0,
+			"equality": 0.0
+		},
+		"WordType": "noun"}
+
+var test_template_3: Dictionary = 		{"Themes": {
+			"justice": 0.0,
+			"order": 0.0,
+			"peace": 1.0,
+			"equality": 0.0
+		},
+		"WordType": "noun"}
+
+var test_template_4: Dictionary = 		{"Themes": {
+			"justice": 0.0,
+			"order": 0.0,
+			"peace": 0.0,
+			"equality": 1.0
+		},
+		"WordType": "noun"}
+
 var array_template: Array = []
 var similarity_matirx: Array[Array]
 var word_dict_path: String = "res://Data/StageTwo/clusterisation_word_dict.txt"
 var test_word_dict
 var word_nodes: Array[Node] = []
 var theme_nodes: Array[Node] = []
+var added_words: int = 0
 
 func _ready():
 	_load_excerpt_dict_from_path() #first should come generate new word nodes (whenever answers are give) ; it should add those entries into the inherent word dict ; then it should set the similarity matrix with reference to the whole word dict
@@ -37,8 +62,15 @@ func _ready():
 
 func _on_answers_given(answers_array: Array, entry_array: Array):
 	for index in answers_array.size():
+		added_words += 1
 		var answer = answers_array[index]
 		var entry = test_template
+		if added_words > 5 and added_words < 11:
+			entry = test_template_2
+		elif added_words > 10 and added_words < 16:
+			entry = test_template_3
+		elif added_words > 15:
+			entry = test_template_4
 		#var entry = entry_array[index]
 		test_word_dict[answer] = entry
 	await get_tree().process_frame
@@ -93,6 +125,7 @@ func _generate_child_word_nodes(word_dict: Dictionary): #with this, needs to be 
 		var themes_entry: Dictionary = word_dict[word]["Themes"]
 		for theme in themes_entry:
 			var value = themes_entry[theme]
+			print("this is theme values: ", value)
 			if value > themes_entry[themes_entry.keys()[highest_value_index]]:
 				highest_value_index = value_index
 			value_index += 1
@@ -114,6 +147,7 @@ func _generate_child_word_nodes(word_dict: Dictionary): #with this, needs to be 
 	emit_signal("children_generated")
 
 func generate_spawn_position(associated_theme: String): #no safeguards against rnadomyl spawning very close, could prove annoying when more and more words are added
+	print("this is associated theme: ", associated_theme)
 	var angle := randf() * TAU
 	var distance := sqrt(randf()) * spawn_radius
 	var centre: Vector2

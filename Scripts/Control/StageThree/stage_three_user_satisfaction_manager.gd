@@ -11,9 +11,11 @@ var previous_values: Array[float] #must remember to reset this when send is pres
 
 func _negative_indication_behaviour():
 	_flash_button("negative")
+	my_controller._play_success()
 
 func _positive_indication_behaviour():
 	_flash_button("positive")
+	my_controller._play_failure()
 
 func _alter_shadow_outline(value: int, target_rtl: RichTextLabel = my_rtl):
 	target_rtl.add_theme_constant_override("shadow_outline_size", value)

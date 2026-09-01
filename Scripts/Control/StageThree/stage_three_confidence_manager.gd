@@ -1,5 +1,6 @@
 extends Control
 
+@onready var my_controller = get_parent()
 @onready var my_rtl: RichTextLabel = $ConfidenceRTL
 @onready var my_threshold_rtl: RichTextLabel = $ConfidenceThreshold
 
@@ -20,6 +21,7 @@ func _ready():
 func _does_not_meet_confidence_threshold_behaviour():
 	_flash_button("negative")
 	_flash_button("negative", my_threshold_rtl)
+	my_controller._play_failure()
 
 func _negative_indication_behaviour():
 	_flash_button("negative")
@@ -29,6 +31,11 @@ func _positive_indication_behaviour():
 
 func _new_confidence_visual_behaviour(behaviour: String, node: Node):
 	_flash_button(behaviour, node)
+	match behaviour:
+		"positive":
+			my_controller._play_success()
+		"negative":
+			my_controller._play_failure()
 
 func _alter_shadow_outline(value: int, target_rtl: RichTextLabel = my_rtl):
 	target_rtl.add_theme_constant_override("shadow_outline_size", value)

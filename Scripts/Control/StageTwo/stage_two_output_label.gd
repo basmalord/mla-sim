@@ -13,6 +13,11 @@ func _on_word_selection(excerpt_entry: Dictionary, word_entry: Dictionary, entry
 	if to_lower_array.find(word_id.to_lower()) != -1:
 		text += generate_string_output("99%", entry_id, word_id)
 		return
+	else:
+		var random_int: int = randi_range(5,35)
+		var random_string: String = str(random_int)
+		text += generate_string_output(random_string, entry_id, word_id)
+		return
 	var excerpt_theme_values_array = get_theme_values_array(excerpt_entry)
 	var word_theme_values_array = get_theme_values_array(word_entry)
 	var similarity_value = get_cosine_similarity(excerpt_theme_values_array, word_theme_values_array)

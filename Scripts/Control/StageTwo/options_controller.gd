@@ -13,21 +13,26 @@ func _on_word_clicked(word_clicked: String):
 	my_controller._on_word_clicked(word_clicked)
 
 func _generate_random_word_buttons(words: Array):
+	print("gotten to start of generate random word buttons")
 	if my_grid_container == null:
 		my_grid_container = get_children()[0]
 	current_words = []
 	var word_dict = get_parent().associations_handler.word_dict
 	var word_array = word_dict.keys()
+	print("this is my word array: ", word_array)
 	for child in my_grid_container.get_children():
 		var word_to_add: String = " "
 		var random_index: int = randi_range(0, word_array.size() - 1)
 		word_to_add = word_array[random_index]
+		print("gotten to start of while loop")
 		while current_words.has(word_to_add):
 			random_index = randi_range(0, word_array.size() - 1)
 			word_to_add = word_array[random_index]
+		print("gotten to end of while loop")
 		current_words.append(word_to_add)
 		child.text = word_to_add
 		child.custom_minimum_size = min_size
+	print("gotten to end of gen random word butts")
 	_generate_word_buttons(words)
 
 

@@ -9,7 +9,6 @@ const STAGE_TWO_PATH: String = "res://Scenes/Stages/StageTwo/StageTwoController.
 const STAGE_THREE_PATH: String = "res://Scenes/Stages/StageThree/stage_three_controller.tscn"
 const PAUSE_SCREEN_PATH: String = "res://Scenes/UI/menus/pause_menu.tscn"
 
-
 func _handle_transition(current_scene: Node):
 	var current_stage_name = current_scene.name
 	var new_stage
