@@ -36,10 +36,6 @@ var final_tutorial_step: bool = false
 
 var special_commands: Dictionary = {}
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("A"):
-		_relay_to_vdt_manager("generator to prompt", "testing")
-
 func _ready():
 	pass
 	#_play_failure()

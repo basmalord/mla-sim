@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dchm3irfr3l2a"]
+
+[ext_resource type="Script" uid="uid://bh4fygryfulff" path="res://Scenes/UI/menus/start_menu.gd" id="1_uxtjv"]
+[ext_resource type="FontFile" uid="uid://cbybkmr4vclor" path="res://Res/Visual/Fonts/Orbitron Medium.otf" id="2_h73rb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pa2uu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmqhc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nmdpf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2gmwb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s6cnt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_esx4i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sfksr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pt503"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oh2pr"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_uxtjv"]
+
+[node name="StartMenu" type="Control" unique_id=1190613901]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_uxtjv")
+main_stage_file_path = "res://TestScene/test_scene.tscn"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=822995883]
+modulate = Color(0, 0, 0, 0.4392157)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("CanvasTexture_pa2uu")
+
+[node name="Start" type="Button" parent="." unique_id=1631107976]
+layout_mode = 0
+offset_left = 785.0
+offset_top = 325.0
+offset_right = 1135.0
+offset_bottom = 427.0
+theme_override_colors/font_hover_color = Color(0.4117647, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+theme_override_fonts/font = ExtResource("2_h73rb")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rmqhc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nmdpf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2gmwb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_s6cnt")
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="." unique_id=818754658]
+layout_mode = 0
+offset_left = 790.0
+offset_top = 755.0
+offset_right = 1132.0
+offset_bottom = 857.0
+theme_override_colors/font_hover_color = Color(0.4117647, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_h73rb")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxEmpty_esx4i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sfksr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pt503")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_oh2pr")
+text = "Quit"
+
+[node name="BlackScreen" type="TextureRect" parent="." unique_id=926554280]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+texture = SubResource("CanvasTexture_uxtjv")
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

@@ -6,7 +6,7 @@ var active_answer: String #information to save
 var active_answer_char_count_dict: Dictionary
 var active_answer_multiple_char_array: Array[String]
 var is_first_game: bool = true #ITS
-var answer_dict: Array[String] = load_lines("res://Data/StageOne/new_answers_dict.txt")#load_lines("res://Data/StageOne/answer_dict.txt")
+var answer_dict: Array[String] = ["judge", "order", "peace", "equal"]
 var previous_answers: Array[String] #ITS
 var my_index: int = 0
 
@@ -67,6 +67,7 @@ func compare_string_arrays(example: Array[String], compared: Array[String]) -> A
 		var key = dict.keys()[0]
 		var result = dict[key]
 		correctness_array.append(result)
+	print("awaiting from answer controller")
 	await get_tree().create_timer(0.05).timeout
 	get_parent().correctness_array_generated.emit(correctness_array)
 	return correctness_array

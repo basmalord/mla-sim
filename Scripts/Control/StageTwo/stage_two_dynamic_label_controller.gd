@@ -1,5 +1,7 @@
 extends Control
 
+class_name DynamicLabelController
+
 signal dynamic_label_success_process_complete
 
 @onready var my_timer: Timer = $DynamicLabelTimer

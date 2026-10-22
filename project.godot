@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="MLA Sim"
-run/main_scene="uid://sprwmqanwdf4"
+run/main_scene="uid://dchm3irfr3l2a"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=30
 config/icon="res://icon.svg"

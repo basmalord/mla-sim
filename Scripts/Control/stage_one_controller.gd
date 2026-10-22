@@ -9,6 +9,7 @@ var answer_label_og_position: Vector2i
 var correct_given: bool = false
 var last_guess_wrong: bool = false
 
+
 @onready var input_present_container: GridContainer = $InputPresentContainer
 @onready var answer_manager: Node = $StageOneAnswerManager
 @onready var answer_label: Label = $AnswerLabel
@@ -46,17 +47,20 @@ func _letter_clicked(input_button: InputButton):
 	input_present_container._set_active_row_string(button_text)
 
 func _letter_removed():
-	input_present_container._remove_last_letter()
+	if !waiting_to_duplicate:
+		input_present_container._remove_last_letter()
 
 func _confirm_pressed():
+	print("start of continue button")
 	await get_tree().create_timer(0.06).timeout
+	print("after await on continue button")
 	if input_present_container.get_active_row_string().contains("_"):
 		print("cant do this 2")
 		return #space for some behaviour to indicate that you need to enter more letters
 	if input_present_container.active_row == "Row6" or input_present_container.active_row == "Row7" or input_present_container.active_row == "Row8":
 		print("cant do this 3")
 		return
-	answer_manager._confirm_button_pressed(input_present_container.get_active_row_string())
+	answer_manager.call_deferred("_confirm_button_pressed", input_present_container.get_active_row_string())
 	var correctness_array: Array[String] = await correctness_array_generated
 	if correctness_array.is_empty():
 		print("correct_array is empty")
@@ -91,6 +95,7 @@ func _confirm_pressed():
 		success_and_failure_sounds._play_sound_by_id("failure")
 	input_present_container._set_row_themes(correctness_array) 
 	_switch_waiting_to_duplicate()
+	print("end of continue button")
 	#input_present_container._set_active_row()# here you need to call a new func that you make in the grid node, whereby it keeps the active row as 1
 
 

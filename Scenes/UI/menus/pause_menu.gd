@@ -41,11 +41,6 @@ func _on_continue_button_pressed() -> void:
 	my_controller.is_paused = false
 	my_controller.stage_controller.process_mode = Node.PROCESS_MODE_PAUSABLE
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("A"):
-		print(continue_button.disabled)
-		sure_rect.show()
-
 func _on_full_quit_pressed() -> void:
 	var wants_to_leave: bool = true
 	match wants_to_leave:

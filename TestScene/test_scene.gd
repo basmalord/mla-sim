@@ -52,6 +52,15 @@ func _play_test_s_2_complete():
 	await get_tree().create_timer(s1_finished_wait_time).timeout
 	transition_manager._handle_transition(stage_controller)
 
+func end_of_game():
+	stage_controller.set_process_input(false)
+	pause_menu.set_process_input(false)
+	transition_manager.set_process_input(false)
+	black_screen.show()
+	await get_tree().process_frame
+	get_tree().change_scene_to_file("res://Scripts/AdHoc/EndScreen.tscn")
+	
+
 func _s1_correct_behaviour():
 	pass
 	#if !background_screen_effects.is_visible():
